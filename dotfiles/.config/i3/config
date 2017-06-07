@@ -1,0 +1,343 @@
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+
+
+# Set modifier
+set $mod Mod4
+set $alt Mod1
+
+floating_modifier $alt
+
+font pango:AR PL UMing TW MBE 12
+
+#########################################
+# Gaps setting
+#########################################
+
+gaps inner 10
+gaps outer 0
+
+bindsym $mod+F11 exec i3-msg gaps inner current minus 5
+bindsym $mod+F12 exec i3-msg gaps inner current plus 5
+
+#########################################
+# Window Border 
+#########################################
+new_window  normal 3
+new_float   normal 5
+
+#########################################
+# Color Theme
+#########################################
+set $urgent-bg-color    #E53935
+set $indicator-color    #00ff00
+
+# class                 border             backgr.           text    indicator 		child_border
+client.focused          #4c7899            #285577           #ffffff #2255ff            #285577	
+client.focused_inactive #333333            #333333           #000000 #2255ff            #222222	
+client.unfocused        #333333            #222222           #999999 #2255ff            #222222	
+client.urgent           $urgent-bg-color   $urgent-bg-color  #00ff00 #2255ff            #900000	
+client.placeholder      #000000            #0c0c0c           #ffffff #2255ff            #0c0c0c	
+client.background       #ffffff
+
+for_window [class=".*"] title_format "%title"
+
+##########################################
+# Focus / Move / Delete Window 
+##########################################
+
+bindsym $alt+Left           workspace prev
+bindsym $alt+Right          workspace next
+
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
+bindsym $mod+a              focus parent
+
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
+
+bindsym $mod+q              kill
+bindsym $mod+button3        kill
+bindsym $alt+F4             kill
+
+#########################################
+# Split Window Mode
+#########################################
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+#########################################
+# Switch Window Layout
+#########################################
+bindsym $mod+s layout       stacking
+bindsym $mod+w layout       tabbed
+bindsym $mod+e layout       toggle split
+bindsym $mod+f fullscreen   toggle
+
+#########################################
+# Floating Window
+#########################################
+bindsym $mod+Shift+space                    floating toggle
+bindsym $mod+space                          focus mode_toggle
+bindsym $mod+minus          [floating]      move scratchpad
+bindsym $mod+equal          [floating]      scratchpad show
+bindsym $mod+x              [floating]      exec --no-startup-id ~/.config/i3/script/maxmize.sh
+
+#########################################
+# Workspace List
+#########################################
+set $workspace_1 "1: [1]  一般 "
+set $workspace_2 "2: [2]  瀏覽器"
+set $workspace_3 "3: [3]  編輯器"
+set $workspace_4 "4: [4]  建置環境"
+set $workspace_5 "5: [5]  音樂"
+set $workspace_6 "6: [6]  檔案"
+set $workspace_7 "7: [7]  PTT"
+set $workspace_8 "8: [8]  即時通訊"
+set $workspace_9 "9: [9]  一般"
+set $workspace_10 "10: [10]  一般"
+set $workspace_11 "11: [F1]  外接螢幕"
+set $workspace_12 "12: [F2]  外接螢幕"
+set $workspace_13 "13: [F3]  外接螢幕"
+set $workspace_14 "14: [F4]  外接螢幕"
+set $workspace_15 "15: [F5]  外接螢幕"
+set $workspace_16 "16: [F6]  外接螢幕"
+set $workspace_17 "17: [F7]  外接螢幕"
+set $workspace_18 "18: [F8]  外接螢幕"
+set $workspace_19 "19: [F9]  外接螢幕"
+set $workspace_20 "20: [F10]  外接螢幕"
+
+workspace $workspace_2 output eDP1
+workspace $workspace_3 output eDP1
+workspace $workspace_4 output eDP1
+workspace $workspace_5 output eDP1
+workspace $workspace_6 output eDP1
+workspace $workspace_7 output eDP1
+workspace $workspace_8 output eDP1
+workspace $workspace_9 output eDP1
+workspace $workspace_10 output eDP1
+
+workspace $workspace_11 output DP1
+workspace $workspace_12 output DP1
+workspace $workspace_13 output DP1
+workspace $workspace_14 output DP1
+workspace $workspace_15 output DP1
+workspace $workspace_16 output DP1
+workspace $workspace_17 output DP1
+workspace $workspace_18 output DP1
+workspace $workspace_19 output DP1
+workspace $workspace_20 output DP1
+
+workspace $workspace_11 output HDMI2
+workspace $workspace_12 output HDMI2
+workspace $workspace_13 output HDMI2
+workspace $workspace_14 output HDMI2
+workspace $workspace_15 output HDMI2
+workspace $workspace_16 output HDMI2
+workspace $workspace_17 output HDMI2
+workspace $workspace_18 output HDMI2
+workspace $workspace_19 output HDMI2
+workspace $workspace_20 output HDMI2
+
+set strip_workspace_numbers yes
+
+#########################################
+# Assing application to workspace
+#########################################
+assign [title="PttChrome"]          $workspace_7
+assign [instance="GundamSBT"] 	    $workspace_4
+assign [instance="TransformerSBT"]  $workspace_4
+assign [instance="DebugConsole"]    $workspace_4
+assign [class="NeoVim"]             $workspace_3
+assign [class="Deadbeef"]           $workspace_5
+assign [class="Thunar"]             $workspace_6
+assign [class="Pidgin"]             $workspace_8
+
+
+for_window [title="PttChrome"]          focus
+for_window [instance="GundamSBT"] 	focus
+for_window [instance="TransformerSBT"]  focus
+for_window [instance="DebugConsole"]    focus
+for_window [class="NeoVim"]             focus
+for_window [class="Deadbeef"]           focus
+for_window [class="Thunar"]             focus
+for_window [class="Pidgin"]             focus
+
+#########################################
+# Floating Application
+#########################################
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="mpv"] floating enable
+
+floating_minimum_size 75 x 50
+floating_maximum_size 1300 x 700
+
+#########################################
+# Application shortcut
+#########################################
+bindsym $mod+Return exec --no-startup-id terminator
+bindsym $mod+d exec --no-startup-id xfce4-appfinder
+bindsym $alt+F1 exec --no-startup-id xfce4-appfinder
+bindsym $mod+t exec --no-startup-id thunar
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $alt+Up exec --no-startup-id amixer set Master 5%+
+bindsym $alt+Down exec --no-startup-id amixer set Master 5%-
+bindsym Pause exec --no-startup-id amixer set Master 5%+
+bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%-
+bindsym Print exec --no-startup-id xfce4-screenshooter
+
+
+
+#########################################
+# Workspace Movment
+#########################################
+bindsym $mod+1          workspace $workspace_1
+bindsym $mod+2          workspace $workspace_2
+bindsym $mod+3          workspace $workspace_3
+bindsym $mod+4          workspace $workspace_4
+bindsym $mod+5          workspace $workspace_5
+bindsym $mod+6          workspace $workspace_6
+bindsym $mod+7          workspace $workspace_7
+bindsym $mod+8          workspace $workspace_8
+bindsym $mod+9          workspace $workspace_9
+bindsym $mod+0          workspace $workspace_10
+bindsym $mod+F1         workspace $workspace_11
+bindsym $mod+F2         workspace $workspace_12
+bindsym $mod+F3         workspace $workspace_13
+bindsym $mod+F4         workspace $workspace_14
+bindsym $mod+F5         workspace $workspace_15
+bindsym $mod+F6         workspace $workspace_16
+bindsym $mod+F7         workspace $workspace_17
+bindsym $mod+F8         workspace $workspace_18
+bindsym $mod+F9         workspace $workspace_19
+bindsym $mod+F10        workspace $workspace_20
+
+bindsym $mod+Shift+1    move container to workspace $workspace_1; workspace $workspace_1
+bindsym $mod+Shift+2    move container to workspace $workspace_2; workspace $workspace_2
+bindsym $mod+Shift+3    move container to workspace $workspace_3; workspace $workspace_3
+bindsym $mod+Shift+4    move container to workspace $workspace_4; workspace $workspace_4
+bindsym $mod+Shift+5    move container to workspace $workspace_5; workspace $workspace_5
+bindsym $mod+Shift+6    move container to workspace $workspace_6; workspace $workspace_6
+bindsym $mod+Shift+7    move container to workspace $workspace_7; workspace $workspace_7
+bindsym $mod+Shift+8    move container to workspace $workspace_8; workspace $workspace_8
+bindsym $mod+Shift+9    move container to workspace $workspace_9; workspace $workspace_9
+bindsym $mod+Shift+0    move container to workspace $workspace_10; workspace $workspace_10
+
+bindsym $mod+Shift+F1   move container to workspace $workspace_11; workspace $workspace_11
+bindsym $mod+Shift+F2   move container to workspace $workspace_12; workspace $workspace_12
+bindsym $mod+Shift+F3   move container to workspace $workspace_13; workspace $workspace_13
+bindsym $mod+Shift+F4   move container to workspace $workspace_14; workspace $workspace_14
+bindsym $mod+Shift+F5   move container to workspace $workspace_15; workspace $workspace_15
+bindsym $mod+Shift+F6   move container to workspace $workspace_16; workspace $workspace_16
+bindsym $mod+Shift+F7   move container to workspace $workspace_17; workspace $workspace_17
+bindsym $mod+Shift+F8   move container to workspace $workspace_18; workspace $workspace_18
+bindsym $mod+Shift+F9   move container to workspace $workspace_19; workspace $workspace_19
+bindsym $mod+Shift+F10  move container to workspace $workspace_20; workspace $workspace_20
+
+
+bindsym $mod+Shift+a    resize shrink width     30 px or 15 ppt
+bindsym $mod+Shift+s    resize grow height      30 px or 15 ppt
+bindsym $mod+Shift+w    resize shrink height    30 px or 15 ppt
+bindsym $mod+Shift+d    resize grow width       30 px or 15 ppt
+
+
+#########################################
+# i3 Session Shortcut
+#########################################
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/script/exitI3.sh
+
+#########################################
+# Mode Block
+#########################################
+
+set $resize_mode    "調整大小"
+set $monitor_mode   "選擇螢幕：(L) 筆電 / (D) 外接螢幕 / (E) 延伸模式 / (H) HDMI"
+set $system_mode    "系統選單：(L) 鎖定 / (E) 登出 / (S) 暫停 / (R) 重開 / (SHFIT+S) 關機"
+
+bindsym $mod+r mode $resize_mode
+bindsym $mod+p mode $monitor_mode
+bindsym control+$alt+BackSpace mode $system_mode
+
+mode $resize_mode {
+    bindsym Left    resize shrink width 10 px or 10 ppt
+    bindsym Down    resize grow height 10 px or 10 ppt
+    bindsym Up      resize shrink height 10 px or 10 ppt
+    bindsym Right   resize grow width 10 px or 10 ppt
+
+    bindsym $alt+Left    resize shrink width 100 px or 50 ppt
+    bindsym $alt+Down    resize grow height 100 px or 50 ppt
+    bindsym $alt+Up      resize shrink height 100 px or 50 ppt
+    bindsym $alt+Right   resize grow width 100 px or 50 ppt
+
+    bindsym m [floating]  exec --no-startup-id ~/.config/i3/script/maxmize.sh; mode "default"
+
+    bindsym Return  mode "default"
+    bindsym Escape  mode "default"
+}
+
+mode $monitor_mode {
+    bindsym l       exec --no-startup-id ~/.screenlayout/laptopOnly.sh; mode "default" ; exec --no-startup-id nitrogen --restore
+    bindsym d       exec --no-startup-id ~/.screenlayout/externalOnly.sh; mode "default"; exec --no-startup-id nitrogen --restore
+    bindsym e       exec --no-startup-id ~/.screenlayout/extended.sh; mode "default"; exec --no-startup-id nitrogen --restore
+    bindsym h       exec --no-startup-id ~/.screenlayout/extendedHDMI.sh; mode "default"; exec --no-startup-id nitrogen --restore
+
+    bindsym Return  mode "default"
+    bindsym Escape  mode "default"
+}
+
+mode $system_mode {
+    bindsym l exec --no-startup-id ~/.config/i3/script/i3exit.sh lock, mode "default"
+    bindsym e exec --no-startup-id ~/.config/i3/script/i3exit.sh logout, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/script/i3exit.sh suspend, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/script/i3exit.sh reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/.config/i3/script/i3exit.sh shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+#########################################
+# StatusBar
+#########################################
+bar {
+
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    tray_output none
+    strip_workspace_numbers yes
+    height 30
+
+    colors {
+        background #000000
+        statusline #999999
+        separator  #666666
+                            #border                 #background             #text
+        focused_workspace   #4c7899                 #285577                 #ffffff
+        active_workspace    #333333                 #5f676a                 #ffffff
+        inactive_workspace  #333333                 #222222                 #888888
+        urgent_workspace    $urgent-bg-color        $urgent-bg-color        #ffffff
+        binding_mode        #2f343a                 #900000                 #ffffff
+    }
+}
+
+#########################################
+# Autostartup
+#########################################
+exec --no-startup-id compton --config ~/.config/compton
+exec --no-startup-id xscreensaver -nosplash
+exec --no-startup-id nm-applet
+exec --no-startup-id hime
+exec --no-startup-id xfsettingsd
+exec --no-startup-id xfce4-volumed-pulse
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id XDG_CURRENT_DESKTOP="XFCE" xfce4-panel --sm-client-disable -d
+exec --no-startup-id blueman-applet
+exec --no-startup-id xcalib -a -co  80
+exec_always --no-startup-id nitrogen --restore
