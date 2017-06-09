@@ -32,13 +32,12 @@ new_float   normal 5
 set $urgent-bg-color    #E53935
 set $indicator-color    #00ff00
 
-# class                 border             backgr.           text    indicator 		child_border
-client.focused          #4c7899            #285577           #ffffff #2255ff            #285577	
-client.focused_inactive #333333            #333333           #000000 #2255ff            #222222	
-client.unfocused        #333333            #222222           #999999 #2255ff            #222222	
-client.urgent           $urgent-bg-color   $urgent-bg-color  #00ff00 #2255ff            #900000	
-client.placeholder      #000000            #0c0c0c           #ffffff #2255ff            #0c0c0c	
-client.background       #ffffff
+# class                     border      backgr.     text    indicator   child_border
+client.focused              #81a2be     #81a2be     #1d1f21 #b3d4db
+client.unfocused            #373b41     #373b41     #A6A8A6 #FF0000
+client.focused_inactive     #c0c0c9     #c0c0c9     #000000 #ffffff
+client.urgent               #373b41     #cc6666     #ffffff #cc6666
+client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c	
 
 for_window [class=".*"] title_format "%title"
 
@@ -79,6 +78,16 @@ bindsym $mod+e layout       toggle split
 bindsym $mod+f fullscreen   toggle
 
 #########################################
+# Better Workflow
+#########################################
+
+bindsym F8      focus parent
+bindsym F9      focus parent; split v
+bindsym F10     focus parent; split h
+bindsym F11     split v; layout tabbed
+bindsym F12     split h; layout stacking
+
+#########################################
 # Floating Window
 #########################################
 bindsym $mod+Shift+space                    floating toggle
@@ -97,7 +106,7 @@ set $workspace_4 "4: [4]  建置環境"
 set $workspace_5 "5: [5]  音樂"
 set $workspace_6 "6: [6]  檔案"
 set $workspace_7 "7: [7]  PTT"
-set $workspace_8 "8: [8]  即時通訊"
+set $workspace_8 "8: [8]  一般"
 set $workspace_9 "9: [9]  一般"
 set $workspace_10 "10: [10]  一般"
 set $workspace_11 "11: [F1]  外接螢幕"
@@ -111,6 +120,7 @@ set $workspace_18 "18: [F8]  外接螢幕"
 set $workspace_19 "19: [F9]  外接螢幕"
 set $workspace_20 "20: [F10]  外接螢幕"
 
+workspace $workspace_1 output eDP1
 workspace $workspace_2 output eDP1
 workspace $workspace_3 output eDP1
 workspace $workspace_4 output eDP1
@@ -181,7 +191,7 @@ floating_maximum_size 1300 x 700
 #########################################
 bindsym $mod+Return exec --no-startup-id terminator
 bindsym $mod+d exec --no-startup-id xfce4-appfinder
-bindsym $alt+F1 exec --no-startup-id xfce4-appfinder
+bindsym $alt+F2 exec --no-startup-id xfce4-appfinder
 bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id firefox
 bindsym $alt+Up exec --no-startup-id amixer set Master 5%+
@@ -315,16 +325,22 @@ bar {
     height 30
 
     colors {
-        background #000000
-        statusline #999999
-        separator  #666666
-                            #border                 #background             #text
-        focused_workspace   #4c7899                 #285577                 #ffffff
-        active_workspace    #333333                 #5f676a                 #ffffff
-        inactive_workspace  #333333                 #222222                 #888888
-        urgent_workspace    $urgent-bg-color        $urgent-bg-color        #ffffff
-        binding_mode        #2f343a                 #900000                 #ffffff
+        separator   #969896
+        background  #1d1f21
+        statusline  #dddddd
+
+                            #border #background     #text
+        focused_workspace   #81a2be #81a2be         #1d1f21
+        active_workspace    #373b41 #373b41         #dddddd
+        inactive_workspace  #282a2e #282a2e         #dddddd
+        urgent_workspace    #cc6666 #cc6666         #dddddd
+        binding_mode        #2f343a #900000         #ffffff
+
     }
+
+   colors {
+  }
+
 }
 
 #########################################
