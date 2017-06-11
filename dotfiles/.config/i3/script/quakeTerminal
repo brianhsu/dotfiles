@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SCRIPT_DIR=`dirname $0`
+
+IS_NOT_RUNNING=`xwininfo -root -tree | grep 'Quake'`
+
+if [ -z "$IS_NOT_RUNNING" ]
+then
+    i3-msg exec "terminator -p quake -c QuakeTerminal"
+    sleep 0.2
+    i3-msg scratchpad show
+else
+    i3-msg scratchpad show
+fi

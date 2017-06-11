@@ -23,8 +23,8 @@ bindsym $mod+F12 exec i3-msg gaps inner current plus 5
 #########################################
 # Window Border 
 #########################################
-new_window  normal 3
-new_float   normal 5
+new_window  pixel 5
+new_float   pixel 5
 
 #########################################
 # Color Theme
@@ -60,7 +60,7 @@ bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
 
 bindsym $mod+q              kill
-bindsym $mod+button3        kill
+bindsym --whole-window $mod+button2        kill
 bindsym $alt+F4             kill
 
 #########################################
@@ -131,6 +131,17 @@ workspace $workspace_8 output eDP1
 workspace $workspace_9 output eDP1
 workspace $workspace_10 output eDP1
 
+workspace $workspace_1 output HDMI-1
+workspace $workspace_2 output HDMI-1
+workspace $workspace_3 output HDMI-1
+workspace $workspace_4 output HDMI-1
+workspace $workspace_5 output HDMI-1
+workspace $workspace_6 output HDMI-1
+workspace $workspace_7 output HDMI-1
+workspace $workspace_8 output HDMI-1
+workspace $workspace_9 output HDMI-1
+workspace $workspace_10 output HDMI-1
+
 workspace $workspace_11 output DP1
 workspace $workspace_12 output DP1
 workspace $workspace_13 output DP1
@@ -162,7 +173,7 @@ assign [title="PttChrome"]          $workspace_7
 assign [instance="GundamSBT"] 	    $workspace_4
 assign [instance="TransformerSBT"]  $workspace_4
 assign [instance="DebugConsole"]    $workspace_4
-assign [class="NeoVim"]             $workspace_3
+assign [class="^NeoVim$"]             $workspace_3
 assign [class="Deadbeef"]           $workspace_5
 assign [class="Thunar"]             $workspace_6
 assign [class="Pidgin"]             $workspace_8
@@ -180,18 +191,27 @@ for_window [class="Pidgin"]             focus
 #########################################
 # Floating Application
 #########################################
-for_window [class="Xfce4-appfinder"] floating enable
+
 for_window [class="mpv"] floating enable
 
 floating_minimum_size 75 x 50
-floating_maximum_size 1300 x 700
+floating_maximum_size 1680 x 1050
+
+########################################
+# Quake Like Terminal
+########################################
+
+for_window [instance="QuakeTerminal"] floating enable, move position 100 40, resize set 1680 1000, move scratchpad, title_format "[QuakeTerminal] %title"
+
+
+bindsym F1 [instance="QuakeTerminal"] exec ~/.config/i3/script/quakeTerminal
 
 #########################################
 # Application shortcut
 #########################################
 bindsym $mod+Return exec --no-startup-id terminator
-bindsym $mod+d exec --no-startup-id xfce4-appfinder
-bindsym $alt+F2 exec --no-startup-id xfce4-appfinder
+bindsym $mod+d exec --no-startup-id ~/.config/i3/script/launcher 
+bindsym $alt+F2 exec --no-startup-id ~/.config/i3/script/launcher
 bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id firefox
 bindsym $alt+Up exec --no-startup-id amixer set Master 5%+
@@ -200,6 +220,12 @@ bindsym Pause exec --no-startup-id amixer set Master 5%+
 bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%-
 bindsym Print exec --no-startup-id xfce4-screenshooter
 
+bindsym $mod+Insert exec --no-startup-id svim
+bindsym $mod+Home exec --no-startup-id firefox
+bindsym $mod+Prior exec --no-startup-id gnucash
+bindsym $mod+Delete exec --no-startup-id deadbeef
+bindsym $mod+End exec thunar
+bindsym $mod+Next exec --no-startup-id gthumb
 
 
 #########################################
@@ -338,22 +364,22 @@ bar {
 
     }
 
-   colors {
-  }
-
 }
 
 #########################################
 # Autostartup
 #########################################
 exec --no-startup-id compton --config ~/.config/compton
+exec --no-startup-id pulseaudio
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
 exec --no-startup-id hime
 exec --no-startup-id xfsettingsd
 exec --no-startup-id xfce4-volumed-pulse
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id XDG_CURRENT_DESKTOP="XFCE" xfce4-panel --sm-client-disable -d
+exec --no-startup-id xfce4-panel --sm-client-disable -d
 exec --no-startup-id blueman-applet
 exec --no-startup-id xcalib -a -co  80
+exec --no-startup-id terminator -p quake -c QuakeTerminal
 exec_always --no-startup-id nitrogen --restore
+
