@@ -197,14 +197,15 @@ for_window [class="mpv"] floating enable
 floating_minimum_size 75 x 50
 floating_maximum_size 1680 x 1050
 
+bindsym $mod+Shift+m    [floating]  exec --no-startup-id ~/.config/i3/script/maxmize.sh
+
 ########################################
 # Quake Like Terminal
 ########################################
 
 for_window [instance="QuakeTerminal"] floating enable, move position 100 40, resize set 1680 1000, move scratchpad, title_format "[QuakeTerminal] %title"
 
-
-bindsym F1 [instance="QuakeTerminal"] exec ~/.config/i3/script/quakeTerminal
+bindsym F1 exec --no-startup-id ~/.config/i3/script/quakeTerminal
 
 #########################################
 # Application shortcut

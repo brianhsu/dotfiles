@@ -6,9 +6,9 @@ IS_NOT_RUNNING=`xwininfo -root -tree | grep 'Quake'`
 
 if [ -z "$IS_NOT_RUNNING" ]
 then
-    i3-msg exec "terminator -p quake -c QuakeTerminal"
+    i3-msg "exec --no-startup-id terminator -p quake -c QuakeTerminal"
     sleep 0.2
-    i3-msg scratchpad show
+    i3-msg "[instance="QuakeTerminal"] scratchpad show"
 else
-    i3-msg scratchpad show
+    i3-msg "[instance="QuakeTerminal"] scratchpad show"
 fi
