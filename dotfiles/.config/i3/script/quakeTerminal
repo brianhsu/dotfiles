@@ -4,7 +4,7 @@ SCRIPT_DIR=`dirname $0`
 
 IS_NOT_RUNNING=`xwininfo -root -tree | grep 'Quake'`
 SCRIPT_DIR=$(dirname $0)
-SIZE=$($SCRIPT_DIR/windowinfo.py size 50 50 2>/dev/null)
+SIZE=`$SCRIPT_DIR/windowinfo.py size 50 50`
 
 if [ -z "$IS_NOT_RUNNING" ]
 then

@@ -14,7 +14,11 @@ for m in range(nmons):
   monitors.append(mg)
 
 # current monitor
-curmon = screen.get_monitor_at_window(screen.get_active_window())
+if screen.get_active_window() != None:
+    curmon = screen.get_monitor_at_window(screen.get_active_window())
+else:
+    x, y, mods = window.get_screen().get_root_window().get_pointer()
+    curmon = screen.get_monitor_at_point(x, y) 
 
 x, y, width, height = monitors[curmon]
 
