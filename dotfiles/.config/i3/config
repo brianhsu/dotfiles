@@ -169,24 +169,24 @@ set strip_workspace_numbers yes
 #########################################
 # Assing application to workspace
 #########################################
-assign [title="PttChrome"]          $workspace_7
+assign [class="PCManX"]             $workspace_7
 assign [instance="GundamSBT"] 	    $workspace_4
 assign [instance="TransformerSBT"]  $workspace_4
 assign [instance="DebugConsole"]    $workspace_4
-assign [class="^NeoVim$"]             $workspace_3
+assign [instance="Navigator"]       $workspace_2
+assign [class="^NeoVim$"]           $workspace_3
 assign [class="Deadbeef"]           $workspace_5
 assign [class="Thunar"]             $workspace_6
-assign [class="Pidgin"]             $workspace_8
 
 
-for_window [title="PttChrome"]          focus
+for_window [class="PCManX"]             focus
 for_window [instance="GundamSBT"] 	focus
 for_window [instance="TransformerSBT"]  focus
 for_window [instance="DebugConsole"]    focus
+for_window [instance="Navigator"]       focus
 for_window [class="NeoVim"]             focus
 for_window [class="Deadbeef"]           focus
 for_window [class="Thunar"]             focus
-for_window [class="Pidgin"]             focus
 
 #########################################
 # Floating Application
@@ -379,6 +379,5 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xfce4-panel --sm-client-disable -d
 exec --no-startup-id blueman-applet
 exec --no-startup-id xcalib -a -co  80
-exec --no-startup-id terminator -p quake -c QuakeTerminal
 exec_always --no-startup-id nitrogen --restore
 
