@@ -120,49 +120,16 @@ set $workspace_18 "18: [F8]  外接螢幕"
 set $workspace_19 "19: [F9]  外接螢幕"
 set $workspace_20 "20: [F10]  外接螢幕"
 
-workspace $workspace_1 output eDP1
-workspace $workspace_2 output eDP1
-workspace $workspace_3 output eDP1
-workspace $workspace_4 output eDP1
-workspace $workspace_5 output eDP1
-workspace $workspace_6 output eDP1
-workspace $workspace_7 output eDP1
-workspace $workspace_8 output eDP1
-workspace $workspace_9 output eDP1
-workspace $workspace_10 output eDP1
-
-workspace $workspace_1 output HDMI-1
-workspace $workspace_2 output HDMI-1
-workspace $workspace_3 output HDMI-1
-workspace $workspace_4 output HDMI-1
-workspace $workspace_5 output HDMI-1
-workspace $workspace_6 output HDMI-1
-workspace $workspace_7 output HDMI-1
-workspace $workspace_8 output HDMI-1
-workspace $workspace_9 output HDMI-1
-workspace $workspace_10 output HDMI-1
-
-workspace $workspace_11 output DP1
-workspace $workspace_12 output DP1
-workspace $workspace_13 output DP1
-workspace $workspace_14 output DP1
-workspace $workspace_15 output DP1
-workspace $workspace_16 output DP1
-workspace $workspace_17 output DP1
-workspace $workspace_18 output DP1
-workspace $workspace_19 output DP1
-workspace $workspace_20 output DP1
-
-workspace $workspace_11 output HDMI2
-workspace $workspace_12 output HDMI2
-workspace $workspace_13 output HDMI2
-workspace $workspace_14 output HDMI2
-workspace $workspace_15 output HDMI2
-workspace $workspace_16 output HDMI2
-workspace $workspace_17 output HDMI2
-workspace $workspace_18 output HDMI2
-workspace $workspace_19 output HDMI2
-workspace $workspace_20 output HDMI2
+workspace $workspace_1 output e-DP1
+workspace $workspace_2 output e-DP1
+workspace $workspace_3 output e-DP1
+workspace $workspace_4 output e-DP1
+workspace $workspace_5 output e-DP1
+workspace $workspace_6 output e-DP1
+workspace $workspace_7 output e-DP1
+workspace $workspace_8 output e-DP1
+workspace $workspace_9 output e-DP1
+workspace $workspace_10 output e-DP1
 
 set strip_workspace_numbers yes
 
