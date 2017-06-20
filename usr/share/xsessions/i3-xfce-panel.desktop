@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=i3 with XFCE
+Comment=improved dynamic tiling window manager
+Exec=/etc/X11/Sessions/i3-xfce-panel
+TryExec=i3
+Type=Application
+X-LightDM-DesktopName=i3 with XFCE panel
+DesktopNames=i3-xfce-panel
+Keywords=tiling;wm;windowmanager;window;manager;
+
