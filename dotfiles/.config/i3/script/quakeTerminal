@@ -9,7 +9,7 @@ SIZE=`$SCRIPT_DIR/windowinfo.py size 50 50`
 if [ -z "$IS_NOT_RUNNING" ]
 then
     i3-msg "exec --no-startup-id terminator -p quake -c QuakeTerminal"
-    sleep 0.2
+    sleep 0.5
     i3-msg "[instance="QuakeTerminal"] floating enable, move to scratchpad, scratchpad show, resize set $SIZE, move position center"
 else
     i3-msg "[instance="QuakeTerminal"] scratchpad show, resize set $SIZE, move position center"

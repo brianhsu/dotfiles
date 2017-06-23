@@ -8,7 +8,8 @@ set $alt Mod1
 
 floating_modifier $alt
 
-font pango:AR PL UMing TW MBE 12
+#font pango:AR PL UMing TW MBE 12
+font pango:Source Han Sans TW Medium 13
 
 #########################################
 # Gaps setting
@@ -120,17 +121,6 @@ set $workspace_18 "18: [F8]  外接螢幕"
 set $workspace_19 "19: [F9]  外接螢幕"
 set $workspace_20 "20: [F10]  外接螢幕"
 
-workspace $workspace_1 output e-DP1
-workspace $workspace_2 output e-DP1
-workspace $workspace_3 output e-DP1
-workspace $workspace_4 output e-DP1
-workspace $workspace_5 output e-DP1
-workspace $workspace_6 output e-DP1
-workspace $workspace_7 output e-DP1
-workspace $workspace_8 output e-DP1
-workspace $workspace_9 output e-DP1
-workspace $workspace_10 output e-DP1
-
 set strip_workspace_numbers yes
 
 #########################################
@@ -160,9 +150,10 @@ for_window [class="Thunar"]             focus
 #########################################
 
 for_window [class="mpv"] floating enable
+for_window [instance="QuakeTerminal"] floating enable
 
 floating_minimum_size 75 x 50
-floating_maximum_size 1980 x 1050
+floating_maximum_size 1860 x 940
 
 bindsym $mod+Shift+m    [floating]  exec --no-startup-id ~/.config/i3/script/maxmize.sh
 
@@ -180,10 +171,10 @@ bindsym $mod+d exec --no-startup-id ~/.config/i3/script/launcher
 bindsym $alt+F2 exec --no-startup-id ~/.config/i3/script/launcher
 bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id firefox
-bindsym $alt+Up exec --no-startup-id amixer set Master 5%+
-bindsym $alt+Down exec --no-startup-id amixer set Master 5%-
-bindsym Pause exec --no-startup-id amixer set Master 5%+
-bindsym Scroll_Lock exec --no-startup-id amixer set Master 5%-
+bindsym $alt+Up exec --no-startup-id "amixer set Master 5%+; pkill -RTMIN+1 i3blocks"
+bindsym $alt+Down exec --no-startup-id "amixer set Master 5%-; pkill -RTMIN+1 i3blocks"
+bindsym Pause exec --no-startup-id "amixer set Master 5%+; pkill -RTMIN+1 i3blocks"
+bindsym Scroll_Lock exec --no-startup-id "amixer set Master 5%-; pkill -RTMIN+1 i3blocks"
 bindsym Print exec --no-startup-id xfce4-screenshooter
 
 bindsym $mod+Insert exec --no-startup-id svim
@@ -336,7 +327,7 @@ bar {
 # Autostartup
 #########################################
 exec --no-startup-id compton --config ~/.config/compton
-exec --no-startup-id pulseaudio
+exec --no-startup-id pulseaudio -start
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
 exec --no-startup-id hime
