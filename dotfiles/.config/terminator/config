@@ -1,10 +1,6 @@
 [global_config]
-  dbus = False
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
-  close_term = <Primary>w
-  close_window = <Primary><Shift>q
-  hide_window = F12
-  new_tab = <Primary>t
 [layouts]
   [[default]]
     [[[child1]]]
@@ -13,31 +9,62 @@
     [[[window0]]]
       parent = ""
       type = Window
+  [[FitnessIDE]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = bb29e51b-ecd0-44c9-81a5-a5f656ea1a76
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 0:28
+      size = 1366, 708
+      title = brianhsu@ThinkpadT460: ~
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 536
+      ratio = 0.760593220339
+      type = VPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 679
+      ratio = 0.498901903367
+      type = HPaned
+    [[[terminal3]]]
+      command = env TERM="xterm-256color" startup_cmd="sbt" zsh
+      directory = /home/brianhsu/WorkRoom/CodeBase/gundam
+      order = 0
+      parent = child2
+      profile = Gundam
+      type = Terminal
+      uuid = bb29e51b-ecd0-44c9-81a5-a5f656ea1a76
+    [[[terminal4]]]
+      command = env TERM="xterm-256color" startup_cmd="sbt" zsh
+      directory = /home/brianhsu/WorkRoom/CodeBase/transformer
+      order = 1
+      parent = child2
+      profile = Gundam
+      type = Terminal
+      uuid = 7ff0f1b8-2e58-462d-9c95-8d0f425d8e68
+    [[[terminal5]]]
+      command = env TERM="xterm-256color"  zsh
+      directory = ""
+      order = 1
+      parent = child1
+      profile = Gundam
+      type = Terminal
+      uuid = 96224f0b-03a0-4772-a47b-894d363a766e
 [plugins]
 [profiles]
   [[default]]
-    antialias = False
-    background_darkness = 0.85
     background_image = None
-    background_type = transparent
     cursor_color = "#aaaaaa"
-    custom_command = /bin/zsh
-    font = DejaVu Sans Mono 17
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    scrollback_infinite = True
-    show_titlebar = False
-    update_records = False
-    use_custom_command = True
-    use_system_font = False
-  [[quake]]
-    antialias = False
-    background_darkness = 0.9
+  [[Gundam]]
     background_image = None
-    background_type = transparent
     cursor_color = "#aaaaaa"
-    custom_command = /bin/zsh -o ignoreeof
     font = DejaVu Sans Mono 17
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    scrollback_infinite = True
     show_titlebar = False
     use_system_font = False
