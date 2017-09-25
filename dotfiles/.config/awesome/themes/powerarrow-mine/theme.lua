@@ -139,6 +139,7 @@ local arrow = separators.arrow_left
 local arrow_right = separators.arrow_right
 
 function theme.at_screen_connect(s)
+
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
@@ -150,7 +151,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, false)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -169,7 +170,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 32, bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 30, bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -184,7 +185,6 @@ function theme.at_screen_connect(s)
         wibox.container.margin(s.mytasklist, 5, 5, 5, 5), -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
             wibox.container.margin(scissors, 4, 8),
             -- using separators
             arrow(theme.bg_normal, "#4B696D"),

@@ -1,3 +1,4 @@
+local taskbar = {}
 local awful = require("awful")
 local keybindings = require("modules.keybindings")
 
@@ -31,32 +32,48 @@ function minimize_or_show(c)
 end
 
 function show_task_selector()
-  local instance = nil
 
   return function ()
-    if instance and instance.wibox.visible then
-      instance:hide()
-      instance = nil
-    else
-      instance = awful.menu.clients({ theme = { width = 250 } })
-   end
+    awful.menu.menu_keys.down = { "Down", "Alt_L" }
+    awful.menu.clients({theme = { width = 250 }}, { keygrabber=true, coords={x=525, y=330} })	  
   end
 
 end
 
-awful.util.taglist_buttons = awful.util.table.join(
-  awful.button({}, 1, function(t) t:view_only() end),
-  awful.button({}, 3, awful.tag.viewtoggle),
-  awful.button({}, 4, function(t) awful.tag.viewprev(t.screen) end),
-  awful.button({}, 5, function(t) awful.tag.viewnext(t.screen) end),
-  awful.button({keybindings.super}, 1, move_to_tag),
-  awful.button({keybindings.super}, 3, toggle_tag)
-)
+local function client_menu_toggle_fn()
+    local instance = nil
 
-awful.util.tasklist_buttons = awful.util.table.join(
-  awful.button({}, 1, minimize_or_show),
-  awful.button({}, 3, show_task_selector),
-  awful.button({}, 4, function () awful.client.focus.byidx(-1) end),
-  awful.button({}, 5, function () awful.client.focus.byidx(1) end)
-)
+    return function ()
+        if instance and instance.wibox.visible then
+            instance:hide()
+            instance = nil
+        else
+            instance = awful.menu.clients({ theme = { width = 250 } })
+        end
+    end
+end
+-- }}}
 
+
+
+function taskbar.init()
+
+  awful.util.taglist_buttons = awful.util.table.join(
+    awful.button({}, 1, function(t) t:view_only() end),
+    awful.button({}, 3, awful.tag.viewtoggle),
+    awful.button({}, 4, function(t) awful.tag.viewprev(t.screen) end),
+    awful.button({}, 5, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({keybindings.super}, 1, move_to_tag),
+    awful.button({keybindings.super}, 3, toggle_tag)
+  )
+  
+  awful.util.tasklist_buttons = awful.util.table.join(
+    awful.button({}, 1, minimize_or_show),
+    awful.button({}, 3, client_menu_toggle_fn()),
+    awful.button({}, 4, function () awful.client.focus.byidx(-1) end),
+    awful.button({}, 5, function () awful.client.focus.byidx(1) end)
+  )
+
+end
+
+return taskbar

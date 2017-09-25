@@ -4,8 +4,9 @@ local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local awful = require("awful")
 local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-
+local revelation   =require("revelation")
 local terminal     = "xfce4-terminal"
+
 local super   = "Mod4"
 local alt     = "Mod1"
 local ctrl    = "Control"
@@ -86,6 +87,17 @@ function toggle_window_tag()
   end
 end
 
+local function show_runner()
+  awful.spawn("rofi -modi \"drun,window\" -show drun -sidebar-mode -font \"Source Han Sans TW 14\"")
+end
+
+local function adjust_volume(direction, percent)
+  return function()
+    awful.spawn(string.format("pactl set-sink-volume 0 %s%d%%", direction, percent), false)
+
+  end
+end
+
 local function define_global_keys() 
   local keys = awful.util.table.join(
   
@@ -100,25 +112,33 @@ local function define_global_keys()
               {description = "離開 Awesome", group = key_group_awesome}),
     awful.key({super}, "Return", function () awful.spawn(terminal) end,
               {description = "開啟終端機視窗", group = key_group_awesome}),
-    awful.key({super}, "r", function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({super}, "r", show_runner,
               {description = "執行指令", group = key_group_awesome}),
-  
+
     -- Workflow
-    awful.key({alt}, "Up", awful.tag.viewprev,
-              {description = "上一個工作區", group = key_group_workflow}),
-    awful.key({alt}, "Down",  awful.tag.viewnext,
-              {description = "下一個工作區", group = key_group_workflow}),
+    awful.key({alt}, "Left", awful.tag.viewprev,
+              {description = "上一個標籤", group = key_group_workflow}),
+    awful.key({alt}, "Right",  awful.tag.viewnext,
+              {description = "下一個標籤", group = key_group_workflow}),
     awful.key({alt}, "Escape", awful.tag.history.restore,
-              {description = "上次使用的工作區", group = key_group_workflow}),
+              {description = "上次使用的標籤", group = key_group_workflow}),
     awful.key({alt}, "Prior", function () lain.util.tag_view_nonempty(-1) end,
-              {description = "上一個有視窗的工作區", group = key_group_workflow}),
+              {description = "上一個有視窗的標籤", group = key_group_workflow}),
     awful.key({alt}, "Next", function () lain.util.tag_view_nonempty(1) end,
-              {description = "下一個有視窗的工作區", group = key_group_workflow}),
-    awful.key({alt}, "Right", function () awful.client.focus.byidx(1) end,
-              {description = "下一個視窗", group = key_group_workflow}),
-    awful.key({alt}, "Left", function () awful.client.focus.byidx(-1) end,
+              {description = "下一個有視窗的標籤", group = key_group_workflow}),
+    awful.key({alt}, "Up", function () awful.client.focus.byidx(-1) end,
               {description = "上一個視窗", group = key_group_workflow}),
-  
+    awful.key({alt}, "Down", function () awful.client.focus.byidx(1) end,
+              {description = "下一個視窗", group = key_group_workflow}),
+    awful.key({alt}, "Tab", function () awful.client.focus.byidx(1) end,
+              {description = "下一個視窗", group = key_group_workflow}),
+    awful.key({alt}, "F11", adjust_volume("-", 3),
+              {description = "調低音量", group = key_group_workflow}),
+    awful.key({alt}, "F12", adjust_volume("+", 3),
+              {description = "調高音量", group = key_group_workflow}),
+
+ 
+    -- 視窗瀏覽
     awful.key({super}, "Up", switch_focus("up"),
               {description = "切換至上方視窗", group = key_group_window_browser}),
     awful.key({super}, "Down", switch_focus("down"),
@@ -133,7 +153,9 @@ local function define_global_keys()
               {description = "切換至下一個螢幕", group = key_group_window_browser}),
     awful.key({shift, super}, "Left", function () awful.screen.focus_relative(-1) end,
               {description = "切換至上一個螢幕", group = key_group_window_browser}),
-  
+    awful.key({super}, "e", revelation,
+              {description = "revelation", group = key_group_window_browser}),
+
     -- 視窗操作
     awful.key({ctrl, super}, "Up", swap_window("up"),
               {description = "與上方視窗交換位置", group = key_group_window_action}),
@@ -161,13 +183,13 @@ local function define_global_keys()
               {description = "增加畫面欄數", group = key_group_layout}),
     awful.key({alt, super}, "Next", function () awful.tag.incncol(-1, nil, true) end,
               {description = "減少畫面欄數", group = key_group_layout}),
-    awful.key({super}, "space", function () awful.layout.inc(1) end,
+    awful.key({alt}, "space", function () awful.layout.inc(1) end,
               {description = "下一個版面配置", group = key_group_layout}),
-    awful.key({super, shift}, "space", function () awful.layout.inc(-1)                end,
+    awful.key({alt, shift}, "space", function () awful.layout.inc(-1)                end,
               {description = "上一個版面配置", group = key_group_layout}),
-    awful.key({super}, "F10", function () awful.layout.inc(1) end,
+    awful.key({alt}, "F10", function () awful.layout.inc(1) end,
               {description = "下一個版面配置", group = key_group_layout}),
-    awful.key({super}, "F9", function () awful.layout.inc(-1)                end,
+    awful.key({alt}, "F9", function () awful.layout.inc(-1)                end,
               {description = "上一個版面配置", group = key_group_layout}),
   
     awful.key({alt, shift, super}, "=", function () lain.util.useless_gaps_resize(1) end,

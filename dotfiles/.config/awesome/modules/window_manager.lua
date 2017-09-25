@@ -40,6 +40,8 @@ function window_manager.init(beautiful)
         client.focus = c
     end
   end)
+
+  screen.connect_signal("list", awesome.restart)
 end
 
 return window_manager
