@@ -87,6 +87,12 @@ awful.rules.rules = {
     properties = { floating = true } 
   },
 
+  -- Floating
+  {
+    rule_any = { instance = {"guake"} },
+    properties = { floating = true, modal = true, ontop = true } 
+  },
+
   -- Tags
   { 
     rule_any = { class = {"Firefox", "Google-chrome", "PCManX"} },

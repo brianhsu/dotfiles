@@ -136,6 +136,8 @@ local function define_global_keys()
               {description = "調低音量", group = key_group_workflow}),
     awful.key({alt}, "F12", adjust_volume("+", 3),
               {description = "調高音量", group = key_group_workflow}),
+    awful.key({}, "F1", function() awful.spawn("guake") end,
+              {description = "Guake", group = key_group_workflow}),
 
  
     -- 視窗瀏覽

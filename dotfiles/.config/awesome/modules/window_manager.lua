@@ -36,7 +36,7 @@ function window_manager.init(beautiful)
   -- Enable sloppy focus, so that focus follows mouse.
   client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) then
+        and awful.client.focus.filter(c) and client.focus.instance ~= "guake" then
         client.focus = c
     end
   end)
