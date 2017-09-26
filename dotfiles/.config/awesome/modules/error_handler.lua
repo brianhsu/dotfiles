@@ -8,7 +8,7 @@ function send_notification(opts)
   awful.util.spawn_with_shell(command)
 end
 
-naughty.config.notify_callback = send_notification
+naughty.notify = send_notification
 
 if awesome.startup_errors then
   naughty.notify({
