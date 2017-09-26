@@ -5,7 +5,7 @@ local string, os, table, type = string, os, table, type
 local awful          = require("awful")
                        require("awful.autofocus")
 local beautiful      = require("beautiful")
-local error_handler  = require("modules.error_handler")
+--local error_handler  = require("modules.error_handler")
 local autostart      = require("modules.autostart")
 local keybindings    = require("modules.keybindings")
 local mousebindings  = require("modules.mousebindings")
@@ -45,7 +45,7 @@ awful.layout.layouts = {
 
 -- Background Service
 --autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
-autostart.run_once({"xcompmgr"})
+--autostart.run_once({"xcompmgr"})
 
 -- Initialize
 beautiful.init(theme_path)

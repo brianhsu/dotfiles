@@ -18,7 +18,7 @@ local awful        = require('awful')
 local aw_rules     = require('awful.rules')
 local pairs        = pairs
 local setmetatable = setmetatable
-local naughty      = require("naughty")
+--local naughty      = require("naughty")
 local table        = table
 local clock        = os.clock
 local tostring     = tostring
@@ -37,7 +37,7 @@ local capi         = {
 
 local function debuginfo(message)
     message = message or "No information available"
-    nid = naughty.notify({ text = tostring(message), timeout = 10 })
+    --nid = naughty.notify({ text = tostring(message), timeout = 10 })
 end
 
 local delayed_call = (type(timer) ~= 'table' and  require("gears.timer").delayed_call)
