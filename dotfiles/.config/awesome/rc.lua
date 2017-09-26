@@ -44,7 +44,8 @@ awful.layout.layouts = {
 }
 
 -- Background Service
-autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
+--autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
+autostart.run_once({"xcompmgr"})
 
 -- Initialize
 beautiful.init(theme_path)
