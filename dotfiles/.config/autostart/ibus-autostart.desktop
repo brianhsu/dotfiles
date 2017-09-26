@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=iBus daemon
+Comment=Start iBus daemon
+Exec=ibus-daemon -drx
+Icon=ibus
+Terminal=false
+Hidden=false

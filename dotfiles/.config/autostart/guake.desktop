@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Guake
+Comment=Start Guake
+Exec=guake
+Terminal=false
+Hidden=false
