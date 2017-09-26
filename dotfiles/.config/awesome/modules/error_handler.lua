@@ -1,6 +1,14 @@
 local error_handler = {}
 
-local naughty       = require("naughty")
+local naughty  = require("naughty")
+local awful    = require("awful")
+
+function send_notification(opts)
+  local command = string.format('notify-send "%s" "%s"', opts.title, opts.text)
+  awful.util.spawn_with_shell(command)
+end
+
+naughty.config.notify_callback = send_notification
 
 if awesome.startup_errors then
   naughty.notify({
