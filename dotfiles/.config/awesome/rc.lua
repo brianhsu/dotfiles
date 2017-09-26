@@ -66,8 +66,9 @@ awful.rules.rules = {
     properties = { 
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
-      focus = awful.client.focus.filter,
       raise = true,
+      focus = awful.client.focus.filter,
+      maximized = false,
       keys = keybindings.clientkeys,
       buttons = mousebindings.clientbuttons,
       screen = awful.screen.preferred,
@@ -90,8 +91,14 @@ awful.rules.rules = {
 
   -- Floating
   {
+    rule = {class = "Xfce4-panel", name = "xfce4-panel"},
+    properties = { floating = true, focusable = false, dockable = true } 
+  },
+
+  -- Floating
+  {
     rule_any = { instance = {"guake"} },
-    properties = { floating = true, modal = true, ontop = true } 
+    properties = { floating = true, ontop = true, titlebars_enabled = false } 
   },
 
   -- Tags

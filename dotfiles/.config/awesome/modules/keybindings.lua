@@ -91,11 +91,20 @@ local function show_runner()
   awful.spawn("rofi -modi \"drun,window\" -show drun -sidebar-mode -font \"Source Han Sans TW 14\"", false)
 end
 
+local function show_xprop()
+  awful.spawn.with_shell("xprop >> /home/brianhsu/xprops.txt")
+end
+
+
 local function adjust_volume(direction, percent)
   return function()
     awful.spawn(string.format("pactl set-sink-volume 0 %s%d%%", direction, percent), false)
 
   end
+end
+
+local function start_revelation()
+  revelation({rule={class="Xfce4-panel"}, is_excluded = true})
 end
 
 local function define_global_keys() 
@@ -114,6 +123,9 @@ local function define_global_keys()
               {description = "開啟終端機視窗", group = key_group_awesome}),
     awful.key({super}, "r", show_runner,
               {description = "執行指令", group = key_group_awesome}),
+    awful.key({super}, "b", show_xprop,
+              {description = "執行指令2", group = key_group_awesome}),
+
 
     -- Workflow
     awful.key({alt}, "Left", awful.tag.viewprev,
@@ -153,7 +165,8 @@ local function define_global_keys()
               {description = "切換至下一個螢幕", group = key_group_window_browser}),
     awful.key({shift, super}, "Left", function () awful.screen.focus_relative(-1) end,
               {description = "切換至上一個螢幕", group = key_group_window_browser}),
-    awful.key({super}, "e", revelation,
+	      
+    awful.key({super}, "e", start_revelation,
               {description = "revelation", group = key_group_window_browser}),
 
     -- 視窗操作
