@@ -109,7 +109,7 @@ awful.rules.rules = {
   },
   { 
     rule_any = { class = {"Mysql-workbench-bin", "jetbrains-idea-ce"} },
-    properties = {tag = awful.util.tagnames[2], swithtotag = false } 
+    properties = {tag = awful.util.tagnames[2] } 
   },
 
   -- FitnessIDE

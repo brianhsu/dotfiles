@@ -14,7 +14,7 @@
       fullscreen = False
       last_active_term = bb29e51b-ecd0-44c9-81a5-a5f656ea1a76
       last_active_window = True
-      maximised = True
+      maximised = False
       order = 0
       parent = ""
       position = 0:28
