@@ -73,7 +73,8 @@ awful.rules.rules = {
       buttons = mousebindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-      size_hints_honor = true
+      size_hints_honor = true,
+      switchtotag = true
     }
   },
 
@@ -107,16 +108,23 @@ awful.rules.rules = {
     properties = {tag = awful.util.tagnames[1] } 
   },
   { 
-    rule_any = { class = {"Mysql-workbench-bin", "jetbrains-idea-ce"}, instance = {"FitnessIDE"}},
-    properties = {tag = awful.util.tagnames[2] } 
+    rule_any = { class = {"Mysql-workbench-bin", "jetbrains-idea-ce"} },
+    properties = {tag = awful.util.tagnames[2], swithtotag = false } 
   },
+
+  -- FitnessIDE
+  { 
+    rule_any = { role = {"FitnessIDE"}},
+    properties = {tag = awful.util.tagnames[2], switchtotag = false } 
+  },
+
   { 
     rule_any = { class = {"Deadbeef", "mpv"}},
     properties = {tag = awful.util.tagnames[3] } 
   },
   { 
     rule_any = { class = {"Thunar"}},
-    properties = {tag = awful.util.tagnames[4] } 
+    properties = {tag = awful.util.tagnames[4]} 
   },
 
 }
