@@ -98,7 +98,7 @@ end
 
 local function adjust_volume(direction, percent)
   return function()
-    awful.spawn(string.format("pactl set-sink-volume 0 %s%d%%", direction, percent), false)
+    awful.spawn(string.format("amixer set Master %d%%%s", percent, direction), false)
 
   end
 end

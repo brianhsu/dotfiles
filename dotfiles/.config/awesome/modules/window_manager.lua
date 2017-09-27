@@ -1,5 +1,6 @@
 local window_manager = {}
 local awful = require("awful")
+local gears = require("gears")
 
 function window_manager.init(beautiful)
   -- Create a wibox for each screen and add it
