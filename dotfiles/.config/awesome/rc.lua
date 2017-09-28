@@ -84,10 +84,16 @@ awful.rules.rules = {
     properties = { titlebars_enabled = true } 
   },
 
-  -- Floating
+  -- Application Finder
   {
     rule_any = {class = {"mpv", "Xfce4-appfinder"}},
-    properties = { floating = true } 
+    properties = { floating = false } 
+  },
+
+  -- MPV
+  {
+    rule_any = {class = {"mpv"}},
+    properties = { floating = false, tag = awful.util.tagnames[3] } 
   },
 
   -- Floating

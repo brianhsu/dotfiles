@@ -98,8 +98,7 @@ end
 
 local function adjust_volume(direction, percent)
   return function()
-    awful.spawn(string.format("amixer set Master %d%%%s", percent, direction), false)
-
+    awful.spawn.with_shell(string.format("amixer set Master %d%%%s", percent, direction), false)
   end
 end
 

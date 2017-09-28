@@ -101,10 +101,22 @@ function util.tag_view_nonempty(direction, sc)
 
    for i = 1, #s.tags do
        awful.tag.viewidx(direction, s)
-       if #s.clients > 0 then
+       local current_window = count_window(s.clients)
+       if current_window > 0 then
            return
        end
    end
+end
+
+function count_window(clients)
+  local result = 0
+  for i =1, #clients do
+    local current_client = clients[i]
+    if (current_client.instance ~= "xfce4-panel" and current_client.instance ~= "guake") then
+      result = result + 1
+    end
+  end
+  return result
 end
 
 -- {{{ Dynamic tagging
