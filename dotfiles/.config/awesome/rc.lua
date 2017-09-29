@@ -45,7 +45,7 @@ awful.layout.layouts = {
 
 -- Background Service
 --autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
---autostart.run_once({"xcompmgr"})
+autostart.run_once({"conky -c ~/.config/conky/rc.lua", "sleep 30; megasync"})
 
 -- Initialize
 beautiful.init(theme_path)

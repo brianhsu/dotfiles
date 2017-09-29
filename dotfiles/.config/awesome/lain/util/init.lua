@@ -112,7 +112,7 @@ function count_window(clients)
   local result = 0
   for i =1, #clients do
     local current_client = clients[i]
-    if (current_client.instance ~= "xfce4-panel" and current_client.instance ~= "guake") then
+    if (current_client.instance ~= "xfce4-panel" and current_client.instance ~= "guake" and current_client.class ~= "conky") then
       result = result + 1
     end
   end
