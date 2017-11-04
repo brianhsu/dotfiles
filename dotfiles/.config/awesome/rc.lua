@@ -24,6 +24,7 @@ local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.ge
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "[1]  瀏覽", "[2]  開發", "[3]  影音", "[4]  檔案", "[5]  一般" }
+awful.util.taglayouts = {awful.layout.suit.max, awful.layout.suit.max, awful.layout.suit.spiral, awful.layout.suit.spiral, awful.layout.suit.spiral}
 awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.spiral,
@@ -45,7 +46,8 @@ awful.layout.layouts = {
 
 -- Background Service
 --autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
-autostart.run_once({"conky -c ~/.config/conky/rc.lua", "sleep 30; megasync"})
+autostart.run_once({"sleepMegasync"})
+autostart.run_once({"xcalib -c; xcalib -a -co 80"})
 
 -- Initialize
 beautiful.init(theme_path)
@@ -56,6 +58,10 @@ taskbar.init()
 window_manager.init(beautiful)
 revelation.tag_name = '[O] 所有視窗'
 revelation.charorder = "1234567890asdfghjkl;'"
+
+function tt()
+  return awful.util.tagnames[2]
+end
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -74,32 +80,21 @@ awful.rules.rules = {
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap+awful.placement.no_offscreen,
       size_hints_honor = true,
-      switchtotag = true
+      switchtotag = true,
+      titlebars_enabled = true 
     }
-  },
-
-  -- Dialogs
-  {
-    rule_any = { type = { "dialog", "normal" } },
-    properties = { titlebars_enabled = true } 
   },
 
   -- Application Finder
   {
-    rule_any = {class = {"mpv", "Xfce4-appfinder"}},
+    rule_any = {class = {"Xfce4-appfinder"}},
     properties = { floating = false } 
-  },
-
-  -- MPV
-  {
-    rule_any = {class = {"mpv"}},
-    properties = { floating = false, tag = awful.util.tagnames[3] } 
   },
 
   -- Floating
   {
     rule = {class = "Xfce4-panel", name = "xfce4-panel"},
-    properties = { floating = true, focusable = false, dockable = true } 
+    properties = { floating = true, focusable = false, dockable = true, tag = awful.util.tagnames[5], titlebars_enabled = false  } 
   },
 
   -- Floating
@@ -125,13 +120,24 @@ awful.rules.rules = {
   },
 
   { 
-    rule_any = { class = {"Deadbeef", "mpv"}},
+    rule_any = { class = {"Deadbeef"}},
     properties = {tag = awful.util.tagnames[3] } 
   },
   { 
     rule_any = { class = {"Thunar"}},
     properties = {tag = awful.util.tagnames[4]} 
   },
+
+  -- MPV
+  {
+    rule_any = {class = {"mpv"}},
+    properties = { floating = false, tag = awful.util.tagnames[3], switchtotag = false  },
+    callback = function(c)
+       local t = awful.screen.focused().selected_tag
+       c:toggle_tag(t)
+    end
+  },
+
 
 }
 

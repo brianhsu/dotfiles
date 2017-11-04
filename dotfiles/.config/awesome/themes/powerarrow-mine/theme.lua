@@ -151,7 +151,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, false)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
+    awful.tag(awful.util.tagnames, s, awful.util.taglayouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
