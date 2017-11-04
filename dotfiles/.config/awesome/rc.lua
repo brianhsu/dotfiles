@@ -14,6 +14,7 @@ local menu	     = require("modules.menu")
 local titlebar	     = require("modules.titlebar")
 local window_manager = require("modules.window_manager")
 local revelation     = require("revelation")
+local tyrannical = require("tyrannical")
 
 -- Variable definitions
 local chosen_theme = "powerarrow-mine"
@@ -21,10 +22,9 @@ local terminal     = "xfce4-terminal"
 local titlebar_size = 24
 local titlebar_font = "Source Han Sans TW Medium 10"
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
-
+hiddentag = awful.tag({ 'hidden' }, s, awful.layout.suit.max)
+awful.tag.setproperty(hiddentag[1],'hide',true)
 awful.util.terminal = terminal
-awful.util.tagnames = { "[1]  瀏覽", "[2]  開發", "[3]  影音", "[4]  檔案", "[5]  一般" }
-awful.util.taglayouts = {awful.layout.suit.max, awful.layout.suit.max, awful.layout.suit.spiral, awful.layout.suit.spiral, awful.layout.suit.spiral}
 awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.spiral,
@@ -44,6 +44,57 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.se,
 }
 
+tyrannical.tags = {
+    {
+        name        = "[1]  瀏覽",
+      --icon        = "~net.png",                 -- Use this icon for the tag (uncomment with a real path)
+        init        = true,                   -- Load the tag on startup
+        exclusive   = true,                   -- Refuse any other type of clients (by classes)
+        screen      = {1,2},                  -- Create this tag on screen 1 and screen 2
+        layout      = awful.layout.suit.max,  -- Use the tile layout
+        class = {
+            "Opera"         , "Firefox"        , "Rekonq"    , "Dillo"        , "Arora",
+            "Chromium"      , "nightly"        , "minefield", "Google-chrome", "PCManX"
+        }
+    } ,
+    {
+        name        = "[2]  開發",
+        init        = true,
+        exclusive   = true,
+        screen      = {1, 2},			  
+        layout      = awful.layout.suit.max,      
+        class       = {"Mysql-workbench-bin", "jetbrains-idea-ce"}
+    } ,
+    {
+        name        = "[3]  影音",
+        init        = true,
+        exclusive   = true,
+        screen      = {1, 2},
+        layout      = awful.layout.suit.spiral,
+        class  = { "mpv", "Deadbeef"}
+    } ,
+    {
+        name        = "[4]  檔案",
+        init        = true,
+        exclusive   = true,
+        screen      = {1, 2},
+        layout      = awful.layout.suit.spiral,
+        class       = {"Thunar", "mpv"}
+    } ,
+    {
+        name        = "[5]  一般",
+	init	    = true,
+        exclusive   = false,
+	fallback    = true,
+        layout      = awful.layout.suit.spiral
+    }
+}
+tyrannical.properties.intrusive = {
+    "ksnapshot"     , "pinentry"       , "gtksu"     , "kcalc"        , "xcalc"               ,
+    "feh"           , "Gradient editor", "About KDE" , "Paste Special", "Background color"    ,
+    "kcolorchooser" , "plasmoidviewer" , "Xephyr"    , "kruler"       , "plasmaengineexplorer",
+}
+tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
 -- Background Service
 --autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
 autostart.run_once({"sleepMegasync"})
@@ -58,10 +109,6 @@ taskbar.init()
 window_manager.init(beautiful)
 revelation.tag_name = '[O] 所有視窗'
 revelation.charorder = "1234567890asdfghjkl;'"
-
-function tt()
-  return awful.util.tagnames[2]
-end
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -79,7 +126,7 @@ awful.rules.rules = {
       buttons = mousebindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-      size_hints_honor = true,
+      size_hints_honor = false,
       switchtotag = true,
       titlebars_enabled = true 
     }
@@ -88,55 +135,40 @@ awful.rules.rules = {
   -- Application Finder
   {
     rule_any = {class = {"Xfce4-appfinder"}},
-    properties = { floating = false } 
-  },
-
-  -- Floating
-  {
-    rule = {class = "Xfce4-panel", name = "xfce4-panel"},
-    properties = { floating = true, focusable = false, dockable = true, tag = awful.util.tagnames[5], titlebars_enabled = false  } 
+    properties = { floating = false, intrusive=true, ontop = true } 
   },
 
   -- Floating
   {
     rule_any = { instance = {"guake"} },
-    properties = { floating = true, ontop = true, titlebars_enabled = false } 
+    properties = { floating = true, ontop = true, titlebars_enabled = false, intrusive=true }
   },
 
-  -- Tags
-  { 
-    rule_any = { class = {"Firefox", "Google-chrome", "PCManX"} },
-    properties = {tag = awful.util.tagnames[1] } 
-  },
-  { 
-    rule_any = { class = {"Mysql-workbench-bin", "jetbrains-idea-ce"} },
-    properties = {tag = awful.util.tagnames[2] } 
-  },
 
-  -- FitnessIDE
-  { 
-    rule_any = { role = {"FitnessIDE"}},
-    properties = {tag = awful.util.tagnames[2], switchtotag = false } 
-  },
-
-  { 
-    rule_any = { class = {"Deadbeef"}},
-    properties = {tag = awful.util.tagnames[3] } 
-  },
-  { 
-    rule_any = { class = {"Thunar"}},
-    properties = {tag = awful.util.tagnames[4]} 
-  },
-
-  -- MPV
+  -- Floating
   {
-    rule_any = {class = {"mpv"}},
-    properties = { floating = false, tag = awful.util.tagnames[3], switchtotag = false  },
-    callback = function(c)
-       local t = awful.screen.focused().selected_tag
-       c:toggle_tag(t)
-    end
+    rule = {class = "Xfce4-panel", name = "xfce4-panel"},
+    properties = { 
+      titlebars_enabled = false, 
+      intrusive=true,
+      border_width = 0,
+      floating = true,
+      sticky = true,
+      ontop = false,
+      focusable = false,
+      below = true,
+      tag = hiddentag[1]
+    } 
   },
+
+
+  -- -- Tags
+  -- -- FitnessIDE
+  -- { 
+  --   rule_any = { role = {"FitnessIDE"}},
+  --   properties = {tag = awful.util.tagnames[2], switchtotag = false } 
+  -- },
+
 
 
 }
