@@ -17,14 +17,13 @@ conky.config = {
 
 -- -- Window specifications -- #
 	own_window = true,
-	own_window_type = 'desktop',
 	own_window_argb_visual = true,
 	own_window_argb_value = 120,
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 	own_window_colour = '#000000',
 
 	minimum_width = 400,
-	minimum_height = 699,
+	minimum_height = 500,
 
 	border_inner_margin = 10,
 	border_outer_margin = 0,
@@ -73,12 +72,4 @@ ${goto 50}${cpu cpu1}%${goto 92}${voffset 2}${cpubar 7,45 cpu1}${goto 150}${voff
 ${goto 50}${cpu cpu2}%${goto 92}${voffset 2}${cpubar 7,45 cpu2}${goto 150}${voffset -2}${freq_g cpu2}GHz${goto 250}${membar 7,80}
 ${goto 50}${cpu cpu3}%${goto 92}${voffset 2}${cpubar 7,45 cpu3}${goto 150}${voffset -2}${freq_g cpu3}GHz${goto 240}SWAP:$swapperc%
 ${goto 50}${cpu cpu4}%${goto 92}${voffset 2}${cpubar 7,45 cpu4}${goto 150}${voffset -2}${freq_g cpu4}GHz${goto 250}${swapbar 7,80}
-
-${color #f8df58}${font Conky Icons by Carelli:size=14}Ŷ ${font}程式
-${goto 40}Name ${goto 170}PID${goto 225}CPU${goto 280}MEM${color}
-${goto 40}${top name 1} ${goto 170}${top pid 1}${goto 225}${top cpu 1}${goto 280}${top mem 1}
-${goto 40}${top name 2} ${goto 170}${top pid 2}${goto 225}${top cpu 2}${goto 280}${top mem 2}
-${goto 40}${top name 3} ${goto 170}${top pid 3}${goto 225}${top cpu 3}${goto 280}${top mem 3}
-${goto 40}${top name 4} ${goto 170}${top pid 4}${goto 225}${top cpu 4}${goto 280}${top mem 4}
-${goto 40}${top name 5} ${goto 170}${top pid 5}${goto 225}${top cpu 5}${goto 280}${top mem 5}
 ]];

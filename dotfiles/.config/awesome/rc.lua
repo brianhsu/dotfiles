@@ -54,7 +54,7 @@ tyrannical.tags = {
         layout      = awful.layout.suit.max,  -- Use the tile layout
         class = {
             "Opera"         , "Firefox"        , "Rekonq"    , "Dillo"        , "Arora",
-            "Chromium"      , "nightly"        , "minefield", "Google-chrome", "PCManX"
+            "Chromium"      , "nightly"        , "minefield", "Google-chrome", "PCManX", "Postman"
         }
     } ,
     {
@@ -63,7 +63,8 @@ tyrannical.tags = {
         exclusive   = true,
         screen      = {1, 2},			  
         layout      = awful.layout.suit.max,      
-        class       = {"Mysql-workbench-bin", "jetbrains-idea-ce"}
+        instance    = {"FitnessIDE"},
+        class       = {"Mysql-workbench-bin", "jetbrains-idea-ce", "FitnessIDE"}
     } ,
     {
         name        = "[3]  影音",
@@ -79,7 +80,7 @@ tyrannical.tags = {
         exclusive   = true,
         screen      = {1, 2},
         layout      = awful.layout.suit.spiral,
-        class       = {"Thunar", "mpv"}
+        class       = {"Thunar", "mpv", "Nemo"}
     } ,
     {
         name        = "[5]  一般",
@@ -145,7 +146,7 @@ awful.rules.rules = {
   },
 
 
-  -- Floating
+  -- XFCE4 Panel, 不要顯示小方框在標籤列表上
   {
     rule = {class = "Xfce4-panel", name = "xfce4-panel"},
     properties = { 
@@ -160,16 +161,20 @@ awful.rules.rules = {
       tag = hiddentag[1]
     } 
   },
-
-
-  -- -- Tags
-  -- -- FitnessIDE
-  -- { 
-  --   rule_any = { role = {"FitnessIDE"}},
-  --   properties = {tag = awful.util.tagnames[2], switchtotag = false } 
-  -- },
-
-
+  {
+    rule = {class = "conky"},
+    properties = { 
+      titlebars_enabled = false, 
+      intrusive=true,
+      floating = true,
+      sticky = true,
+      ontop = false,
+      focusable = false,
+      below = true,
+      tag = hiddentag[1],
+      switchtotag = false
+    } 
+  },
 
 }
 

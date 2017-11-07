@@ -30,7 +30,9 @@
       </property>
       <property name="Client3_PerScreen" type="bool" value="false"/>
       <property name="Client4_Command" type="array">
-        <value type="string" value="xcompmgr"/>
+        <value type="string" value="compton"/>
+        <value type="string" value="--config"/>
+        <value type="string" value="/home/brianhsu/.config/compton"/>
       </property>
       <property name="Client4_PerScreen" type="bool" value="false"/>
     </property>
