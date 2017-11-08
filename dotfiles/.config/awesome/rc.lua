@@ -97,9 +97,9 @@ tyrannical.properties.intrusive = {
 }
 tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
 -- Background Service
---autostart.run_once({"xcompmgr", "ibus-daemon -drx", "guake"})
+autostart.run_once({"compton --config ~/.config/compton.conf -b"})
+autostart.run_once({"conky -c ~/.config/conky/rc.lua"})
 autostart.run_once({"sleepMegasync"})
-autostart.run_once({"xcalib -c; xcalib -a -co 80"})
 
 -- Initialize
 beautiful.init(theme_path)
