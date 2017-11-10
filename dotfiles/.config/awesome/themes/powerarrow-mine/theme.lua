@@ -27,7 +27,6 @@ theme.hotkeys_modifiers_fg 			= "#00BBEE"
 theme.taglist_fg_focus                          = "#00CCFF"
 theme.taglist_bg_focus                          = "#444444"
 theme.taglist_bg_empty                          = "#444444"
-theme.taglist_bg_normal                          = "#444444"
 theme.taglist_bg_occupied                       = "#444444"
 theme.prompt_bg					= "#444444"
 theme.tasklist_bg_focus                         = "#444444"
@@ -152,7 +151,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, false)
 
     -- Tags
-    --awful.tag(awful.util.tagnames, s, awful.util.taglayouts)
+    awful.tag(awful.util.tagnames, s, awful.util.taglayouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

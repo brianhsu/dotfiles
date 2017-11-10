@@ -5,7 +5,6 @@ local gears = require("gears")
 function window_manager.init(beautiful)
   -- Create a wibox for each screen and add it
   awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
-  awful.util.spawn("sleepConky", false)
   
   -- {{{ Screen
   -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
@@ -38,7 +37,10 @@ function window_manager.init(beautiful)
   -- Enable sloppy focus, so that focus follows mouse.
   client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-        and awful.client.focus.filter(c) and client.focus.instance ~= "guake" then
+        and awful.client.focus ~= nil
+        and awful.client.focus.filter(c) 
+        and client.focus ~= nil
+        and client.focus.instance ~= "guake" then
         client.focus = c
     end
   end)
