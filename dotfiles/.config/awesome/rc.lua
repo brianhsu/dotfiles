@@ -56,7 +56,6 @@ awful.layout.layouts = {
 
 -- Background Service
 autostart.run_once({"sleepMegasync"})
-autostart.run_once({"conky --config ~/.config/conky/rc.lua"})
 autostart.run_once({"compton --config ~/.config/compton.conf"})
 
 -- Initialize
@@ -139,8 +138,8 @@ awful.rules.rules = {
       ontop = true, 
       titlebars_enabled = false, 
       sticky=true, 
-      tag = hiddentag, 
-      switchtotag = false 
+      switchtotag = false,
+      tag = hiddentag
     } 
   },
 
