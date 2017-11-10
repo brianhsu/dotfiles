@@ -102,7 +102,9 @@ awful.rules.rules = {
     rule_any = {class = {"Xfce4-appfinder"}},
     properties = {
       floating = false, 
-      ontop = true 
+      switchtotag = false, 
+      ontop = false, 
+      sticky = true  
     } 
   },
 
@@ -111,12 +113,12 @@ awful.rules.rules = {
     rule = {class = "Xfce4-panel"},
     properties = { 
       floating = true, 
-      focusable = true, 
+      focusable = false, 
       dockable = true, 
       tag = hiddentag, 
       titlebars_enabled = false, 
       switchtotag = false, 
-      ontop = true, 
+      ontop = false, 
       sticky = true  
     } 
   },
