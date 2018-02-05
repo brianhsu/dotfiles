@@ -28,6 +28,8 @@ set strip_workspace_numbers yes
 #########################################
 # Workspace Movment
 #########################################
+workspace_auto_back_and_forth yes
+
 bindsym $mod+1          workspace $workspace_1
 bindsym $mod+2          workspace $workspace_2
 bindsym $mod+3          workspace $workspace_3
@@ -59,7 +61,7 @@ bindsym $mod+Shift+d    resize grow width       30 px or 15 ppt
 # Font
 #########################################
 
-font pango:DejaVu Sans Mono 13
+font pango:Soruce Han Sans TW Medium 13
 
 #########################################
 # Gaps setting
@@ -90,7 +92,7 @@ client.focused_inactive     #c0c0c9     #c0c0c9     #000000 #ffffff
 client.urgent               #373b41     #cc6666     #ffffff #cc6666
 client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c	
 
-for_window [class=".*"] title_format "%title"
+for_window [class=".*"] title_format "  %title"
 
 ##########################################
 # Window Management
@@ -98,6 +100,10 @@ for_window [class=".*"] title_format "%title"
 
 bindsym $alt+Left           workspace prev
 bindsym $alt+Right          workspace next
+
+bindsym $mod+Next         exec --no-startup-id ~/.config/i3/script/i3flip.sh n
+bindsym $mod+Prior   exec --no-startup-id ~/.config/i3/script/i3flip.sh p
+
 
 bindsym $mod+Left           focus left
 bindsym $mod+Down           focus down
@@ -109,6 +115,8 @@ bindsym $mod+Shift+Left     move left
 bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
+bindsym $mod+o              move container to output right
+bindsym $mod+Shift+o        move workspace to output right
 
 bindsym $mod+q              kill
 bindsym --whole-window $mod+button2        kill
@@ -129,7 +137,7 @@ bindsym $mod+f fullscreen   toggle
 # Floating Window
 #########################################
 bindsym $mod+Shift+space                    floating toggle
-bindsym $mod+space                          focus mode_toggle
+#bindsym $mod+space                          focus mode_toggle
 
 #########################################
 # Assing application to workspace
@@ -227,7 +235,7 @@ mode $system_mode {
 #########################################
 bar {
 
-    status_command /opt/bumblebee-status/bumblebee-status -m cpu sensors battery pasink -t powerline -p pulseaudio.autostart=true sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%" 
+    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors battery pasink -t powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
     tray_output none
     strip_workspace_numbers yes
     height 32
@@ -250,11 +258,14 @@ bar {
 #########################################
 # Autostartup
 #########################################
-exec --no-startup-id compton --config ~/.config/compton
+exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id pulseaudio -start
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
 exec --no-startup-id xfsettingsd
 exec --no-startup-id xfce4-volumed-pulse
 exec --no-startup-id xfce4-panel -d
+exec --no-startup-id guake
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id ibus-daemon -drx
 
