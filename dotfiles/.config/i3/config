@@ -33,8 +33,6 @@ set $workspace_18 "18: [F8]  外接螢幕"
 set $workspace_19 "19: [F9]  外接螢幕"
 set $workspace_20 "10: [10]  外接螢幕"
 
-set strip_workspace_numbers yes
-
 
 workspace $workspace_11 output DP-1
 workspace $workspace_12 output DP-1
@@ -133,6 +131,8 @@ client.urgent               #373b41     #cc6666     #ffffff #cc6666
 client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c	
 
 for_window [class=".*"] title_format "  %title"
+for_window [instance="guake"] fullscreen toggle; fullscreen toggle
+for_window [instance="xfce4-terminal"] floating enable
 
 ##########################################
 # Window Management
@@ -202,6 +202,8 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $alt+F2 exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
 bindsym $alt+Tab exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
 bindsym Print exec --no-startup-id xfce4-screenshooter
+bindsym $alt+F11 exec amixer set Master 5%-
+bindsym $alt+F12 exec amixer set Master 5%+
 
 
 #########################################
@@ -276,7 +278,7 @@ mode $system_mode {
 #########################################
 bar {
 
-    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors battery pasink -t powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
+    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors pasink -t powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
     tray_output none
     strip_workspace_numbers yes
     height 32
@@ -300,6 +302,7 @@ bar {
 # Autostartup
 #########################################
 exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id "sleep 5; megasync"
 exec --no-startup-id pulseaudio -start
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
