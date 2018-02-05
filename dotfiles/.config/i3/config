@@ -22,8 +22,26 @@ set $workspace_7 "7: [7]  一般"
 set $workspace_8 "8: [8]  一般"
 set $workspace_9 "9: [9]  一般"
 set $workspace_10 "10: [0]  一般"
+set $workspace_11 "11: [F1]  外接螢幕"
+set $workspace_12 "12: [F2]  外接螢幕"
+set $workspace_13 "13: [F3]  外接螢幕"
+set $workspace_14 "14: [F4]  外接螢幕"
+set $workspace_15 "15: [F5]  外接螢幕"
+set $workspace_16 "16: [F6]  外接螢幕"
+set $workspace_17 "17: [F7]  外接螢幕"
+set $workspace_18 "18: [F8]  外接螢幕"
+set $workspace_19 "19: [F9]  外接螢幕"
+set $workspace_20 "10: [10]  外接螢幕"
 
 set strip_workspace_numbers yes
+
+
+workspace $workspace_11 output DP-1
+workspace $workspace_12 output DP-1
+workspace $workspace_13 output DP-1
+workspace $workspace_14 output DP-1
+workspace $workspace_15 output DP-1
+
 
 #########################################
 # Workspace Movment
@@ -40,6 +58,17 @@ bindsym $mod+7          workspace $workspace_7
 bindsym $mod+8          workspace $workspace_8
 bindsym $mod+9          workspace $workspace_9
 bindsym $mod+0          workspace $workspace_10
+bindsym $mod+F1         workspace $workspace_11
+bindsym $mod+F2         workspace $workspace_12
+bindsym $mod+F3         workspace $workspace_13
+bindsym $mod+F4         workspace $workspace_14
+bindsym $mod+F5         workspace $workspace_15
+bindsym $mod+F6         workspace $workspace_16
+bindsym $mod+F7         workspace $workspace_17
+bindsym $mod+F8         workspace $workspace_18
+bindsym $mod+F9         workspace $workspace_19
+bindsym $mod+F10        workspace $workspace_20
+
 
 bindsym $mod+Shift+1    move container to workspace $workspace_1; workspace $workspace_1
 bindsym $mod+Shift+2    move container to workspace $workspace_2; workspace $workspace_2
@@ -50,7 +79,18 @@ bindsym $mod+Shift+6    move container to workspace $workspace_6; workspace $wor
 bindsym $mod+Shift+7    move container to workspace $workspace_7; workspace $workspace_7
 bindsym $mod+Shift+8    move container to workspace $workspace_8; workspace $workspace_8
 bindsym $mod+Shift+9    move container to workspace $workspace_9; workspace $workspace_9
-bindsym $mod+Shift+0    move container to workspace $workspace_9; workspace $workspace_10
+bindsym $mod+Shift+0    move container to workspace $workspace_10; workspace $workspace_10
+bindsym $mod+Shift+F1    move container to workspace $workspace_11; workspace $workspace_11
+bindsym $mod+Shift+F2    move container to workspace $workspace_12; workspace $workspace_12
+bindsym $mod+Shift+F3    move container to workspace $workspace_13; workspace $workspace_13
+bindsym $mod+Shift+F4    move container to workspace $workspace_14; workspace $workspace_14
+bindsym $mod+Shift+F5    move container to workspace $workspace_15; workspace $workspace_15
+bindsym $mod+Shift+F6    move container to workspace $workspace_16; workspace $workspace_16
+bindsym $mod+Shift+F7    move container to workspace $workspace_17; workspace $workspace_17
+bindsym $mod+Shift+F8    move container to workspace $workspace_18; workspace $workspace_18
+bindsym $mod+Shift+F9    move container to workspace $workspace_19; workspace $workspace_19
+bindsym $mod+Shift+F10    move container to workspace $workspace_20; workspace $workspace_20
+
 
 bindsym $mod+Shift+a    resize shrink width     30 px or 15 ppt
 bindsym $mod+Shift+s    resize grow height      30 px or 15 ppt
@@ -120,6 +160,7 @@ bindsym $mod+Shift+o        move workspace to output right
 
 bindsym $mod+q              kill
 bindsym --whole-window $mod+button2        kill
+bindsym $mod+button3 floating toggle
 bindsym $alt+F4             kill
 
 #########################################
@@ -158,8 +199,8 @@ for_window [class=".*"] focus
 # Application shortcut
 #########################################
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-bindsym $alt+F2 exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun
-bindsym $alt+Tab exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window
+bindsym $alt+F2 exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
+bindsym $alt+Tab exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
 bindsym Print exec --no-startup-id xfce4-screenshooter
 
 
