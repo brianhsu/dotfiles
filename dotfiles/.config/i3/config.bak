@@ -1,0 +1,156 @@
+set $mod Mod4
+set $alt Mod1
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 12
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+######################################################
+# Application Shortcut
+######################################################
+
+set $start_rofi exec rofi -modi "drun#window" -show drun -sidebar-mode
+bindsym $mod+Return exec i3-sensible-terminal	# Terminal
+bindsym $mod+l $start_rofi	# Application Finder
+bindsym $alt+F2 $start_rofi	# Application Finder
+
+######################################################
+# Window Management
+######################################################
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym $alt+F4 kill
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h; exec notify-send "[i3] 下一個視窗會在右邊"
+
+# split in vertical orientation
+bindsym $mod+v split v; exec notify-send "[i3] 下一個視窗會在下面"
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+t layout tabbed; exec notify-send "[i3] 標籤視窗"
+bindsym $mod+e layout toggle split; exec notify-send "[i3] Tiling 模式"
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle; exec notify-send "[i3] 切換是否浮動"
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+######################################################
+# Workspace
+######################################################
+
+set $workspace_1 "1: [1]  一般 "
+set $workspace_2 "2: [2]  瀏覽器"
+set $workspace_3 "3: [3]  編輯器"
+set $workspace_4 "4: [4]  建置環境"
+set $workspace_5 "5: [5]  音樂"
+set $workspace_6 "6: [6]  檔案"
+set $workspace_7 "7: [7]  PTT"
+set $workspace_8 "8: [8]  一般"
+set $workspace_9 "9: [9]  一般"
+set $workspace_10 "10: [0]  一般"
+set $workspace_11 "11: [F1]  外接螢幕"
+set $workspace_12 "12: [F2]  外接螢幕"
+set $workspace_13 "13: [F3]  外接螢幕"
+set $workspace_14 "14: [F4]  外接螢幕"
+set $workspace_15 "15: [F5]  外接螢幕"
+set $workspace_16 "16: [F6]  外接螢幕"
+set $workspace_17 "17: [F7]  外接螢幕"
+set $workspace_18 "18: [F8]  外接螢幕"
+set $workspace_19 "19: [F9]  外接螢幕"
+set $workspace_20 "20: [F10]  外接螢幕"
+
+
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace_1_browser
+bindsym $mod+2 workspace $workspace_2_dev
+#bindsym $mod+3 workspace 3
+#bindsym $mod+4 workspace 4
+#bindsym $mod+5 workspace 5
+#bindsym $mod+6 workspace 6
+#bindsym $mod+7 workspace 7
+#bindsym $mod+8 workspace 8
+#bindsym $mod+9 workspace 9
+#bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace_1_browser
+bindsym $mod+Shift+2 move container to workspace $workspace_2_dev
+#bindsym $mod+Shift+3 move container to workspace 3
+#bindsym $mod+Shift+4 move container to workspace 4
+#bindsym $mod+Shift+5 move container to workspace 5
+#bindsym $mod+Shift+6 move container to workspace 6
+#bindsym $mod+Shift+7 move container to workspace 7
+#bindsym $mod+Shift+8 move container to workspace 8
+#bindsym $mod+Shift+9 move container to workspace 9
+#bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+######################################################
+# Mode Setting
+######################################################
+
+set $mode_resize  "變更視窗大小"
+
+mode $mode_resize {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode $mode_resize
+
+
+######################################################
+# I3 Bar Setting
+######################################################
+
+bar {
+        status_command i3status
+	strip_workspace_numbers yes
+}
