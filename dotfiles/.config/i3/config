@@ -132,7 +132,6 @@ client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c
 
 for_window [class=".*"] title_format "  %title"
 for_window [instance="guake"] fullscreen toggle; fullscreen toggle
-for_window [instance="xfce4-terminal"] floating enable
 
 ##########################################
 # Window Management
