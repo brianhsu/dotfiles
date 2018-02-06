@@ -187,6 +187,7 @@ assign [class="Google-chrome"]   	$workspace_2
 assign [class="PCManX"]          	$workspace_2
 assign [class="Mysql-workbench-bin"]    $workspace_3
 assign [class="jetbrains-idea-ce"]      $workspace_3
+assign [class="Postman"]       		$workspace_3
 assign [class="Deadbeef"]          	$workspace_4
 assign [class="mpv"]          		$workspace_4
 assign [class="Thunar"]          	$workspace_5
@@ -198,11 +199,11 @@ for_window [class=".*"] focus
 # Application shortcut
 #########################################
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-bindsym $alt+F2 exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
-bindsym $alt+Tab exec rofi -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
+bindsym $alt+F2 exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
+bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
 bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $alt+F11 exec amixer set Master 5%-
-bindsym $alt+F12 exec amixer set Master 5%+
+bindsym $alt+F11 exec amixer set Master 2%-
+bindsym $alt+F12 exec amixer set Master 2%+
 
 
 #########################################
@@ -277,7 +278,7 @@ mode $system_mode {
 #########################################
 bar {
 
-    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors pasink -t powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
+    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors battery pasink -t solarized-powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
     tray_output none
     strip_workspace_numbers yes
     height 32
@@ -311,4 +312,5 @@ exec --no-startup-id xfce4-panel -d
 exec --no-startup-id guake
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id conky -c ~/.config/conky/rc.lua
 
