@@ -154,6 +154,9 @@ bindsym $mod+Shift+Left     move left
 bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
+bindsym $alt+Shift+Left     move container to workspace prev; workspace prev
+bindsym $alt+Shift+Right    move container to workspace next; workspace next
+
 bindsym $mod+o              move container to output right
 bindsym $mod+Shift+o        move workspace to output right
 
