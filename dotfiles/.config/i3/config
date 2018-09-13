@@ -205,8 +205,8 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $alt+F2 exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
 bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
 bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $alt+F11 exec amixer set Master 2%-
-bindsym $alt+F12 exec amixer set Master 2%+
+bindsym $alt+F11 exec --no-startup-id amixer set Master 2%-
+bindsym $alt+F12 exec --no-startup-id amixer set Master 2%+
 
 
 #########################################
@@ -306,11 +306,9 @@ bar {
 #########################################
 exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id "sleep 5; megasync"
-exec --no-startup-id pulseaudio -start
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
 exec --no-startup-id xfsettingsd
-exec --no-startup-id xfce4-volumed-pulse
 exec --no-startup-id xfce4-panel -d
 exec --no-startup-id guake
 exec --no-startup-id nitrogen --restore

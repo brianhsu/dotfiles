@@ -97,7 +97,7 @@
 		"day": { "prefix": "" }, "night": { "prefix": "" }, "transition": { "prefix": "" }
 	},
   "sensors": {
-    "prefix": ""
+    "prefix": ""
   },
   "traffic":{
 	  "rx": { "prefix": "" },
