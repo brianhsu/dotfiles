@@ -34,13 +34,6 @@ set $workspace_19 "19: [F9]  外接螢幕"
 set $workspace_20 "10: [10]  外接螢幕"
 
 
-workspace $workspace_11 output DP-1
-workspace $workspace_12 output DP-1
-workspace $workspace_13 output DP-1
-workspace $workspace_14 output DP-1
-workspace $workspace_15 output DP-1
-
-
 #########################################
 # Workspace Movment
 #########################################
@@ -105,8 +98,8 @@ font pango:Soruce Han Sans TW Medium 13
 # Gaps setting
 #########################################
 
-gaps inner 10
-gaps outer 10
+gaps inner 5
+gaps outer 5
 
 bindsym $mod+F11 exec i3-msg gaps inner current minus 5
 bindsym $mod+F12 exec i3-msg gaps inner current plus 5
@@ -130,19 +123,17 @@ client.focused_inactive     #c0c0c9     #c0c0c9     #000000 #ffffff
 client.urgent               #373b41     #cc6666     #ffffff #cc6666
 client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c	
 
-for_window [class=".*"] title_format "  %title"
+for_window [class=".*"] title_format "   %title"
 for_window [instance="guake"] fullscreen toggle; fullscreen toggle
+for_window [class="Xfce4-appfinder"] floating enable
 
 ##########################################
 # Window Management
 ##########################################
 
+## Navigate // Relative Window // <Super> ↑ ↓ ← → ##
 bindsym $alt+Left           workspace prev
 bindsym $alt+Right          workspace next
-
-bindsym $mod+Next         exec --no-startup-id ~/.config/i3/script/i3flip.sh n
-bindsym $mod+Prior   exec --no-startup-id ~/.config/i3/script/i3flip.sh p
-
 
 bindsym $mod+Left           focus left
 bindsym $mod+Down           focus down
@@ -162,7 +153,6 @@ bindsym $mod+Shift+o        move workspace to output right
 
 bindsym $mod+q              kill
 bindsym --whole-window $mod+button2        kill
-bindsym $mod+button3 floating toggle
 bindsym $alt+F4             kill
 
 #########################################
@@ -194,7 +184,6 @@ assign [class="Postman"]       		$workspace_3
 assign [class="Deadbeef"]          	$workspace_4
 assign [class="mpv"]          		$workspace_4
 assign [class="Thunar"]          	$workspace_5
-assign [class="Nemo"]          		$workspace_5
 
 for_window [class=".*"] focus
 
@@ -202,11 +191,11 @@ for_window [class=".*"] focus
 # Application shortcut
 #########################################
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-bindsym $alt+F2 exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
-bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window " 切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
+bindsym $alt+F2 exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
+bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
 bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $alt+F11 exec --no-startup-id amixer set Master 2%-
-bindsym $alt+F12 exec --no-startup-id amixer set Master 2%+
+bindsym $alt+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1000
+bindsym $alt+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1000
 
 
 #########################################
@@ -281,7 +270,7 @@ mode $system_mode {
 #########################################
 bar {
 
-    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors battery pasink -t solarized-powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%"
+    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors pasink -t solarized-powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%" title.max=40
     tray_output none
     strip_workspace_numbers yes
     height 32
@@ -304,7 +293,7 @@ bar {
 #########################################
 # Autostartup
 #########################################
-exec --no-startup-id compton --config ~/.config/compton.conf
+#exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id "sleep 5; megasync"
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
@@ -313,7 +302,7 @@ exec --no-startup-id xfce4-panel -d
 exec --no-startup-id guake
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id ibus-daemon -drx
-exec --no-startup-id conky -c ~/.config/conky/rc.lua
+#exec --no-startup-id conky -c ~/.config/conky/rc.lua
 exec --no-startup-id xcalib -co 85 -a
 exec --no-startup-id blueman-applet
 
