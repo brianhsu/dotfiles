@@ -264,40 +264,15 @@ mode $system_mode {
     bindsym Escape mode "default"
 }
 
-
-#########################################
-# StatusBar
-#########################################
-bar {
-
-    status_command ~/.config/i3/bumblebee-status/bumblebee-status -m title cpu sensors pasink -t solarized-powerline -p pulseaudio.autostart=True sensors.path=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input cpu.format="{:.0f}%" title.max=40
-    tray_output none
-    strip_workspace_numbers yes
-    height 32
-
-    colors {
-        separator   #969896
-        background  #1d1f21
-        statusline  #dddddd
-
-                            #border #background     #text
-        focused_workspace   #81a2be #81a2be         #1d1f21
-        active_workspace    #373b41 #373b41         #dddddd
-        inactive_workspace  #282a2e #282a2e         #dddddd
-        urgent_workspace    #cc6666 #cc6666         #dddddd
-        binding_mode        #2f343a #900000         #ffffff
-    }
-
-}
-
 #########################################
 # Autostartup
 #########################################
-#exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id "sleep 5; megasync"
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id nm-applet
 exec --no-startup-id xfsettingsd
+exec --no-startup-id /usr/lib64/xfce4/notifyd/xfce4-notifyd
 exec --no-startup-id xfce4-panel -d
 exec --no-startup-id guake
 exec --no-startup-id nitrogen --restore
@@ -305,4 +280,4 @@ exec --no-startup-id ibus-daemon -drx
 #exec --no-startup-id conky -c ~/.config/conky/rc.lua
 exec --no-startup-id xcalib -co 85 -a
 exec --no-startup-id blueman-applet
-
+exec_always --no-startup-id ~/.config/polybar/launch
