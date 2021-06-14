@@ -13,15 +13,22 @@ scroll-down = "#i3.next"
 bottom = true
 background=${colors.background}
 foreground=${colors.foreground}
-height=32
+height=34
+padding-right=4
 modules-left = i3
 modules-center = title
-modules-right = cpu temperature network pulseaudio
-font-0 = "Source Han Sans TW Medium:style=Medium,Regular;3"
-font-1 = "NotoColorEmoji:scale=10;3"
-font-2 = "FontAwesome:style=Regular;3"
+modules-right = gpu temperature_gpu cpu temperature pulseaudio
+
+font-0 = "Source Han Sans TW Medium:style=Medium,Regular;5"
+font-1 = "NotoColorEmoji:scale=10;5"
+font-2 = "Font Awesome 5 Free Solid:style=Solid;5"
+font-3 = "PowerlineSymbols:style=Medium;5"
+font-4 = "Font Awesome 5 Brands:style=Medium;5"
+
 module-margin-left = 5
 underline-size = 2
+
+monitor = ${env:MONITOR:}
 
 [module/title]
 type = internal/xwindow
@@ -36,6 +43,12 @@ format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 label-connected = "📥%downspeed:9%    📤%upspeed:9%"
 label-disconnected = "⚠ 離線"
+
+[module/gpu]
+type = custom/script
+exec = /home/brianhsu/.config/polybar/radeontop
+tail = true
+label = "📺   %output:0:15:...%"
 
 [module/cpu]
 type = internal/cpu
@@ -64,10 +77,10 @@ ramp-load-7-foreground = #ff5555
 type = internal/temperature
 interval = 0.5
 
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
 
 base-temperature = 20
-warn-temperature = 70
+warn-temperature = 80
 
 format = <label>
 format-warn = <label-warn>
@@ -75,6 +88,23 @@ format-warn = <label-warn>
 label = 🔥  %temperature-c%
 label-warn = 🔥  %temperature-c%
 label-warn-foreground = #f00
+
+[module/temperature_gpu]
+type = internal/temperature
+interval = 0.5
+
+hwmon-path = /sys/class/hwmon/hwmon4/temp1_input
+
+base-temperature = 20
+warn-temperature = 80
+
+format = <label>
+format-warn = <label-warn>
+
+label = 🔥  %temperature-c%
+label-warn = 🔥  %temperature-c%
+label-warn-foreground = #f00
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -86,24 +116,11 @@ ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 click-right = pavucontrol
 
-[module/my-text-label]
-type = custom/text
-content = Some random label
-; "content" has the same properties as "format-NAME"
-modules-left = my-text-label
-
-
-; "scroll-(up|down)" will be executed using "/bin/sh -c $COMMAND"
-scroll-up = notify-send scroll up
-scroll-down = notify-send scroll down
-
 [module/i3]
 type = internal/i3
 pin-workspaces = true
 strip-wsnumbers = true
 index-sort = true
-
-label-dimmed-underline = ${color.background}
 
 ; Available tags:
 ;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>

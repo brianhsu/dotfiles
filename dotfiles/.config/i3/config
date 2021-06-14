@@ -1,108 +1,25 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
 
-
 #########################################
 # Modifier
 #########################################
-set $mod Mod4
+set $super Mod4
 set $alt Mod1
+set $shift Shift
+set $ctrl control
 floating_modifier $alt
-
-#########################################
-# Workspace List
-#########################################
-set $workspace_1 "1: [1]  一般 "
-set $workspace_2 "2: [2]  瀏覽"
-set $workspace_3 "3: [3]  開發"
-set $workspace_4 "4: [4]  影音"
-set $workspace_5 "5: [5]  檔案"
-set $workspace_6 "6: [6]  一般"
-set $workspace_7 "7: [7]  一般"
-set $workspace_8 "8: [8]  一般"
-set $workspace_9 "9: [9]  一般"
-set $workspace_10 "10: [0]  一般"
-set $workspace_11 "11: [F1]  外接螢幕"
-set $workspace_12 "12: [F2]  外接螢幕"
-set $workspace_13 "13: [F3]  外接螢幕"
-set $workspace_14 "14: [F4]  外接螢幕"
-set $workspace_15 "15: [F5]  外接螢幕"
-set $workspace_16 "16: [F6]  外接螢幕"
-set $workspace_17 "17: [F7]  外接螢幕"
-set $workspace_18 "18: [F8]  外接螢幕"
-set $workspace_19 "19: [F9]  外接螢幕"
-set $workspace_20 "10: [10]  外接螢幕"
-
-
-#########################################
-# Workspace Movment
-#########################################
-workspace_auto_back_and_forth yes
-
-bindsym $mod+1          workspace $workspace_1
-bindsym $mod+2          workspace $workspace_2
-bindsym $mod+3          workspace $workspace_3
-bindsym $mod+4          workspace $workspace_4
-bindsym $mod+5          workspace $workspace_5
-bindsym $mod+6          workspace $workspace_6
-bindsym $mod+7          workspace $workspace_7
-bindsym $mod+8          workspace $workspace_8
-bindsym $mod+9          workspace $workspace_9
-bindsym $mod+0          workspace $workspace_10
-bindsym $mod+F1         workspace $workspace_11
-bindsym $mod+F2         workspace $workspace_12
-bindsym $mod+F3         workspace $workspace_13
-bindsym $mod+F4         workspace $workspace_14
-bindsym $mod+F5         workspace $workspace_15
-bindsym $mod+F6         workspace $workspace_16
-bindsym $mod+F7         workspace $workspace_17
-bindsym $mod+F8         workspace $workspace_18
-bindsym $mod+F9         workspace $workspace_19
-bindsym $mod+F10        workspace $workspace_20
-
-
-bindsym $mod+Shift+1    move container to workspace $workspace_1; workspace $workspace_1
-bindsym $mod+Shift+2    move container to workspace $workspace_2; workspace $workspace_2
-bindsym $mod+Shift+3    move container to workspace $workspace_3; workspace $workspace_3
-bindsym $mod+Shift+4    move container to workspace $workspace_4; workspace $workspace_4
-bindsym $mod+Shift+5    move container to workspace $workspace_5; workspace $workspace_5
-bindsym $mod+Shift+6    move container to workspace $workspace_6; workspace $workspace_6
-bindsym $mod+Shift+7    move container to workspace $workspace_7; workspace $workspace_7
-bindsym $mod+Shift+8    move container to workspace $workspace_8; workspace $workspace_8
-bindsym $mod+Shift+9    move container to workspace $workspace_9; workspace $workspace_9
-bindsym $mod+Shift+0    move container to workspace $workspace_10; workspace $workspace_10
-bindsym $mod+Shift+F1    move container to workspace $workspace_11; workspace $workspace_11
-bindsym $mod+Shift+F2    move container to workspace $workspace_12; workspace $workspace_12
-bindsym $mod+Shift+F3    move container to workspace $workspace_13; workspace $workspace_13
-bindsym $mod+Shift+F4    move container to workspace $workspace_14; workspace $workspace_14
-bindsym $mod+Shift+F5    move container to workspace $workspace_15; workspace $workspace_15
-bindsym $mod+Shift+F6    move container to workspace $workspace_16; workspace $workspace_16
-bindsym $mod+Shift+F7    move container to workspace $workspace_17; workspace $workspace_17
-bindsym $mod+Shift+F8    move container to workspace $workspace_18; workspace $workspace_18
-bindsym $mod+Shift+F9    move container to workspace $workspace_19; workspace $workspace_19
-bindsym $mod+Shift+F10    move container to workspace $workspace_20; workspace $workspace_20
-
-
-bindsym $mod+Shift+a    resize shrink width     30 px or 15 ppt
-bindsym $mod+Shift+s    resize grow height      30 px or 15 ppt
-bindsym $mod+Shift+w    resize shrink height    30 px or 15 ppt
-bindsym $mod+Shift+d    resize grow width       30 px or 15 ppt
 
 #########################################
 # Font
 #########################################
-
 font pango:Soruce Han Sans TW Medium 13
 
 #########################################
 # Gaps setting
 #########################################
-
 gaps inner 5
 gaps outer 5
-
-bindsym $mod+F11 exec i3-msg gaps inner current minus 5
-bindsym $mod+F12 exec i3-msg gaps inner current plus 5
 
 #########################################
 # Window Border 
@@ -123,114 +40,263 @@ client.focused_inactive     #c0c0c9     #c0c0c9     #000000 #ffffff
 client.urgent               #373b41     #cc6666     #ffffff #cc6666
 client.placeholder          #000000     #0c0c0c     #ffffff #2255ff     #0c0c0c	
 
+
+#########################################
+# Workspace Definitions
+#########################################
+set $workspace_1 "1: [1]  一般 "
+set $workspace_2 "2: [2]  瀏覽"
+set $workspace_3 "3: [3]  開發"
+set $workspace_4 "4: [4]  影音"
+set $workspace_5 "5: [5]  檔案"
+set $workspace_6 "6: [6]  遊戲"
+set $workspace_7 "7: [7]  一般"
+set $workspace_8 "8: [8]  一般"
+set $workspace_9 "9: [9]  一般"
+set $workspace_10 "10: [0]  一般"
+set $workspace_11 "11: [F1]  直播"
+set $workspace_12 "12: [F2]  外接螢幕"
+set $workspace_13 "13: [F3]  外接螢幕"
+set $workspace_14 "14: [F4]  外接螢幕"
+set $workspace_15 "15: [F5]  外接螢幕"
+set $workspace_16 "16: [F6]  外接螢幕"
+set $workspace_17 "17: [F7]  外接螢幕"
+set $workspace_18 "18: [F8]  外接螢幕"
+set $workspace_19 "19: [F9]  外接螢幕"
+set $workspace_20 "10: [10]  外接螢幕"
+
+workspace $workspace_11 output HDMI-A-0 
+workspace $workspace_12 output HDMI-A-0 
+workspace $workspace_13 output HDMI-A-0 
+workspace $workspace_14 output HDMI-A-0 
+workspace $workspace_15 output HDMI-A-0 
+workspace $workspace_16 output HDMI-A-0 
+workspace $workspace_17 output HDMI-A-0 
+workspace $workspace_18 output HDMI-A-0 
+workspace $workspace_19 output HDMI-A-0 
+workspace $workspace_20 output HDMI-A-0
+
+workspace_auto_back_and_forth yes
+
+
+#############################################
+# Window Property Settings
+#############################################
+
 for_window [class=".*"] title_format "   %title"
-for_window [instance="guake"] fullscreen toggle; fullscreen toggle
 for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="jetbrains-idea-ce" title="win0"] floating enable
+for_window [title="Steam 收藏庫資料夾"] floating enable
+for_window [class="Remontoire"] no_focus; sticky enable
+for_window [class=".*"] focus
 
-##########################################
-# Window Management
-##########################################
+#########################################
+# Assing application to workspace
+#########################################
+assign [class="Firefox"]         	 $workspace_2
+assign [class="Google-chrome"]   	 $workspace_2
+assign [class="PCManX"]          	 $workspace_2
+assign [class="jetbrains-idea-ce"]   $workspace_3
+assign [class="Postman"]       		 $workspace_3
+assign [class="Deadbeef"]          	 $workspace_4
+assign [class="mpv"]          		 $workspace_4
+assign [class="Thunar"]          	 $workspace_5
+assign [class="Steam"]          	 $workspace_6
+assign [class="obs"]          		 $workspace_11
 
-## Navigate // Relative Window // <Super> ↑ ↓ ← → ##
-bindsym $alt+Left           workspace prev
-bindsym $alt+Right          workspace next
+#########################################
+# Actions
+#########################################
+## 1. 動作 // 顯示小抄 // <MOD> \ ##
+## 1. 動作 // 關閉程式 // <MOD> Q ##
+## 1. 動作 // 關閉程式 // <Super> 中鍵 ##
+## 1. 動作 // 重啟I3   // <Super> <Shift> R ##
 
-bindsym $mod+Left           focus left
-bindsym $mod+Down           focus down
-bindsym $mod+Up             focus up
-bindsym $mod+Right          focus right
-bindsym $mod+a              focus parent
+bindcode $alt+97 exec --no-startup-id remontoire-toogle
+bindsym --whole-window $super+button2        kill
+bindsym $super+q        kill
+bindsym $super+$shift+r restart
 
-bindsym $mod+Shift+Left     move left
-bindsym $mod+Shift+Down     move down
-bindsym $mod+Shift+Up       move up
-bindsym $mod+Shift+Right    move right
-bindsym $alt+Shift+Left     move container to workspace prev; workspace prev
-bindsym $alt+Shift+Right    move container to workspace next; workspace next
+#########################################
+# Application shortcut
+#########################################
+## 2. 程式 // 終端機 // <Super> <Escape> ##
+## 2. 程式 // 啟動器 // <Super> <Enter> ##
+## 2. 程式 // 切換視窗 // <Alt> <Tab> ##
+## 2. 程式 // 視窗截圖 // <PrintScreen> ##
 
-bindsym $mod+o              move container to output right
-bindsym $mod+Shift+o        move workspace to output right
-
-bindsym $mod+q              kill
-bindsym --whole-window $mod+button2        kill
-bindsym $alt+F4             kill
+bindsym $super+Escape exec --no-startup-id i3-sensible-terminal
+bindsym $super+Return exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
+bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
+bindsym Print exec --no-startup-id xfce4-screenshooter
 
 #########################################
 # Layout Control
 #########################################
 
 workspace_layout tabbed
-bindsym $mod+h split h; exec notify-send "[i3] 水平切割"
-bindsym $mod+v split v; exec notify-send "[i3] 垂直分割"
-bindsym $mod+w layout       tabbed; exec notify-send "[i3] 頁籤模式"
-bindsym $mod+e layout       toggle split; exec notify-send "[i3] 鋪排模式"
-bindsym $mod+f fullscreen   toggle
 
-#########################################
-# Floating Window
-#########################################
-bindsym $mod+Shift+space                    floating toggle
-#bindsym $mod+space                          focus mode_toggle
+## 3. 版面 // 頁籤模式 // <Super> T ##
+## 3. 版面 // 磚塊模式 // <Super> E ##
+## 3. 版面 // 水平切割 // <Super> H ##
+## 3. 版面 // 垂直切割 // <Super> V ##
+## 3. 版面 // 切換全螢幕 // <Super> f ##
+## 3. 版面 // 切換浮動視窗 // <Super><Shift> f ##
 
-#########################################
-# Assing application to workspace
-#########################################
-assign [class="Firefox"]         	$workspace_2
-assign [class="Google-chrome"]   	$workspace_2
-assign [class="PCManX"]          	$workspace_2
-assign [class="Mysql-workbench-bin"]    $workspace_3
-assign [class="jetbrains-idea-ce"]      $workspace_3
-assign [class="Postman"]       		$workspace_3
-assign [class="Deadbeef"]          	$workspace_4
-assign [class="mpv"]          		$workspace_4
-assign [class="Thunar"]          	$workspace_5
+bindsym $super+t layout tabbed; exec notify-send "[i3] 頁籤模式"
+bindsym $super+e layout toggle split; exec notify-send "[i3] 磚塊模式"
+bindsym $super+h split h; exec notify-send "[i3] 水平切割"
+bindsym $super+v split v; exec notify-send "[i3] 垂直分割"
+bindsym $super+f fullscreen toggle
+bindsym $super+$shift+f floating toggle
 
-for_window [class=".*"] focus
+##########################################
+# Window Navigation
+##########################################
 
-#########################################
-# Application shortcut
-#########################################
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-bindsym $alt+F2 exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show drun -line-padding 5
-bindsym $alt+Tab exec rofi -show-icons -display-drun " 執行" -display-window "   切換視窗" -modi drun#window -sidebar-mode -show window -line-padding 5
-bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym $alt+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1000
-bindsym $alt+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1000
+## 4. 視窗焦點 // 上下左右 // <Super> ↑ ↓ ← → ##
+## 4. 視窗焦點 // 上下左右 // <Super> I K J L ##
+## 4. 視窗焦點 // 到上一層 // <Super> P ##
+bindsym $super+Up             focus up
+bindsym $super+Down           focus down
+bindsym $super+Left           focus left
+bindsym $super+Right          focus right
+bindsym $super+i              focus up
+bindsym $super+k              focus down
+bindsym $super+j              focus left
+bindsym $super+l              focus right
+bindsym $super+p              focus parent
+
+##########################################
+# Window Movement
+##########################################
+
+## 5. 視窗移動 // 移到相對位置 // <Super><Shift> ↑ ↓ ← → ##
+## 5. 視窗移動 // 移到相對位置 // <Super><Shift> I K J L ##
+bindsym $super+$shift+Up       move up
+bindsym $super+$shift+Down     move down
+bindsym $super+$shift+Left     move left
+bindsym $super+$shift+Right    move right
+bindsym $super+$shift+i       move up
+bindsym $super+$shift+k     move down
+bindsym $super+$shift+j     move left
+bindsym $super+$shift+l    move right
+
+##########################################
+# Container Movement
+##########################################
+
+## 5. 視窗移動 // 移到上一個工作區 // <Alt><Shift> ← → ##
+## 5. 視窗移動 // 移到下一個工作區 // <Alt><Shift> J L ##
+bindsym $alt+$shift+Left    move container to workspace prev; workspace prev
+bindsym $alt+$shift+Right   move container to workspace next; workspace next
+bindsym $alt+$shift+j       move container to workspace prev; workspace prev
+bindsym $alt+$shift+l       move container to workspace next; workspace next
+
+## 5. 視窗移動 // 移到指定工作區 // <Alt><Shift> 1 ~ 0 ##
+## 5. 視窗移動 // 移到指定工作區 // <Alt><Shift> F1 ~ F10 ##
+
+bindsym $alt+$shift+1    move container to workspace $workspace_1; workspace $workspace_1
+bindsym $alt+$shift+2    move container to workspace $workspace_2; workspace $workspace_2
+bindsym $alt+$shift+3    move container to workspace $workspace_3; workspace $workspace_3
+bindsym $alt+$shift+4    move container to workspace $workspace_4; workspace $workspace_4
+bindsym $alt+$shift+5    move container to workspace $workspace_5; workspace $workspace_5
+bindsym $alt+$shift+6    move container to workspace $workspace_6; workspace $workspace_6
+bindsym $alt+$shift+7    move container to workspace $workspace_7; workspace $workspace_7
+bindsym $alt+$shift+8    move container to workspace $workspace_8; workspace $workspace_8
+bindsym $alt+$shift+9    move container to workspace $workspace_9; workspace $workspace_9
+bindsym $alt+$shift+0    move container to workspace $workspace_10; workspace $workspace_10
+bindsym $alt+$shift+F1    move container to workspace $workspace_11; workspace $workspace_11
+bindsym $alt+$shift+F2    move container to workspace $workspace_12; workspace $workspace_12
+bindsym $alt+$shift+F3    move container to workspace $workspace_13; workspace $workspace_13
+bindsym $alt+$shift+F4    move container to workspace $workspace_14; workspace $workspace_14
+bindsym $alt+$shift+F5    move container to workspace $workspace_15; workspace $workspace_15
+bindsym $alt+$shift+F6    move container to workspace $workspace_16; workspace $workspace_16
+bindsym $alt+$shift+F7    move container to workspace $workspace_17; workspace $workspace_17
+bindsym $alt+$shift+F8    move container to workspace $workspace_18; workspace $workspace_18
+bindsym $alt+$shift+F9    move container to workspace $workspace_19; workspace $workspace_19
+bindsym $alt+$shift+F10    move container to workspace $workspace_20; workspace $workspace_20
+
+## 5. 視窗移動 // 移到另一個螢幕 // <Super> O ##
+bindsym $super+o               move container to output right
 
 
-#########################################
-# i3 Session Shortcut
-#########################################
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
+############################################
+# Resize Window
+############################################
+
+## 6. 視窗大小 // 寬度減少 // <Ctrl> <Shift> J ##
+## 6. 視窗大小 // 高度減少 // <Ctrl> <Shift> K ##
+## 6. 視窗大小 // 寬度增加 // <Ctrl> <Shift> L ##
+## 6. 視窗大小 // 高度增加 // <Ctrl> <Shift> I ##
+## 6. 視窗大小 // 寬度減少 // <Ctrl> <Shift> ← ##
+## 6. 視窗大小 // 高度減少 // <Ctrl> <Shift> ↓ ##
+## 6. 視窗大小 // 寬度增加 // <Ctrl> <Shift> → ##
+## 6. 視窗大小 // 高度增加 // <Ctrl> <Shift> ↑ ##
+
+bindsym $ctrl+$shift+i    resize grow height      30 px or 15 ppt
+bindsym $ctrl+$shift+k    resize shrink height    30 px or 15 ppt
+bindsym $ctrl+$shift+j    resize shrink width     30 px or 15 ppt
+bindsym $ctrl+$shift+l    resize grow width       30 px or 15 ppt
+
+##########################################
+# Workspace Navigation
+##########################################
+
+## 7. 工作區 // 左右切換 // <Alt> ← → ##
+## 7. 工作區 // 左右切換 // <Alt> J L ##
+bindsym $alt+Left        workspace prev
+bindsym $alt+Right       workspace next
+bindsym $alt+j           workspace prev
+bindsym $alt+l           workspace next
+
+## 7. 工作區 // 切換至指定工作區 // <Alt> 1 ~ 0 ##
+## 7. 工作區 // 切換至指定工作區 // <Alt> F1 ~ F10 ##
+
+bindsym $alt+1          workspace $workspace_1
+bindsym $alt+2          workspace $workspace_2
+bindsym $alt+3          workspace $workspace_3
+bindsym $alt+4          workspace $workspace_4
+bindsym $alt+5          workspace $workspace_5
+bindsym $alt+6          workspace $workspace_6
+bindsym $alt+7          workspace $workspace_7
+bindsym $alt+8          workspace $workspace_8
+bindsym $alt+9          workspace $workspace_9
+bindsym $alt+0          workspace $workspace_10
+bindsym $alt+F1         workspace $workspace_11
+bindsym $alt+F2         workspace $workspace_12
+bindsym $alt+F3         workspace $workspace_13
+bindsym $alt+F4         workspace $workspace_14
+bindsym $alt+F5         workspace $workspace_15
+bindsym $alt+F6         workspace $workspace_16
+bindsym $alt+F7         workspace $workspace_17
+bindsym $alt+F8         workspace $workspace_18
+bindsym $alt+F9         workspace $workspace_19
+bindsym $alt+F10        workspace $workspace_20
+
+## 7. 工作區 // 將工作區移到另一個螢幕 // <Super> <Shift> O ##
+bindsym $super+$shift+o        move workspace to output right
 
 #########################################
 # Mode Block
 #########################################
 
-set $select_mode    "選擇模式：(M) 螢幕設定 / (P) 電源選項"
-set $resize_mode    "調整大小"
-set $monitor_mode   "選擇螢幕：(L) 筆電 / (D) 外接螢幕 / (E) 延伸模式"
-set $system_mode    "系統選單：(L) 鎖定 / (E) 登出 / (S) 暫停 / (R) 重開 / (SHFIT+S) 關機"
+## 8. 模式選單 // 調整大小 // <Super> R ##
+## 8. 模式選單 // 電源選單 // <Ctrl><Alt><Backspace> ##
 
-bindsym $mod+m mode $select_mode
-bindsym $mod+r mode $resize_mode
-bindsym $mod+p mode $monitor_mode
-bindsym control+$alt+BackSpace mode $system_mode
 
-mode $select_mode {
-    bindsym m	    mode $monitor_mode
-    bindsym p	    mode $system_mode
+set $resize_mode   "調整大小：(I) 高度增加 (K) 高度減少 (L) 寬度減少 (L) 寬度增加"
+set $power_mode    "電源選單：(L) 鎖定 / (E) 登出 / (S) 暫停 / (R) 重開 / (SHFIT+S) 關機"
 
-    bindsym Return  mode "default"
-    bindsym Escape  mode "default"
-}
+
+bindsym $super+r mode $resize_mode
+bindsym $ctrl+$alt+BackSpace mode $power_mode
 
 mode $resize_mode {
-    bindsym Left    resize shrink width 10 px or 10 ppt
-    bindsym Down    resize grow height 10 px or 10 ppt
-    bindsym Up      resize shrink height 10 px or 10 ppt
-    bindsym Right   resize grow width 10 px or 10 ppt
+    bindsym j   resize shrink width 10 px or 10 ppt
+    bindsym l   resize shrink height 10 px or 10 ppt
+    bindsym i   resize grow height 10 px or 10 ppt
+    bindsym k   resize grow width 10 px or 10 ppt
 
     bindsym $alt+Left    resize shrink width 100 px or 50 ppt
     bindsym $alt+Down    resize grow height 100 px or 50 ppt
@@ -243,21 +309,12 @@ mode $resize_mode {
     bindsym Escape  mode "default"
 }
 
-mode $monitor_mode {
-    bindsym l       exec --no-startup-id ~/.config/i3/screenlayout/laptopOnly.sh; mode "default" ; exec --no-startup-id nitrogen --restore
-    bindsym d       exec --no-startup-id ~/.config/i3/screenlayout/externalOnly.sh; mode "default"; exec --no-startup-id nitrogen --restore
-    bindsym e       exec --no-startup-id ~/.config/i3/screenlayout/extendedDisplayPort.sh; mode "default"; exec --no-startup-id nitrogen --restore
-
-    bindsym Return  mode "default"
-    bindsym Escape  mode "default"
-}
-
-mode $system_mode {
+mode $power_mode {
     bindsym l exec --no-startup-id ~/.config/i3/script/i3exit.sh lock, mode "default"
     bindsym e exec --no-startup-id ~/.config/i3/script/i3exit.sh logout, mode "default"
     bindsym s exec --no-startup-id ~/.config/i3/script/i3exit.sh suspend, mode "default"
     bindsym r exec --no-startup-id ~/.config/i3/script/i3exit.sh reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.config/i3/script/i3exit.sh shutdown, mode "default"
+    bindsym $shift+s exec --no-startup-id ~/.config/i3/script/i3exit.sh shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -277,7 +334,6 @@ exec --no-startup-id xfce4-panel -d
 exec --no-startup-id guake
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id ibus-daemon -drx
-#exec --no-startup-id conky -c ~/.config/conky/rc.lua
-exec --no-startup-id xcalib -co 85 -a
 exec --no-startup-id blueman-applet
+exec --no-startup-id play -n > /dev/null
 exec_always --no-startup-id ~/.config/polybar/launch

@@ -11,19 +11,16 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && systemctl suspend
-        ;;
-    hibernate)
-        lock && systemctl hibernate
+        lock && loginctl suspend
         ;;
     reboot)
-        systemctl reboot
+        loginctl reboot
         ;;
     shutdown)
-        systemctl poweroff
+        loginctl poweroff
         ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        echo "Usage: $0 {lock|logout|suspend|reboot|shutdown}"
         exit 2
 esac
 exit 0
