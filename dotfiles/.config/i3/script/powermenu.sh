@@ -20,7 +20,7 @@ case "$CHOICE" in
         i3-msg exit
         ;;
     暫停)
-        xflock4 && loginctl suspend
+        loginctl suspend
         ;;
     重啟)
         loginctl reboot

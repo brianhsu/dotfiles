@@ -11,7 +11,7 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && loginctl suspend
+        loginctl suspend
         ;;
     reboot)
         loginctl reboot
