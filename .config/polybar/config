@@ -1,0 +1,209 @@
+[colors]
+background = #F21d1f21
+background-alt = #444
+foreground = #ffffff
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/mybar_DisplayPort-0]
+scroll-up = "#i3.prev"
+scroll-down = "#i3.next"
+bottom = true
+background=${colors.background}
+foreground=${colors.foreground}
+height=34
+padding-right=4
+modules-left = i3
+modules-center = title
+modules-right = i3-layout gpu temperature_gpu cpu temperature pulseaudio
+
+font-0 = "Source Han Sans TW Medium:style=Medium,Regular;5"
+font-1 = "NotoColorEmoji:scale=10;5"
+font-2 = "Font Awesome 5 Free Solid:style=Solid;5"
+font-3 = "PowerlineSymbols:style=Medium;5"
+font-4 = "Font Awesome 5 Brands:style=Medium;5"
+
+module-margin-left = 5
+underline-size = 2
+
+monitor = ${env:MONITOR:}
+
+[bar/mybar_DisplayPort-1]
+scroll-up = "#i3.prev"
+scroll-down = "#i3.next"
+bottom = true
+background=${colors.background}
+foreground=${colors.foreground}
+height=34
+padding-right=4
+modules-left = i3
+modules-right = i3-layout gpu temperature_gpu cpu temperature pulseaudio date
+
+font-0 = "Source Han Sans TW Medium:style=Medium,Regular;5"
+font-1 = "NotoColorEmoji:scale=10;5"
+font-2 = "Font Awesome 5 Free Solid:style=Solid;5"
+font-3 = "PowerlineSymbols:style=Medium;5"
+font-4 = "Font Awesome 5 Brands:style=Medium;5"
+
+module-margin-left = 5
+underline-size = 2
+monitor = ${env:MONITOR:}
+
+[module/date]
+
+type = internal/date
+date = %H:%M:%S
+
+[module/title]
+type = internal/xwindow
+label = "💻 %title%"
+label-maxlen = 50
+label-empty = Empty
+
+[module/network]
+type = internal/network
+interface = eno1
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = "📥%downspeed:9%    📤%upspeed:9%"
+label-disconnected = "⚠ 離線"
+
+[module/gpu]
+type = custom/script
+exec = /home/brianhsu/.config/polybar/radeontop
+tail = true
+label = "📺   %output:0:15:...%"
+
+[module/i3-layout]
+type = custom/script
+exec = /home/brianhsu/.config/polybar/i3-layout
+tail = true
+
+[module/cpu]
+type = internal/cpu
+format = "<label> <ramp-load>"
+label = "🚀 %percentage:4%% "
+; ramps for ramp-load
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+; colors for each ramp
+ramp-load-0-foreground = #aaff77
+ramp-load-1-foreground = #aaff77
+ramp-load-2-foreground = #aaff77
+ramp-load-3-foreground = #aaff77
+ramp-load-4-foreground = #fba922
+ramp-load-5-foreground = #fba922
+ramp-load-6-foreground = #ff5555
+ramp-load-7-foreground = #ff5555
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+
+hwmon-path = /sys/class/hwmon/hwmon3/temp1_input
+
+base-temperature = 20
+warn-temperature = 80
+
+format = <label>
+format-warn = <label-warn>
+
+label = 🔥  %temperature-c%
+label-warn = 🔥  %temperature-c%
+label-warn-foreground = #f00
+
+[module/temperature_gpu]
+type = internal/temperature
+interval = 0.5
+
+hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
+
+base-temperature = 20
+warn-temperature = 80
+
+format = <label>
+format-warn = <label-warn>
+
+label = 🔥  %temperature-c%
+label-warn = 🔥  %temperature-c%
+label-warn-foreground = #f00
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+interval = 5
+format-volume = <ramp-volume>  <label-volume>
+label-muted = 🔇  0%
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+click-right = pavucontrol
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 3
+label-mode-background = #900000
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused =  %name%
+label-focused-foreground = #ffffff
+label-focused-background = #4f4f4f
+label-focused-underline = #fba922
+label-focused-padding = 3
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %name%
+label-unfocused-padding = 3
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %name%
+label-visible-padding = 3
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %name%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 3
+
+
