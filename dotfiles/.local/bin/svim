@@ -1,2 +1,0 @@
-#!/bin/bash
-terminator --class NeoVim -T NeoVim -e nvim

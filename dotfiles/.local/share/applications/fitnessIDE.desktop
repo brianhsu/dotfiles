@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=FitnessIDE
-Exec=/home/brianhsu/.local/bin/fitnessIDE
-Icon=fitnessIDE.png
-Terminal=false
-Type=Application
-Categories=Utility;TextEditor
