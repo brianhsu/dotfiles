@@ -1,0 +1,77 @@
+.window {
+  margin: 0px;
+  background: #444444;
+  color: #FEFEFE;
+}
+
+*:selected {
+  background: #444444;
+  color: #FEFEFE;
+}
+
+.category {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  font-size: .95em;
+  color: #FEFEFE;
+}
+
+.action {
+  padding-right: 10px;
+  padding-left: 15px;
+  font-weight: lighter;
+}
+
+.error {
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.metakey {
+  font-family: FontAwesome, monospace;
+  font-weight: normal;
+  background-color: @insensitive_bg_color;
+  border: 1px solid;
+  border-color: @insensitive_base_color;
+  color: #000000;
+
+  padding: 2px;
+  margin: 2px;
+  font-size: .9em;
+}
+
+.rangekey {
+  font-family: monospace;
+  font-weight: normal;
+  background-color: @insensitive_bg_color;
+  border: 1px solid;
+  border-color: @insensitive_base_color;
+  color: #000000;
+
+  padding: 2px;
+  margin: 2px;
+  font-size: .9em;
+}
+
+.key {
+  font-family: monospace;
+  font-weight: normal;
+  background-color: @insensitive_bg_color;
+  border: 1px solid;
+  border-color: @insensitive_base_color;
+  color: #000000;
+
+  padding: 2px;
+  margin: 2px;
+  font-size: .9em;
+}
+
+.detail {
+  margin: 2px;
+}
+
+/* Remove dotted lines from ScrolledWindow container on left and right */
+scrolledwindow undershoot.right,
+scrolledwindow undershoot.left { background-image: none; }

@@ -1,0 +1,22 @@
+# Rime user dictionary
+#@/db_name	terra_pinyin
+#@/db_type	userdb
+#@/rime_version	1.9.0
+#@/tick	20
+#@/user_id	535f5ef1-da0d-4326-8fc9-85f1139c7ca9
+bi1 	逼	c=1 d=1 t=20
+cang2 	藏	c=1 d=1 t=20
+ce4 	策	c=4 d=3.79092 t=20
+chu2 	廚	c=1 d=0.99005 t=20
+fu4 	副	c=1 d=0.995012 t=20
+ju4 	劇	c=1 d=0.960789 t=20
+kua1 	誇	c=1 d=0.99005 t=20
+pu1 	噗	c=2 d=1.96531 t=20
+pu3 	普	c=1 d=0.97531 t=20
+song1 	鬆	c=1 d=0.951229 t=20
+xi4 	戲	c=1 d=0.955997 t=20
+xian4 	餡	c=1 d=1 t=20
+za2 	雜	c=1 d=0.995012 t=20
+zai3 	載	c=1 d=1 t=20
+zang1 	髒	c=1 d=0.970446 t=20
+zun1 	尊	c=1 d=0.995012 t=20
