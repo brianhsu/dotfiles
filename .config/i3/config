@@ -97,15 +97,29 @@ include ~/.config/i3/hotkey/focus_navigation.conf
 ## 5. 視窗移動 // 移到指定工作區 // <Alt><Shift> F1 ~ F10 ##
 include ~/.config/i3/hotkey/window_movement.conf
 
+############################################
+# Resize Window
+############################################
+
+## 6. 視窗大小 // 寬度減少 // <Ctrl> <Shift> J ##
+## 6. 視窗大小 // 高度減少 // <Ctrl> <Shift> K ##
+## 6. 視窗大小 // 寬度增加 // <Ctrl> <Shift> L ##
+## 6. 視窗大小 // 高度增加 // <Ctrl> <Shift> I ##    
+## 6. 視窗大小 // 寬度減少 // <Ctrl> <Shift> ← ##    
+## 6. 視窗大小 // 高度減少 // <Ctrl> <Shift> ↓ ##    
+## 6. 視窗大小 // 寬度增加 // <Ctrl> <Shift> → ##
+## 6. 視窗大小 // 高度增加 // <Ctrl> <Shift> ↑ ##    
+include ~/.config/i3/hotkey/window_resize.conf
+
 ##########################################
 # Workspace Navigation
 ##########################################
 
-## 6. 工作區 // 左右切換 // <Alt> ← → ##
-## 6. 工作區 // 左右切換 // <Alt> J L ##
-## 6. 工作區 // 切換至指定工作區 // <Alt> 1 ~ 0 ##
-## 6. 工作區 // 切換至指定工作區 // <Alt> F1 ~ F10 ##
-## 6. 工作區 // 將工作區移到另一個螢幕 // <Super> <Shift> O ##
+## 7. 工作區 // 左右切換 // <Alt> ← → ##
+## 7. 工作區 // 左右切換 // <Alt> J L ##
+## 7. 工作區 // 切換至指定工作區 // <Alt> 1 ~ 0 ##
+## 7. 工作區 // 切換至指定工作區 // <Alt> F1 ~ F10 ##
+## 7. 工作區 // 將工作區移到另一個螢幕 // <Super> <Shift> O ##
 include ~/.config/i3/hotkey/workspace_navigation.conf
 
 #########################################
