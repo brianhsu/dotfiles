@@ -46,7 +46,7 @@ conky.text = [[
 ${alignc}${offset -1}${font1}${color #00CCCC}
 ${alignc}${offset -1}${font}${voffset -3} CPU
 ${alignr}${color grey}${cpu}%
-${font}${offset 2}${cpugraph cpu0 35,35 #00CCCC}
+${font}${offset 2}${cpugraph cpu0 35,35 #00CCCC #00CCCC}
 ${offset 2}${voffset -10}${cpubar cpu1 4,35}
 ${offset 2}${voffset -10}${cpubar cpu2 4,35}
 ${offset 2}${voffset -10}${cpubar cpu3 4,35}
@@ -77,9 +77,9 @@ ${alignr}${color grey}$memperc%
 ${offset 2}${membar 4,35}
 ${voffset 3}${alignc}${offset -1}${font1}${color #00CCCC}󰅢
 ${alignc}${offset -1}${font}${voffset -3} DOW
-${color grey}${offset 2}${downspeedgraph 35,35 #00CCCC}
+${color grey}${offset 2}${downspeedgraph 35,35 #00CCCC #00CCCC}
 ${voffset 5}${alignc}${offset -1}${font1}${color #FBA922}󰅧
 ${alignc}${offset -1}${font}${voffset -3} UP
-${color grey}${offset 2}${downspeedgraph 35,35 #FBA922}
+${color grey}${offset 2}${downspeedgraph 35,35 #FBA922 #FBA922}
 
 ]]
