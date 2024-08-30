@@ -21,6 +21,7 @@ vim.call("plug#begin")
     Plug("lewis6991/gitsigns.nvim")
     Plug("nvim-tree/nvim-tree.lua")
     Plug("folke/which-key.nvim")
+    Plug('akinsho/bufferline.nvim')
 vim.call("plug#end")
 
 require("TabSettings")
@@ -30,6 +31,7 @@ require("ThemeSettings")
 require("NvimTreeSettings")
 require("GitSignSettings")
 require("TelescopeSettings")
+require("BufferlineSettings")
 
 require("NavigationKeyBindings")
 
