@@ -1,20 +1,26 @@
 local Plug = vim.fn["plug#"]
 
 vim.call("plug#begin")
+    -- Theme
     Plug("junegunn/seoul256.vim")
+
+    -- Airline status bar
     Plug("vim-airline/vim-airline")
     Plug("vim-airline/vim-airline-themes")
-    Plug("nvim-tree/nvim-tree.lua")
+
+    -- Icons for nvim-tree file browser / which-key
     Plug("nvim-tree/nvim-web-devicons")
-    Plug("lewis6991/gitsigns.nvim")
     Plug('echasnovski/mini.icons')
-    Plug("folke/which-key.nvim")
-    Plug("airblade/vim-rooter")
+
+    -- Telescope plugin and dependencies
     Plug("nvim-lua/plenary.nvim")
+    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function() vim.cmd("TSUpdate") end})
     Plug("nvim-telescope/telescope.nvim", {["branch"] = "0.1.x"})
-    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function()
-        vim.cmd("TSUpdate")
-    end})
+
+    Plug("airblade/vim-rooter")
+    Plug("lewis6991/gitsigns.nvim")
+    Plug("nvim-tree/nvim-tree.lua")
+    Plug("folke/which-key.nvim")
 vim.call("plug#end")
 
 require("TabSettings")
