@@ -36,27 +36,44 @@ vim.call('plug#begin')
     Plug('L3MON4D3/LuaSnip')
     Plug('windwp/nvim-autopairs')
 
-    Plug("aznhe21/actions-preview.nvim")
+    -- LSP Actions (QuickFix) preview
+    Plug('aznhe21/actions-preview.nvim')
 
 vim.call('plug#end')
 
-require('TabSettings')
-require('MouseSettings')
-require('AirlineSettings')
-require('ThemeSettings')
-require('NvimTreeSettings')
-require('GitSignSettings')
-require('TelescopeSettings')
-require('BufferlineSettings')
+local actions_preview = require("actions-preview")
+local autopairs = require('nvim-autopairs')
 
-require('NavigationKeyBindings')
+local tab_settings = require('settings/tab')
+local mouse_settings = require('settings/mouse')
+local airline_settings = require('settings/airline')
+local theme_settings = require('settings/theme')
+local nvim_tree_settings = require('settings/nvim-tree')
+local git_sign_settings = require('settings/git-sign')
+local telescope_settings = require('settings/telescope')
+local bufferline_settings = require('settings/bufferline')
+local cmp_settings = require("settings/cmp")
+local navigation_key_bindings = require('keybindings/navigation')
 
-vim.keymap.set({ "v", "n" }, "<LEADER>gf", require("actions-preview").code_actions)
-require("actions-preview").setup()
+actions_preview.setup()
+autopairs.setup()
+
+tab_settings.configure({default = 'space'})
+mouse_settings.configure('n', true)
+airline_settings.configure(true, 'bubblegum')
+theme_settings.configure()
+nvim_tree_settings.configure()
+git_sign_settings.configure(true)
+telescope_settings.configure()
+bufferline_settings.configure()
+navigation_key_bindings.configure()
+cmp_settings.configure()
+
+vim.keymap.set('n', '<CR>', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
 
 vim.keymap.set('n', '<LEADER>t', '', { desc = 'Change TAB behavior.' })
-vim.keymap.set('n', '<LEADER>tt', tabAsTabs, { desc = 'Press TAB will insert TAB character.' })
-vim.keymap.set('n', '<LEADER>ts', tabAsSpaces, { desc = 'Press TAB will insert SPACE characters.' })
+vim.keymap.set('n', '<LEADER>tt', '<ESC><CMD>TabAsTabs<CR>', { desc = 'Press TAB will insert TAB character.' })
+vim.keymap.set('n', '<LEADER>ts', '<ESC><CMD>TabAsSpaces<CR>', { desc = 'Press TAB will insert SPACE characters.' })
 
 vim.keymap.set('n', '<LEADER>f', '<ESC><CMD>NvimTreeFindFileToggle<CR>', { desc = 'Toggle File Tree.' })
 
@@ -73,108 +90,16 @@ vim.keymap.set('n', '<LEADER>sfh', '<ESC><CMD>FindFilesInHomeDir<CR>', {desc = '
 vim.keymap.set('n', '<LEADER>sg', '<ESC><CMD>FindGreps<CR>', {desc = 'Grep file contents.'})
 vim.keymap.set('n', '<LEADER>sb', '<ESC><CMD>FindBuffers<CR>', {desc = 'Find Buffers.'})
 
-local autopairs = require('nvim-autopairs')
-local cmp = require('cmp')
-
-autopairs.setup({
-    disable_in_visualblock = true
-})
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-       require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' }
-  })
-})
-
-function EnableAutoComplete()
-    cmp.setup {
-      completion = {
-        autocomplete = true
-      }
-    }
-end
-
-function DisableAutoComplete()
-    cmp.setup {
-      completion = {
-        autocomplete = false
-      }
-    }
-end
-
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+vim.keymap.set({ 'v', 'n' }, '<LEADER>q', require('actions-preview').code_actions, {desc = 'Open quickfix actions.'})
 
 vim.keymap.set('n', '<LEADER>a', '', {desc = 'AutoComplete Settings.'})
-vim.keymap.set('n', '<LEADER>ad', DisableAutoComplete, {desc = 'Enable auto complete.'})
-vim.keymap.set('n', '<LEADER>ae', EnableAutoComplete, {desc = 'Disable auto complete.'})
+vim.keymap.set('n', '<LEADER>ad', '<ESC><CMD>DisableAutoComplete<CR>', {desc = 'Disable auto complete.'})
+vim.keymap.set('n', '<LEADER>ae', '<ESC><CMD>EnableAutoComplete<CR>', {desc = 'Enable auto complete.'})
 
-local omnisharpBin = '/usr/bin/OmniSharp'
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require('lspconfig')['omnisharp'].setup{
-  cmd = { omnisharpBin  },
-  capabilities = cmp_capabilities,
-  settings = {
-    FormattingOptions = {
-      -- Enables support for reading code style, naming convention and analyzer
-      -- settings from .editorconfig.
-      EnableEditorConfigSupport = true,
-      -- Specifies whether 'using' directives should be grouped and sorted during
-      -- document formatting.
-      OrganizeImports = nil,
-    },
-    MsBuild = {
-      -- If true, MSBuild project system will only load projects for files that
-      -- were opened in the editor. This setting is useful for big C# codebases
-      -- and allows for faster initialization of code navigation features only
-      -- for projects that are relevant to code that is being edited. With this
-      -- setting enabled OmniSharp may load fewer projects and may thus display
-      -- incomplete reference lists for symbols.
-      LoadProjectsOnDemand = nil,
-    },
-    RoslynExtensionsOptions = {
-      -- Enables support for roslyn analyzers, code fixes and rulesets.
-      EnableAnalyzersSupport = nil,
-      -- Enables support for showing unimported types and unimported extension
-      -- methods in completion lists. When committed, the appropriate using
-      -- directive will be added at the top of the current file. This option can
-      -- have a negative impact on initial completion responsiveness,
-      -- particularly for the first few completion sessions after opening a
-      -- solution.
-      EnableImportCompletion = nil,
-      -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
-      -- true
-      AnalyzeOpenDocumentsOnly = nil,
-    },
-    Sdk = {
-      -- Specifies whether to include preview versions of the .NET SDK when
-      -- determining which version to use for project loading.
-      IncludePrereleases = true,
-    },
-  }
-}
+local omnisharp_lsp_config = require("lspconfig/omnisharp")
+local lua_lsp_config = require("lspconfig/lua-ls")
 
-require('lspconfig')['lua_ls'].setup {
-  capabilities = cmp_capabilities
-}
-
-
+omnisharp_lsp_config.configure("/usr/bin/OmniSharp", cmp_capabilities)
+lua_lsp_config.configure(cmp_capabilities)

@@ -1,4 +1,6 @@
 set mouse=a
+unmap <LeftDrag>
+unmap <LeftRelease>
 
 if exists(':GuiFont')
     GuiFont SauceCodePro Nerd Font Mono:h18
@@ -18,9 +20,6 @@ endif
 if exists(':GuiScrollBar')
     GuiScrollBar 1
 endif
-
-unmap <LeftDrag>
-unmap <LeftRelease>
 
 " Right Click Context Menu (Copy-Cut-Paste)
 nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
