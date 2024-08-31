@@ -39,6 +39,7 @@ vim.call('plug#begin')
     -- LSP Actions (QuickFix) preview
     Plug('aznhe21/actions-preview.nvim')
 
+    Plug('OmniSharp/omnisharp-vim')
 vim.call('plug#end')
 
 local actions_preview = require("actions-preview")
@@ -53,6 +54,7 @@ local git_sign_settings = require('settings/git-sign')
 local telescope_settings = require('settings/telescope')
 local bufferline_settings = require('settings/bufferline')
 local cmp_settings = require("settings/cmp")
+local omnisharp_settings = require("settings/omnisharp-vim")
 local navigation_key_bindings = require('keybindings/navigation')
 
 actions_preview.setup()
@@ -68,6 +70,7 @@ telescope_settings.configure()
 bufferline_settings.configure()
 navigation_key_bindings.configure()
 cmp_settings.configure()
+omnisharp_settings.configure()
 
 vim.keymap.set('n', '<CR>', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
 
