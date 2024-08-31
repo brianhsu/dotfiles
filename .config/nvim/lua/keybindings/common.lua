@@ -1,7 +1,7 @@
 local module = {}
 
 function module.configure(actions_preview)
-    --vim.keymap.set('n', '<CR>', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
+    vim.keymap.set('n', '<LEADER>h', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
 
     vim.keymap.set('n', '<LEADER>t', '', { desc = 'Change TAB behavior.' })
     vim.keymap.set('n', '<LEADER>tt', '<ESC><CMD>TabAsTabs<CR>', { desc = 'Press TAB will insert TAB character.' })
@@ -26,7 +26,7 @@ function module.configure(actions_preview)
     vim.keymap.set('n', '<LEADER>ad', '<ESC><CMD>DisableAutoComplete<CR>', {desc = 'Disable auto complete.'})
     vim.keymap.set('n', '<LEADER>ae', '<ESC><CMD>EnableAutoComplete<CR>', {desc = 'Enable auto complete.'})
 
-    vim.keymap.set('n', '<LEADER>c', '', {desc = 'Conding Related.'})
+    vim.keymap.set({'n', 'x'}, '<LEADER>c', '', {desc = 'Conding Related.'})
     vim.keymap.set('n', '<LEADER>cq', actions_preview.code_actions, {desc = 'Open quickfix actions.'})
 end
 

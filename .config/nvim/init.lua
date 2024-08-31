@@ -15,7 +15,15 @@ vim.call('plug#begin')
 
     -- Telescope plugin and dependencies
     Plug('nvim-lua/plenary.nvim')
-    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function() vim.cmd('TSUpdate') end})
+    Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function()
+        vim.cmd([[
+            TSUpdate
+            TSInstall c_sharp
+            TSInstall java
+            TSInstall scala
+            TSInstall groovy
+        ]])
+    end})
     Plug('nvim-telescope/telescope.nvim', {['branch'] = '0.1.x'})
 
     Plug('airblade/vim-rooter')
@@ -40,6 +48,7 @@ vim.call('plug#begin')
     Plug('aznhe21/actions-preview.nvim')
 
     Plug('OmniSharp/omnisharp-vim')
+    Plug('ThePrimeagen/refactoring.nvim')
 
 vim.call('plug#end')
 
@@ -58,6 +67,7 @@ local cmp_settings = require("settings/cmp")
 local omnisharp_settings = require("settings/omnisharp-vim")
 local omnisharp_lsp_config = require("lspconfig/omnisharp")
 local lua_lsp_config = require("lspconfig/lua-ls")
+local refactoring = require('refactoring')
 
 local navigation_key_bindings = require('keybindings/navigation')
 local common_key_bindings = require('keybindings/common')
@@ -65,6 +75,7 @@ local omnisharp_key_bindings = require('keybindings/omnisharp')
 
 actions_preview.setup()
 autopairs.setup()
+refactoring.setup()
 
 tab_settings.configure({default = 'space'})
 mouse_settings.configure('n', true)
@@ -77,13 +88,13 @@ bufferline_settings.configure()
 cmp_settings.configure()
 omnisharp_settings.configure()
 
+telescope_settings.telescope.load_extension("refactoring")
+
 navigation_key_bindings.configure()
 common_key_bindings.configure(actions_preview)
-omnisharp_key_bindings.configure()
+omnisharp_key_bindings.configure(telescope_settings.telescope)
 
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 omnisharp_lsp_config.configure("/usr/bin/OmniSharp", cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
-
-

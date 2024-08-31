@@ -1,4 +1,6 @@
 local module = {}
+
+local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 local utils = require('telescope.utils')
 
@@ -15,7 +17,7 @@ function module.search_files_in_home_dir()
 end
 
 function module.configure()
-    require('telescope').setup {
+    telescope.setup {
       pickers = {
         find_files = {
           follow = true
@@ -29,5 +31,5 @@ function module.configure()
     vim.api.nvim_create_user_command('SearchBuffers', builtin.buffers, {})
     vim.api.nvim_create_user_command('SearchGreps', builtin.live_grep, {})
 end
-
+module.telescope = telescope
 return module
