@@ -50,6 +50,8 @@ vim.call('plug#begin')
     Plug('OmniSharp/omnisharp-vim')
     Plug('ThePrimeagen/refactoring.nvim')
 
+    Plug('mfussenegger/nvim-jdtls')
+
 vim.call('plug#end')
 
 local actions_preview = require("actions-preview")
@@ -98,3 +100,4 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 omnisharp_lsp_config.configure("/usr/bin/OmniSharp", cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
+
