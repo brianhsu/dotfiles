@@ -40,6 +40,7 @@ vim.call('plug#begin')
     Plug('aznhe21/actions-preview.nvim')
 
     Plug('OmniSharp/omnisharp-vim')
+
 vim.call('plug#end')
 
 local actions_preview = require("actions-preview")
@@ -60,6 +61,7 @@ local lua_lsp_config = require("lspconfig/lua-ls")
 
 local navigation_key_bindings = require('keybindings/navigation')
 local common_key_bindings = require('keybindings/common')
+local omnisharp_key_bindings = require('keybindings/omnisharp')
 
 actions_preview.setup()
 autopairs.setup()
@@ -77,6 +79,7 @@ omnisharp_settings.configure()
 
 navigation_key_bindings.configure()
 common_key_bindings.configure(actions_preview)
+omnisharp_key_bindings.configure()
 
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 

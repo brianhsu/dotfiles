@@ -1,7 +1,7 @@
 local module = {}
 
 function module.configure(actions_preview)
-    vim.keymap.set('n', '<CR>', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
+    --vim.keymap.set('n', '<CR>', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
 
     vim.keymap.set('n', '<LEADER>t', '', { desc = 'Change TAB behavior.' })
     vim.keymap.set('n', '<LEADER>tt', '<ESC><CMD>TabAsTabs<CR>', { desc = 'Press TAB will insert TAB character.' })
@@ -16,11 +16,11 @@ function module.configure(actions_preview)
 
     vim.keymap.set('n', '<LEADER>s', '', {desc = 'Telescope Search.'})
     vim.keymap.set('n', '<LEADER>sf', '', {desc = 'Search files,'})
-    vim.keymap.set('n', '<LEADER>sfc', '<ESC><CMD>FindFilesInCurrentDir<CR>', {desc = 'Search files in current directory.'})
-    vim.keymap.set('n', '<LEADER>sfb', '<ESC><CMD>FindFilesInBufferDir<CR>', {desc = 'Search files in buffer directory.'})
-    vim.keymap.set('n', '<LEADER>sfh', '<ESC><CMD>FindFilesInHomeDir<CR>', {desc = 'Search files in buffer directory.'})
-    vim.keymap.set('n', '<LEADER>sg', '<ESC><CMD>FindGreps<CR>', {desc = 'Grep file contents.'})
-    vim.keymap.set('n', '<LEADER>sb', '<ESC><CMD>FindBuffers<CR>', {desc = 'Find Buffers.'})
+    vim.keymap.set('n', '<LEADER>sfc', '<ESC><CMD>SearchFilesInWorkingDir<CR>', {desc = 'Search files in working directory.'})
+    vim.keymap.set('n', '<LEADER>sfb', '<ESC><CMD>SearchFilesInBufferDir<CR>', {desc = 'Search files in buffer directory.'})
+    vim.keymap.set('n', '<LEADER>sfh', '<ESC><CMD>SearchFilesInHomeDir<CR>', {desc = 'Search files in home directory.'})
+    vim.keymap.set('n', '<LEADER>sg', '<ESC><CMD>SearchGreps<CR>', {desc = 'Grep file contents.'})
+    vim.keymap.set('n', '<LEADER>sb', '<ESC><CMD>SearchBuffers<CR>', {desc = 'Find Buffers.'})
 
     vim.keymap.set('n', '<LEADER>a', '', {desc = 'AutoComplete Settings.'})
     vim.keymap.set('n', '<LEADER>ad', '<ESC><CMD>DisableAutoComplete<CR>', {desc = 'Disable auto complete.'})
