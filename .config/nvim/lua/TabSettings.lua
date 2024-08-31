@@ -1,3 +1,5 @@
+function TabHello()
+end
 function tabAsSpaces()
     vim.opt.tabstop=8
     vim.opt.softtabstop=4
