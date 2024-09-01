@@ -54,6 +54,8 @@ vim.call('plug#begin')
 
 vim.call('plug#end')
 
+local omnisharp_bin = '/usr/bin/OmniSharp'
+
 local actions_preview = require("actions-preview")
 local autopairs = require('nvim-autopairs')
 
@@ -69,6 +71,8 @@ local cmp_settings = require("settings/cmp")
 local omnisharp_settings = require("settings/omnisharp-vim")
 local omnisharp_lsp_config = require("lspconfig/omnisharp")
 local lua_lsp_config = require("lspconfig/lua-ls")
+local groovy_lsp_config = require("lspconfig/groovyls")
+
 local refactoring = require('refactoring')
 
 local navigation_key_bindings = require('keybindings/navigation')
@@ -88,7 +92,7 @@ git_sign_settings.configure(true)
 telescope_settings.configure()
 bufferline_settings.configure()
 cmp_settings.configure()
-omnisharp_settings.configure()
+omnisharp_settings.configure(omnisharp_bin)
 
 telescope_settings.telescope.load_extension("refactoring")
 
@@ -97,7 +101,7 @@ common_key_bindings.configure(actions_preview)
 omnisharp_key_bindings.configure(telescope_settings.telescope)
 
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-omnisharp_lsp_config.configure("/usr/bin/OmniSharp", cmp_capabilities)
+local groovy_language_server_path = '/usr/share/groovy-language-server-9999/lib/groovy-language-server-9999-all.jar'
+omnisharp_lsp_config.configure(omnisharp_bin, cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
-
+groovy_lsp_config.configure(groovy_language_server_path, cmp_capabilities)

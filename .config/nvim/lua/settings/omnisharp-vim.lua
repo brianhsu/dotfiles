@@ -24,8 +24,8 @@ local function define_short_commands()
     vim.api.nvim_create_user_command('Documentation', run_command('OmniSharpDocumentation'), {})
 end
 
-function module.configure()
-    vim.g.OmniSharp_server_path = '/usr/bin/OmniSharp'
+function module.configure(omnisharp_bin)
+    vim.g.OmniSharp_server_path = omnisharp_bin
     vim.g.OmniSharp_selector_ui = ''
     vim.g.OmniSharp_popup_options = {
         winblend = 10,
