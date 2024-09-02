@@ -5,6 +5,9 @@ local module = {}
 function module.configure(bin_path, editor_capabilities)
     require('lspconfig')['omnisharp'].setup{
       cmd = { bin_path },
+      on_init = function(client)
+        client.offset_encoding = "utf-8"
+      end,
       capabilities = editor_capabilities,
       settings = {
         FormattingOptions = {

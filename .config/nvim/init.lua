@@ -47,10 +47,8 @@ vim.call('plug#begin')
     -- LSP Actions (QuickFix) preview
     Plug('aznhe21/actions-preview.nvim')
 
-    Plug('OmniSharp/omnisharp-vim')
-    Plug('ThePrimeagen/refactoring.nvim')
-
     Plug('mfussenegger/nvim-jdtls')
+    Plug('brianhsu/vim-clsp')
 
 vim.call('plug#end')
 
@@ -68,40 +66,36 @@ local git_sign_settings = require('settings/git-sign')
 local telescope_settings = require('settings/telescope')
 local bufferline_settings = require('settings/bufferline')
 local cmp_settings = require("settings/cmp")
-local omnisharp_settings = require("settings/omnisharp-vim")
+local which_key_settings = require('settings/which-key')
 local omnisharp_lsp_config = require("lspconfig/omnisharp")
 local lua_lsp_config = require("lspconfig/lua-ls")
 local groovy_lsp_config = require("lspconfig/groovyls")
 
-local refactoring = require('refactoring')
-
 local navigation_key_bindings = require('keybindings/navigation')
 local common_key_bindings = require('keybindings/common')
-local omnisharp_key_bindings = require('keybindings/omnisharp')
+local clsp = require('vim-clsp')
 
 actions_preview.setup()
 autopairs.setup()
-refactoring.setup()
+clsp.setup()
 
 tab_settings.configure({default = 'space'})
 mouse_settings.configure('n', true)
 airline_settings.configure(true, 'bubblegum')
 theme_settings.configure()
 nvim_tree_settings.configure()
-git_sign_settings.configure(true)
+git_sign_settings.configure(false)
 telescope_settings.configure()
 bufferline_settings.configure()
 cmp_settings.configure()
-omnisharp_settings.configure(omnisharp_bin)
-
-telescope_settings.telescope.load_extension("refactoring")
+which_key_settings.configure()
 
 navigation_key_bindings.configure()
 common_key_bindings.configure(actions_preview)
-omnisharp_key_bindings.configure(telescope_settings.telescope)
 
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local groovy_language_server_path = '/usr/share/groovy-language-server-9999/lib/groovy-language-server-9999-all.jar'
 omnisharp_lsp_config.configure(omnisharp_bin, cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
+
 groovy_lsp_config.configure(groovy_language_server_path, cmp_capabilities)
