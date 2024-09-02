@@ -29,9 +29,6 @@ function module.configure(actions_preview)
     vim.keymap.set('n', '<LEADER>m', '', {desc = 'Mouse settings.'})
     vim.keymap.set('n', '<LEADER>me', '<ESC><CMD>set mouse+=n<CR>', {desc = 'Enable mouse in normal mode.'})
     vim.keymap.set('n', '<LEADER>md', '<ESC><CMD>set mouse-=n<CR>', {desc = 'Disable mouse in normal mode.'})
-
-    vim.keymap.set({'n', 'x'}, '<LEADER>c', '', {desc = 'Conding Related.'})
-    vim.keymap.set('n', '<LEADER>cq', actions_preview.code_actions, {desc = 'Open quickfix actions.'})
 end
 
 return module
