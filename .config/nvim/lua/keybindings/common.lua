@@ -16,7 +16,7 @@ function module.configure(actions_preview)
 
     vim.keymap.set('n', '<LEADER>s', '', {desc = 'Telescope Search.'})
     vim.keymap.set('n', '<LEADER>sf', '', {desc = 'Search files,'})
-    vim.keymap.set('n', '<LEADER>sfc', '<ESC><CMD>SearchFilesInWorkingDir<CR>', {desc = 'Search files in working directory.'})
+    vim.keymap.set('n', '<LEADER>sfw', '<ESC><CMD>SearchFilesInWorkingDir<CR>', {desc = 'Search files in working directory.'})
     vim.keymap.set('n', '<LEADER>sfb', '<ESC><CMD>SearchFilesInBufferDir<CR>', {desc = 'Search files in buffer directory.'})
     vim.keymap.set('n', '<LEADER>sfh', '<ESC><CMD>SearchFilesInHomeDir<CR>', {desc = 'Search files in home directory.'})
     vim.keymap.set('n', '<LEADER>sg', '<ESC><CMD>SearchGreps<CR>', {desc = 'Grep file contents.'})

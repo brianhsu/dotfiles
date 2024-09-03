@@ -9,20 +9,45 @@ function module.search_files_in_workding_dir()
 end
 
 function module.search_files_in_buffer_dir()
-    builtin.find_files({cwd = utils.buffer_dir()})
+    builtin.find_files({ cwd = utils.buffer_dir() })
 end
 
 function module.search_files_in_home_dir()
-    builtin.find_files({cwd = '~/'})
+    builtin.find_files({ cwd = '~/' })
 end
 
 function module.configure()
+    local actions = require("telescope.actions")
     telescope.setup {
-      pickers = {
-        find_files = {
-          follow = true
+        defaults = {
+            layout_config = {
+                horizontal = { width = 0.95 }
+            },
+            mappings = {
+                i = {
+                    ["<C-u>"] = actions.results_scrolling_left,
+                    ["<C-o>"] = actions.results_scrolling_right,
+                    ["<C-i>"] = actions.preview_scrolling_up,
+                    ["<C-k>"] = actions.preview_scrolling_down,
+                    ["<C-j>"] = actions.preview_scrolling_left,
+                    ["<C-l>"] = actions.preview_scrolling_right
+                },
+                n = {
+                    ["<C-u>"] = actions.results_scrolling_left,
+                    ["<C-o>"] = actions.results_scrolling_right,
+                    ["<C-i>"] = actions.preview_scrolling_up,
+                    ["<C-k>"] = actions.preview_scrolling_down,
+                    ["<C-j>"] = actions.preview_scrolling_left,
+                    ["<C-l>"] = actions.preview_scrolling_right
+                }
+
+            }
+        },
+        pickers = {
+            find_files = {
+                follow = true
+            }
         }
-      }
     }
 
     vim.api.nvim_create_user_command('SearchFilesInWorkingDir', module.search_files_in_workding_dir, {})
@@ -31,5 +56,6 @@ function module.configure()
     vim.api.nvim_create_user_command('SearchBuffers', builtin.buffers, {})
     vim.api.nvim_create_user_command('SearchGreps', builtin.live_grep, {})
 end
+
 module.telescope = telescope
 return module
