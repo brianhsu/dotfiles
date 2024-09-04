@@ -40,9 +40,6 @@ function M.configure()
         let g:terminal_statuslinetermnc_guifg = g:terminal_guifg
 
         function! SetTerminalColorScheme() abort
-            if !has('terminal')
-                return
-            endif
 
             let g:terminal_ansi_colors = [
                 \ g:terminal_ansi_colors_black,

@@ -1,14 +1,12 @@
 local module = {}
 
 local cmp = require('cmp')
-local luasnip = require('luasnip')
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 local function setup_cmp()
     cmp.setup({
       snippet = {
         expand = function(args)
-           luasnip.lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end,
       },
       window = {
@@ -40,9 +38,6 @@ end
 
 function module.configure()
     setup_cmp()
-
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
     vim.api.nvim_create_user_command('DisableAutoComplete', module.disable_auto_complete, {})
     vim.api.nvim_create_user_command('EnableAutoComplete', module.enable_auto_complete, {})
 end

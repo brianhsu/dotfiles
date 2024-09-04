@@ -43,9 +43,6 @@ function M.configure()
         Plug('hrsh7th/cmp-cmdline')
         Plug('hrsh7th/cmp-nvim-lsp-signature-help')
         Plug('hrsh7th/nvim-cmp')
-        Plug('saadparwaiz1/cmp_luasnip')
-        Plug('L3MON4D3/LuaSnip')
-        Plug('windwp/nvim-autopairs')
 
         -- LSP Actions (QuickFix) preview
         Plug('aznhe21/actions-preview.nvim')
@@ -54,7 +51,6 @@ function M.configure()
         Plug('brianhsu/vim-clsp')
 
         Plug("folke/trouble.nvim")
-
     vim.call('plug#end')
 end
 
