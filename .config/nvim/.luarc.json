@@ -1,6 +1,7 @@
 {
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "jit"
     ],
     "diagnostics.disable": [
         "unused-function"

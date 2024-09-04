@@ -3,6 +3,8 @@ local module = {}
 function module.configure(actions_preview)
     vim.keymap.set('n', '<LEADER>h', '<CMD>nohlsearch<CR>', { desc = 'Clear search result highlight.' })
 
+    vim.keymap.set('n', '<LEADER>T', '<CMD>terminal fish<CR>A', { desc = 'Open Terminal.' })
+
     vim.keymap.set('n', '<LEADER>t', '', { desc = 'Change TAB behavior.' })
     vim.keymap.set('n', '<LEADER>tt', '<ESC><CMD>TabAsTabs<CR>', { desc = 'Press TAB will insert TAB character.' })
     vim.keymap.set('n', '<LEADER>ts', '<ESC><CMD>TabAsSpaces<CR>', { desc = 'Press TAB will insert SPACE characters.' })
