@@ -1,6 +1,6 @@
 if jit.os == 'Linux' then
     vim.g.tab_symbol = '⭾_'
-    vim.g.groovy_lsp_jar = '/usr/share/groovy-language-server-9999/lib/groovy-language-server-9999-all.jar'
+    vim.g.groovy_lsp_jar = '/usr/share/groovy-language-server/lib/groovy-language-server-all.jar'
     vim.g.omnisharp_bin = '/usr/bin/OmniSharp'
     vim.g.jdtls_bin = '/opt/jdtls/bin/jdtls'
 elseif jit.os == 'OSX' then
@@ -10,10 +10,11 @@ elseif jit.os == 'OSX' then
     vim.g.jdtls_bin = '/opt/homebrew/bin/jdtls'
 end
 
-
 local plugins = require('settings/plugins')
 
 plugins.configure()
+
+require('trouble').setup()
 
 local navigation_key_bindings = require('keybindings/navigation')
 local common_key_bindings = require('keybindings/common')

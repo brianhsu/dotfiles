@@ -53,6 +53,8 @@ function M.configure()
         Plug('mfussenegger/nvim-jdtls')
         Plug('brianhsu/vim-clsp')
 
+        Plug("folke/trouble.nvim")
+
     vim.call('plug#end')
 end
 

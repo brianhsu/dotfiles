@@ -10,17 +10,16 @@ function module.configure(actions_preview)
 
     vim.keymap.set('n', '<LEADER>cs', '<ESC><CMD>CLSPSignatureHelp<CR>', {desc = 'Shwo Signature Helper.'})
 
-    vim.keymap.set('n', '<LEADER>cs', '', {desc = 'Show symbols...'})
-    vim.keymap.set('n', '<LEADER>csd', '<ESC><CMD>CLSPDocumentSymbol<CR>', {desc = 'Show symbols of current document.'})
-    vim.keymap.set('n', '<LEADER>csw', '<ESC><CMD>CLSPWorkspaceSymbol<CR>', {desc = 'Show symbols of current workspace.'})
+    vim.keymap.set('n', '<LEADER>cs', '<ESC><CMD>Trouble lsp_document_symbols<CR>', {desc = 'Show symbols of current document.'})
 
     vim.keymap.set('n', '<LEADER>cF', '<ESC><CMD>CLSPFormat<CR>', {desc = 'Format code.'})
     vim.keymap.set('n', '<LEADER>cR', '<ESC><CMD>CLSPRename<CR>', {desc = 'Rename symbol.'})
 
     vim.keymap.set('n', '<LEADER>cf', '', {desc = 'Find...'})
-    vim.keymap.set('n', '<LEADER>cfi', '<ESC><CMD>CLSPIncommingCalls<CR>', {desc = 'Find incomming call.'})
-    vim.keymap.set('n', '<LEADER>cfo', '<ESC><CMD>CLSPOutgoingCalls<CR>', {desc = 'Find outcomming call.'})
-    vim.keymap.set('n', '<LEADER>cfr', '<ESC><CMD>CLSPReference<CR>', {desc = 'Find references.'})
+    vim.keymap.set('n', '<LEADER>cfi', '<ESC><CMD>Trouble lsp_incoming_calls<CR>', {desc = 'Find incomming call.'})
+    vim.keymap.set('n', '<LEADER>cfo', '<ESC><CMD>Trouble lsp_outgoing_calls<CR>', {desc = 'Find outcomming call.'})
+    vim.keymap.set('n', '<LEADER>cfr', '<ESC><CMD>Trouble lsp_references<CR>', {desc = 'Find references.'})
+    vim.keymap.set('n', '<LEADER>cfs', '<ESC><CMD>CLSPWorkspaceSymbol<CR>', {desc = 'Find symbols of current workspace.'})
 
     vim.keymap.set('n', '<LEADER>cg', '', {desc = 'Goto...'})
     vim.keymap.set('n', '<LEADER>cgd', '<ESC><CMD>CLSPDefinition<CR>', {desc = 'Goto definition.'})
