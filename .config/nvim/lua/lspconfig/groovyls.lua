@@ -6,7 +6,7 @@ function module.configure(groovy_language_server_path, cmp_capabilities)
         capabilities = cmp_capabilities,
         settings = {
             groovy = {
-                targetFolder = {'/home/brianhsu/HelloGroovy/target/classes/'}
+                targetFolder = {'./target/classes/'}
             }
         },
         root_dir = function ()

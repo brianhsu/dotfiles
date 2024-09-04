@@ -62,20 +62,7 @@ terminal_color.configure()
 omnisharp_lsp_config.configure(vim.g.omnisharp_bin, cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
 groovy_lsp_config.configure(vim.g.groovy_lsp_jar, cmp_capabilities)
-vim.opt.termguicolors = true
 
 vim.cmd('packadd cfilter')
 
 
-if vim.g.neovide then
-    vim.o.guifont = "SauceCodePro NFM SemiBold:h17"
-    vim.g.neovide_confirm_quit = true
-    vim.g.neovide_position_animation_length = 0
-    vim.g.neovide_scroll_animation_length = 0
-    vim.g.neovide_scroll_animation_far_lines = 0
-    vim.g.neovide_cursor_animation_length = 0
-    vim.g.neovide_cursor_trail_size = 0
-    vim.g.neovide_cursor_animate_in_insert_mode = false
-    vim.g.neovide_cursor_animate_command_line = false
-    vim.opt.termguicolors = true
-end
