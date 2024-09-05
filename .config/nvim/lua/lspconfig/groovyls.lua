@@ -5,6 +5,7 @@ function module.configure(groovy_language_server_path, cmp_capabilities)
         cmd = { 'java', '-jar', groovy_language_server_path },
         capabilities = cmp_capabilities,
         settings = {
+            mavenExecutable = '/Users/bhsu/.sdkman/candidates/maven/current/bin/mvn',
             groovy = {
                 targetFolder = {'./target/classes/'}
             }

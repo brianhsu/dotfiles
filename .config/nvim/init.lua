@@ -3,11 +3,17 @@ if jit.os == 'Linux' then
     vim.g.groovy_lsp_jar = '/usr/share/groovy-language-server/lib/groovy-language-server-all.jar'
     vim.g.omnisharp_bin = '/usr/bin/OmniSharp'
     vim.g.jdtls_bin = '/opt/jdtls/bin/jdtls'
+    vim.g.java_8_home = '/Users/bhsu/.sdkman/candidates/java/8.0.402-librca'
+    vim.g.java_11_home = '/Users/bhsu/.sdkman/candidates/java/11.0.23-librca'
+    vim.g.java_17_home = '/Users/bhsu/.sdkman/candidates/java/17.0.11-librca'
 elseif jit.os == 'OSX' then
     vim.g.tab_symbol = '↹_'
     vim.g.groovy_lsp_jar = '/opt/groovy-language-server/lib/groovy-language-server-all.jar'
     vim.g.omnisharp_bin = '/usr/bin/OmniSharp'
     vim.g.jdtls_bin = '/opt/homebrew/bin/jdtls'
+    vim.g.java_8_home = '/Users/bhsu/.sdkman/candidates/java/8.0.402-librca'
+    vim.g.java_11_home = '/Users/bhsu/.sdkman/candidates/java/11.0.23-librca'
+    vim.g.java_17_home = '/Users/bhsu/.sdkman/candidates/java/17.0.11-librca'
 end
 
 local plugins = require('settings/plugins')

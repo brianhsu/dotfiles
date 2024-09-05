@@ -51,6 +51,7 @@ function M.configure()
         Plug('brianhsu/vim-clsp')
 
         Plug("folke/trouble.nvim")
+
     vim.call('plug#end')
 end
 
