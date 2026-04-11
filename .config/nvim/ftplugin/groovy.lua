@@ -1,1 +1,1 @@
-vim.opt.cindent=true
+vim.opt_local.smartindent = true

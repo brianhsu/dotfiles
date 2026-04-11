@@ -5,6 +5,7 @@ function M.restart_jdtls()
     local config = {
         cmd = {
             vim.g.jdtls_bin,
+            '--java-executable=' .. vim.g.java_21_home .. '/bin/java',
             '-Declipse.application=org.eclipse.jdt.ls.core.id1',
             '-Dosgi.bundles.defaultStartLevel=4',
             '-Declipse.product=org.eclipse.jdt.ls.core.product',

@@ -1,0 +1,38 @@
+[Groups/0]
+# Group Name
+Name=日文
+# Layout
+Default Layout=us
+# Default Input Method
+DefaultIM=anthy
+
+[Groups/0/Items/0]
+# Name
+Name=anthy
+# Layout
+Layout=
+
+[Groups/1]
+# Group Name
+Name=預設
+# Layout
+Default Layout=us
+# Default Input Method
+DefaultIM=rime
+
+[Groups/1/Items/0]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/1/Items/1]
+# Name
+Name=rime
+# Layout
+Layout=
+
+[GroupOrder]
+0=預設
+1=日文
+

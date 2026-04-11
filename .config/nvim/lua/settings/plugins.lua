@@ -20,7 +20,6 @@ function M.configure()
         Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function()
             vim.cmd([[
                 TSUpdate
-                TSInstall c_sharp
                 TSInstall java
                 TSInstall scala
                 TSInstall groovy
@@ -48,9 +47,14 @@ function M.configure()
         Plug('aznhe21/actions-preview.nvim')
 
         Plug('mfussenegger/nvim-jdtls')
+        Plug('scalameta/nvim-metals')
+        Plug('j-hui/fidget.nvim')
         Plug('brianhsu/vim-clsp')
 
         Plug("folke/trouble.nvim")
+
+        -- Test runner
+        Plug('vim-test/vim-test')
 
     vim.call('plug#end')
 end

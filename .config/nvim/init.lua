@@ -1,19 +1,23 @@
 if jit.os == 'Linux' then
     vim.g.tab_symbol = '⭾_'
     vim.g.groovy_lsp_jar = '/usr/share/groovy-language-server/lib/groovy-language-server-all.jar'
-    vim.g.omnisharp_bin = '/usr/bin/OmniSharp'
     vim.g.jdtls_bin = '/opt/jdtls/bin/jdtls'
     vim.g.java_8_home = '/Users/bhsu/.sdkman/candidates/java/8.0.402-librca'
     vim.g.java_11_home = '/Users/bhsu/.sdkman/candidates/java/11.0.23-librca'
     vim.g.java_17_home = '/Users/bhsu/.sdkman/candidates/java/17.0.11-librca'
+    vim.g.java_21_home = '/Users/bhsu/.sdkman/candidates/java/21.0.7-librca'
+    vim.g.maven_bin = '/Users/bhsu/.sdkman/candidates/maven/current/bin/mvn'
+    vim.g.groovy_classpath_cache = '.groovy-classpath'
 elseif jit.os == 'OSX' then
     vim.g.tab_symbol = '↹_'
     vim.g.groovy_lsp_jar = '/opt/groovy-language-server/lib/groovy-language-server-all.jar'
-    vim.g.omnisharp_bin = '/usr/bin/OmniSharp'
     vim.g.jdtls_bin = '/opt/homebrew/bin/jdtls'
-    vim.g.java_8_home = '/Users/bhsu/.sdkman/candidates/java/8.0.402-librca'
-    vim.g.java_11_home = '/Users/bhsu/.sdkman/candidates/java/11.0.23-librca'
-    vim.g.java_17_home = '/Users/bhsu/.sdkman/candidates/java/17.0.11-librca'
+    vim.g.java_8_home = '/Users/bhsu/.sdkman/candidates/java/8.0.452-librca'
+    vim.g.java_11_home = '/Users/bhsu/.sdkman/candidates/java/11.0.27-librca'
+    vim.g.java_17_home = '/Users/bhsu/.sdkman/candidates/java/17.0.15-librca'
+    vim.g.java_21_home = '/Users/bhsu/.sdkman/candidates/java/21.0.7-librca'
+    vim.g.maven_bin = '/Users/bhsu/.sdkman/candidates/maven/current/bin/mvn'
+    vim.g.groovy_classpath_cache = '.groovy-classpath'
 end
 
 local plugins = require('settings/plugins')
@@ -43,14 +47,31 @@ local telescope_settings = require('settings/telescope')
 local bufferline_settings = require('settings/bufferline')
 local cmp_settings = require("settings/cmp")
 local which_key_settings = require('settings/which-key')
+local vim_test_settings = require('settings/vim-test')
 local terminal_color = require('settings/terminal-color')
 
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local omnisharp_lsp_config = require("lspconfig/omnisharp")
 local lua_lsp_config = require("lspconfig/lua-ls")
 local groovy_lsp_config = require("lspconfig/groovyls")
 
 actions_preview.setup()
+require('fidget').setup({
+    notification = {
+        configs = {
+            default = {
+                name = false,
+                icon = false,
+            },
+        },
+        view = {
+            group_separator = false,
+        },
+        window = {
+            border = 'rounded',
+            winblend = 15
+        },
+    },
+})
 clsp.setup()
 
 tab_settings.configure({default = 'space'})
@@ -63,12 +84,11 @@ telescope_settings.configure()
 bufferline_settings.configure()
 cmp_settings.configure()
 which_key_settings.configure()
+vim_test_settings.configure()
 terminal_color.configure()
 
-omnisharp_lsp_config.configure(vim.g.omnisharp_bin, cmp_capabilities)
 lua_lsp_config.configure(cmp_capabilities)
 groovy_lsp_config.configure(vim.g.groovy_lsp_jar, cmp_capabilities)
 
 vim.cmd('packadd cfilter')
-
 

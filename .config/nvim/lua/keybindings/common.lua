@@ -33,10 +33,10 @@ function module.configure(actions_preview)
     vim.keymap.set('n', '<LEADER>md', '<ESC><CMD>set mouse-=n<CR>', {desc = 'Disable mouse in normal mode.'})
 
     vim.keymap.set('n', '<LEADER>q', '', {desc = 'Quick list navigation.'})
-    vim.keymap.set('n', '<LEADER>qf', '<ESC><CMD>cfist<CR>', {desc = 'Go to first quick list item.'})
+    vim.keymap.set('n', '<LEADER>qf', '<ESC><CMD>cfirst<CR>', {desc = 'Go to first quick list item.'})
     vim.keymap.set('n', '<LEADER>ql', '<ESC><CMD>clast<CR>', {desc = 'Go to last quick list item.'})
-    vim.keymap.set('n', '<LEADER>qi', '<ESC><CMD>cprev<CR>', {desc = 'Go to previous quick list item.'})
-    vim.keymap.set('n', '<LEADER>qk', '<ESC><CMD>cnext<CR>', {desc = 'Go to next quick list item.'})
+    vim.keymap.set('n', '<LEADER>q[', '<ESC><CMD>cprev<CR>', {desc = 'Go to previous quick list item.'})
+    vim.keymap.set('n', '<LEADER>q]', '<ESC><CMD>cnext<CR>', {desc = 'Go to next quick list item.'})
 end
 
 return module
