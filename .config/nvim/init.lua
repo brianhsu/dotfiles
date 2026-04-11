@@ -24,7 +24,6 @@ local plugins = require('settings/plugins')
 
 plugins.configure()
 
-require('trouble').setup()
 
 local navigation_key_bindings = require('keybindings/navigation')
 local common_key_bindings = require('keybindings/common')
@@ -37,6 +36,7 @@ coding_key_bindings.configure(actions_preview)
 
 local clsp = require('vim-clsp')
 
+local trouble_settings = require('settings/trouble')
 local tab_settings = require('settings/tab')
 local mouse_settings = require('settings/mouse')
 local airline_settings = require('settings/airline')
@@ -45,6 +45,7 @@ local nvim_tree_settings = require('settings/nvim-tree')
 local git_sign_settings = require('settings/git-sign')
 local telescope_settings = require('settings/telescope')
 local bufferline_settings = require('settings/bufferline')
+local fidget_settings = require('settings/fidget')
 local cmp_settings = require("settings/cmp")
 local which_key_settings = require('settings/which-key')
 local vim_test_settings = require('settings/vim-test')
@@ -55,25 +56,8 @@ local lua_lsp_config = require("lspconfig/lua-ls")
 local groovy_lsp_config = require("lspconfig/groovyls")
 
 actions_preview.setup()
-require('fidget').setup({
-    notification = {
-        configs = {
-            default = {
-                name = false,
-                icon = false,
-            },
-        },
-        view = {
-            group_separator = false,
-        },
-        window = {
-            border = 'rounded',
-            winblend = 15
-        },
-    },
-})
 clsp.setup()
-
+trouble_settings.configure()
 tab_settings.configure({default = 'space'})
 mouse_settings.configure('n', true)
 airline_settings.configure(true, 'bubblegum')
@@ -82,6 +66,7 @@ nvim_tree_settings.configure()
 git_sign_settings.configure(false)
 telescope_settings.configure()
 bufferline_settings.configure()
+fidget_settings.configure()
 cmp_settings.configure()
 which_key_settings.configure()
 vim_test_settings.configure()

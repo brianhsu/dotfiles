@@ -135,9 +135,9 @@ local function load_test_failures(term_buf, exit_code)
     end
 
     if #qf_entries > 0 then
-        vim.cmd('copen')
+        vim.cmd('Trouble qflist open')
     else
-        vim.cmd('cclose')
+        vim.cmd('Trouble qflist close')
         if exit_code == 0 and type(term_buf) == 'number' and vim.api.nvim_buf_is_valid(term_buf) then
             vim.api.nvim_buf_delete(term_buf, { force = true })
         end
@@ -160,7 +160,7 @@ function module.configure()
                 endif
             endfor
             botright new
-            execute 'resize ' . (&lines * 25 / 100)
+            execute 'resize ' . (&lines * 30 / 100)
             setlocal winfixheight
             call termopen(a:cmd)
             let b:vim_test = 1
