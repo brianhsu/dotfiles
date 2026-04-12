@@ -45,6 +45,7 @@ function module.configure()
     map_tab_navigation()
     map_buffer_navigation()
     fix_built_in_completion_arrow_key()
+    vim.g.camelcasemotion_key = ","
 end
 
 return module

@@ -173,7 +173,7 @@ function module.configure()
 
     vim.api.nvim_create_autocmd("TermClose", {
         callback = function(event)
-            if vim.b[event.buf].vim_test then
+            if vim.api.nvim_buf_is_valid(event.buf) and vim.b[event.buf].vim_test then
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), 'n', false)
                 local buf = event.buf
                 local exit_code = vim.v.event.status

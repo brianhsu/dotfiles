@@ -5,7 +5,7 @@ function M.restart_jdtls()
     local config = {
         cmd = {
             vim.g.jdtls_bin,
-            '--java-executable=' .. vim.g.java_21_home .. '/bin/java',
+            '--java-executable=' .. vim.g.java_25_home .. '/bin/java',
             '-Declipse.application=org.eclipse.jdt.ls.core.id1',
             '-Dosgi.bundles.defaultStartLevel=4',
             '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -33,6 +33,14 @@ function M.restart_jdtls()
                         {
                             name = "JavaSE-17",
                             path = vim.g.java_17_home,
+                        },
+                        {
+                            name = "JavaSE-21",
+                            path = vim.g.java_21_home,
+                        },
+                        {
+                            name = "JavaSE-25",
+                            path = vim.g.java_25_home,
                         },
                     }
                 }

@@ -20,6 +20,12 @@ function module.configure()
     local actions = require("telescope.actions")
     telescope.setup {
         defaults = {
+            file_ignore_patterns = {
+                "/target/",
+                "./project/project",
+                "./project/target",
+                "**/*.class"
+            },
             layout_config = {
                 horizontal = { width = 0.95 }
             },

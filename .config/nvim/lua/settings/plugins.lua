@@ -56,6 +56,8 @@ function M.configure()
         -- Test runner
         Plug('vim-test/vim-test')
 
+        Plug('bkad/CamelCaseMotion')
+
     vim.call('plug#end')
 end
 
