@@ -9,6 +9,8 @@ if jit.os == 'Linux' then
     vim.g.java_25_home = '/Users/bhsu/.local/share/mise/installs/java/25.0.2'
     vim.g.maven_bin = '/Users/bhsu/.local/share/mise/installs/maven/3.8.4/bin/mvn'
     vim.g.groovy_classpath_cache = '.groovy-classpath'
+    vim.o.shell = '/usr/bin/fish'
+    vim.o.shellcmdflag = '-l -c'
 elseif jit.os == 'OSX' then
     vim.g.tab_symbol = '↹_'
     vim.g.groovy_lsp_jar = '/opt/groovy-language-server/lib/groovy-language-server-all.jar'
