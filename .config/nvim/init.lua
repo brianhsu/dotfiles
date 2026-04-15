@@ -24,6 +24,8 @@ elseif jit.os == 'OSX' then
     vim.o.shellcmdflag = '-l -c'
 end
 
+vim.g.rooter_patterns = { '.git', 'build.sbt', 'pom.xml', 'build.gradle', 'gradlew', 'Makefile' }
+
 local plugins = require('settings/plugins')
 
 plugins.configure()

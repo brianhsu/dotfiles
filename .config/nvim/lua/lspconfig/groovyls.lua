@@ -55,6 +55,26 @@ local function build_classpath_async(project_root, callback)
     })
 end
 
+function module.restart(callback)
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ name = 'groovyls' })
+    if #clients == 0 then
+        return
+    end
+
+    clients[1]:stop()
+    vim.api.nvim_create_autocmd('LspDetach', {
+        once = true,
+        buffer = bufnr,
+        callback = function()
+            vim.api.nvim_exec_autocmds('FileType', { buffer = bufnr })
+            if callback then
+                callback()
+            end
+        end,
+    })
+end
+
 function module.configure(groovy_language_server_path, cmp_capabilities)
     vim.lsp.config('groovyls', {
         cmd = { 'java', '-jar', groovy_language_server_path },
@@ -83,67 +103,15 @@ function module.configure(groovy_language_server_path, cmp_capabilities)
                 if cached and has_target then
                     set_classpath(cached)
                 else
-                    build_classpath_async(root, set_classpath)
+                    build_classpath_async(root, function(classpath_entries)
+                        set_classpath(classpath_entries)
+                        -- groovyls doesn't pick up classpath changes via didChangeConfiguration,
+                        -- so restart the server. On re-attach, cache + target/ exist.
+                        vim.schedule(function()
+                            module.restart()
+                        end)
+                    end)
                 end
-            end
-
-            vim.api.nvim_create_user_command('GroovyReloadClasspath', function()
-                require('fidget').notify('Reloading classpath...', vim.log.levels.INFO, { key = 'groovy-classpath' })
-                local bufnr = vim.api.nvim_get_current_buf()
-                local saved_view = vim.fn.winsaveview()
-                local saved_lines = nil
-
-                if vim.bo[bufnr].modified then
-                    saved_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-                end
-
-                client:stop()
-                vim.defer_fn(function()
-                    if not vim.api.nvim_buf_is_valid(bufnr) or vim.api.nvim_buf_get_name(bufnr) == '' then
-                        return
-                    end
-
-                    vim.cmd('edit!')
-
-                    if saved_lines then
-                        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, saved_lines)
-                        vim.bo[bufnr].modified = true
-                    end
-
-                    vim.fn.winrestview(saved_view)
-                    require('fidget').notify('Classpath reloaded', vim.log.levels.INFO, { key = 'groovy-classpath' })
-                end, 500)
-            end, {})
-
-            local target_dir = root .. '/target'
-            if not client._groovy_watcher and vim.uv.fs_stat(target_dir) then
-                client._groovy_watcher = true
-
-                local debounce_timer = nil
-                local watcher = vim.uv.new_fs_event()
-
-                watcher:start(target_dir, {}, vim.schedule_wrap(function(err, filename)
-                    if not filename or not filename:match('%.jar$') then
-                        return
-                    end
-
-                    if debounce_timer then
-                        debounce_timer:stop()
-                    end
-
-                    debounce_timer = vim.defer_fn(function()
-                        debounce_timer = nil
-                        vim.cmd('GroovyReloadClasspath')
-                    end, 2000)
-                end))
-
-                vim.api.nvim_create_autocmd("VimLeavePre", {
-                    once = true,
-                    callback = function()
-                        watcher:stop()
-                        watcher:close()
-                    end,
-                })
             end
         end
     })

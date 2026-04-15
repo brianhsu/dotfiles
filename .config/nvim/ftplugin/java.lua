@@ -1,24 +1,56 @@
 require("./lspconfig/java").restart_jdtls()
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-    buffer = 0,
-    callback = function()
-        local pom = vim.fs.find('pom.xml', { upward = true, path = vim.fn.expand('%:p:h') })[1]
-        if not pom then
-            return
+local function get_main_class()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local package = ''
+    for _, line in ipairs(lines) do
+        local pkg = line:match('^%s*package%s+([%w%.]+)%s*;')
+        if pkg then
+            package = pkg
+            break
         end
+    end
+    local classname = vim.fn.expand('%:t:r')
+    if package ~= '' then
+        return package .. '.' .. classname
+    end
+    return classname
+end
 
-        local project_root = vim.fs.dirname(pom)
-        local cmd = vim.g.maven_bin .. ' -f ' .. pom .. ' compile jar:jar -q'
+local function has_main_method()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local content = table.concat(lines, ' ')
+    return content:match('public%s+static%s+void%s+main%s*%(') ~= nil
+end
 
-        require('fidget').notify('Compiling JAR...', vim.log.levels.INFO, { key = 'java-compile' })
-        vim.fn.jobstart(cmd, {
-            cwd = project_root,
-            on_exit = function(_, exit_code)
-                if exit_code == 0 then
-                    require('fidget').notify('JAR compiled', vim.log.levels.INFO, { key = 'java-compile' })
-                end
-            end,
-        })
-    end,
-})
+local function run_java_main()
+    local pom = vim.fs.find('pom.xml', { upward = true, path = vim.fn.expand('%:p:h') })[1]
+    if not pom then
+        vim.notify('No pom.xml found', vim.log.levels.ERROR)
+        return
+    end
+
+    if not has_main_method() then
+        vim.notify('No main method found in this file', vim.log.levels.ERROR)
+        return
+    end
+
+    local fqcn = get_main_class()
+    local cmd = vim.g.maven_bin .. ' -f ' .. pom .. ' compile exec:java -Dexec.mainClass=' .. fqcn
+
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.b[buf].java_run then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
+    end
+
+    vim.cmd('botright new')
+    vim.cmd('resize ' .. math.floor(vim.o.lines * 30 / 100))
+    vim.wo.winfixheight = true
+    vim.fn.jobstart(cmd, { term = true })
+    vim.b.java_run = true
+    vim.cmd('startinsert')
+end
+
+vim.api.nvim_create_user_command('RunJava', run_java_main, { desc = 'Run Java main method via Maven' })
+vim.keymap.set('n', '<Leader>cr', '<CMD>RunJava<CR>', { buffer = true, desc = 'Run Java main method.' })

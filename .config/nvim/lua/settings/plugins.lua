@@ -24,6 +24,7 @@ function M.configure()
                 TSInstall scala
                 TSInstall groovy
                 TSInstall markdown_inline
+                TSInstall xml
             ]])
         end})
         Plug('nvim-telescope/telescope.nvim')
@@ -47,6 +48,7 @@ function M.configure()
         Plug('aznhe21/actions-preview.nvim')
 
         Plug('mfussenegger/nvim-jdtls')
+
         Plug('scalameta/nvim-metals')
         Plug('j-hui/fidget.nvim')
         Plug('brianhsu/vim-clsp')
@@ -57,6 +59,9 @@ function M.configure()
         Plug('vim-test/vim-test')
 
         Plug('bkad/CamelCaseMotion')
+
+        -- Cucumber / Gherkin syntax
+        Plug('tpope/vim-cucumber')
 
     vim.call('plug#end')
 end
