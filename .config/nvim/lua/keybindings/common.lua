@@ -12,10 +12,6 @@ end
 
 function M.setup()
   vim.keymap.set({'n', 'x'}, '<Leader>t', '<CMD>Lspsaga term_toggle fish<CR>', {desc = ' Toggle Terminal.'})
-  vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<CMD>lua require('spider').motion('w')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<CMD>lua require('spider').motion('e')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<CMD>lua require('spider').motion('b')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'ge', "<CMD>lua require('spider').motion('ge')<CR>")
 
   vim.keymap.set({'n', 'x'}, '<Leader>m', '', {desc = 'Mouse...'})
   vim.keymap.set({'n', 'x'}, '<Leader>mt', toggle_mouse, {desc = 'Toggle Mouse mode'})
