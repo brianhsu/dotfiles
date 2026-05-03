@@ -6,6 +6,7 @@ function module.configure()
     vim.g.loaded_netrwPlugin = 1
 
     require('nvim-tree').setup({
+      sync_root_with_cwd = true,
       sort = { sorter = 'case_sensitive' },
       view = { width = 32 },
       renderer = { group_empty = true },

@@ -280,9 +280,15 @@ end
 
 function module.configure()
     function _G.vim_test_neovim_strategy(cmd)
+        -- Sanitize Spock-style test names: -Dtest=Class#"test name (special)"
+        -- Wrap the entire -Dtest= arg in single quotes to prevent fish shell interpretation
+        cmd = cmd:gsub('(-D%S-test=)(%S+#)"([^"]*)"', function(flag, prefix, name)
+            return "'" .. flag .. prefix .. name .. "'"
+        end)
+
         vim.g.vim_test_start_time = os.time()
         vim.g.vim_test_runner = cmd:match('^sbt ') and 'sbt'
-            or cmd:match('cucumber%.features') and 'cucumber'
+            or cmd:match('cucumber') and 'cucumber'
             or 'maven'
 
         -- Find existing test window and reuse it, or create a new one
@@ -309,7 +315,8 @@ function module.configure()
             })
         end
 
-        vim.fn.jobstart('echo "❯ ' .. cmd:gsub("'", "'\\''") .. '"; ' .. cmd, { term = true })
+        local echo_cmd = cmd:gsub("'", "'\\''")
+        vim.fn.jobstart("echo '❯ " .. echo_cmd .. "'; " .. cmd, { term = true })
         vim.b.vim_test = true
         vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]], { buffer = true })
         vim.cmd('startinsert')
@@ -331,8 +338,8 @@ function module.configure()
     vim.g['test#java#runner'] = 'maventest'
     vim.g['test#groovy#runner'] = 'maventest'
     vim.g['test#scala#runner'] = 'sbttest'
-    vim.g['test#java#maventest#options'] = '--batch-mode -Dstyle.color=always'
-    vim.g['test#groovy#maventest#options'] = '--batch-mode -Dstyle.color=always'
+    vim.g['test#java#maventest#options'] = '--batch-mode -Dstyle.color=always -DtrimStackTrace=false'
+    vim.g['test#groovy#maventest#options'] = '--batch-mode -Dstyle.color=always -DtrimStackTrace=false'
 
     vim.api.nvim_create_user_command('TestFailures', load_test_failures, { desc = 'Load test failures into QuickFix' })
 

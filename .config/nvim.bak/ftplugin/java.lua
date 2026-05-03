@@ -36,7 +36,7 @@ local function run_java_main()
     end
 
     local fqcn = get_main_class()
-    local cmd = vim.g.maven_bin .. ' -f ' .. pom .. ' compile exec:java -Dexec.mainClass=' .. fqcn
+    local cmd = vim.g.maven_bin .. ' -f ' .. pom .. ' compile exec:java -Dpmd.skip=true -Dcpd.skip=true -Dcheckstyle.skip=true -Dexec.mainClass=' .. fqcn
 
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_valid(buf) and vim.b[buf].java_run then
@@ -49,6 +49,16 @@ local function run_java_main()
     vim.wo.winfixheight = true
     vim.fn.jobstart(cmd, { term = true })
     vim.b.java_run = true
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_create_autocmd('TermClose', {
+        buffer = buf,
+        once = true,
+        callback = function()
+            if vim.v.event.status ~= 0 then
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
+            end
+        end,
+    })
     vim.cmd('startinsert')
 end
 

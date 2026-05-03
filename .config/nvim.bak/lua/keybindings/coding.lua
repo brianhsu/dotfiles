@@ -3,7 +3,7 @@ local module = {}
 function module.configure(actions_preview)
     vim.keymap.set({'n', 'x'}, '<LEADER>c', '', {desc = 'Conding Related.'})
 
-    vim.keymap.set('n', '<LEADER>ca', actions_preview.code_actions, {desc = 'Open code actions.'})
+    vim.keymap.set({'n', 'x'}, '<LEADER>ca', actions_preview.code_actions, {desc = 'Open code actions.'})
     vim.keymap.set('n', '<LEADER>cs', '<ESC><CMD>CLSPSignatureHelp<CR>', {desc = 'Shwo Signature Helper.'})
 
     vim.keymap.set('n', '<LEADER>cd', '', {desc = 'Show Diagnostic'})

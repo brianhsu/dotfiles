@@ -23,7 +23,9 @@ local function load_classpath_from_cache(project_root)
     cache_handle:close()
 
     local classpath_entries = parse_classpath(content)
-    classpath_entries[#classpath_entries + 1] = project_root .. '/target/*'
+    for _, jar in ipairs(vim.fn.glob(project_root .. '/target/*.jar', true, true)) do
+        classpath_entries[#classpath_entries + 1] = jar
+    end
     return classpath_entries
 end
 
@@ -42,13 +44,25 @@ local function build_classpath_async(project_root, callback)
 
     require('fidget').notify('Resolving Maven classpath...', vim.log.levels.INFO, { key = 'groovy-classpath' })
 
+    local stderr_chunks = {}
     vim.fn.jobstart(maven_cmd, {
+        stderr_buffered = true,
+        on_stderr = function(_, data)
+            if data then
+                vim.list_extend(stderr_chunks, data)
+            end
+        end,
         on_exit = function(_, exit_code)
             if exit_code == 0 then
                 callback(load_classpath_from_cache(project_root) or {})
                 require('fidget').notify('Classpath resolved', vim.log.levels.INFO, { key = 'groovy-classpath' })
             else
-                require('fidget').notify('Maven classpath resolution failed', vim.log.levels.WARN, { key = 'groovy-classpath' })
+                local err_msg = vim.trim(table.concat(stderr_chunks, '\n'))
+                if err_msg ~= '' then
+                    vim.notify('Maven classpath resolution failed:\n' .. err_msg, vim.log.levels.ERROR)
+                else
+                    vim.notify('Maven classpath resolution failed (exit code ' .. exit_code .. ')', vim.log.levels.ERROR)
+                end
                 callback({})
             end
         end,
@@ -77,12 +91,20 @@ end
 
 function module.configure(groovy_language_server_path, cmp_capabilities)
     vim.lsp.config('groovyls', {
-        cmd = { 'java', '-jar', groovy_language_server_path },
+        cmd = { vim.g.java_21_home .. '/bin/java', '-jar', groovy_language_server_path },
+        filetypes = { 'groovy' },
         capabilities = cmp_capabilities,
         settings = {
             groovy = {}
         },
         root_markers = {'gradlew', 'mvnw', 'pom.xml', '.git'},
+
+        before_init = function(_, config)
+            local root = config.root_dir
+            if root then
+                vim.fn.system({ 'find', root .. '/target', '-name', '*.groovy', '-type', 'f', '-delete' })
+            end
+        end,
 
         on_attach = function(client)
             local root = client.config.root_dir

@@ -13,11 +13,23 @@ vim.api.nvim_create_user_command('ReloadGroovyClasspath', function()
         .. ' compile jar:jar dependency:build-classpath -q -DincludeScope=test'
         .. ' -Dmdep.outputFile=' .. cache_path
     require('fidget').notify('Compiling JAR...', vim.log.levels.INFO, { key = 'java-compile' })
+    local stderr_chunks = {}
     vim.fn.jobstart(cmd, {
         cwd = project_root,
+        stderr_buffered = true,
+        on_stderr = function(_, data)
+            if data then
+                vim.list_extend(stderr_chunks, data)
+            end
+        end,
         on_exit = function(_, exit_code)
             if exit_code ~= 0 then
-                require('fidget').notify('JAR compile failed', vim.log.levels.ERROR, { key = 'java-compile' })
+                local err_msg = vim.trim(table.concat(stderr_chunks, '\n'))
+                if err_msg ~= '' then
+                    vim.notify('JAR compile failed:\n' .. err_msg, vim.log.levels.ERROR)
+                else
+                    vim.notify('JAR compile failed (exit code ' .. exit_code .. ')', vim.log.levels.ERROR)
+                end
                 return
             end
 
