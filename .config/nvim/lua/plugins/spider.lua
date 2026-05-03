@@ -2,7 +2,8 @@ local M = {}
 
 function M.setup()
   require("spider").setup {
-    skipInsignificantPunctuation = false
+    skipInsignificantPunctuation = true,
+    consistentOperatorPending = true
   }
 end
 
