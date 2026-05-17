@@ -2,95 +2,118 @@
   "plugins": {
     "blame.nvim": {
       "rev": "179da7aaacce7c52874af636255ede72dd6fe796",
-      "src": "https://github.com/FabijanZulj/blame.nvim"
+      "src": "https://github.com/FabijanZulj/blame.nvim",
+      "version": "'main'"
     },
     "blink.cmp": {
-      "rev": "80f5dd3f11049f1c3a87557718d4e55556a0e3f5",
-      "src": "https://github.com/saghen/blink.cmp"
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "'v1.10.2'"
     },
     "blink.lib": {
       "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
-      "src": "https://github.com/saghen/blink.lib"
+      "src": "https://github.com/saghen/blink.lib",
+      "version": "'main'"
     },
     "bufferline.nvim": {
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
-      "src": "https://github.com/akinsho/bufferline.nvim"
+      "src": "https://github.com/akinsho/bufferline.nvim",
+      "version": "'v4.9.1'"
     },
     "fidget.nvim": {
-      "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
-      "src": "https://github.com/j-hui/fidget.nvim"
+      "rev": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e",
+      "src": "https://github.com/j-hui/fidget.nvim",
+      "version": "'v1.6.1'"
     },
     "gitsigns.nvim": {
-      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
-      "src": "https://github.com/lewis6991/gitsigns.nvim"
+      "rev": "a462f416e2ce4744531c6256252dee99a7d34a83",
+      "src": "https://github.com/lewis6991/gitsigns.nvim",
+      "version": "'v2.1.0'"
     },
     "kanagawa.nvim": {
-      "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
-      "src": "https://github.com/rebelot/kanagawa.nvim"
+      "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
+      "src": "https://github.com/rebelot/kanagawa.nvim",
+      "version": "'master'"
     },
     "lspsaga.nvim": {
-      "rev": "c532fb86c3d211c5829ad58d2a0783012739bb65",
-      "src": "https://github.com/nvimdev/lspsaga.nvim"
+      "rev": "3e33a6a6c5d379f3d4fae77fae6b53b762a0a30f",
+      "src": "https://github.com/nvimdev/lspsaga.nvim",
+      "version": "'main'"
     },
     "lualine.nvim": {
       "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
-      "src": "https://github.com/nvim-lualine/lualine.nvim"
+      "src": "https://github.com/nvim-lualine/lualine.nvim",
+      "version": "'master'"
     },
     "mini.nvim": {
-      "rev": "0f339bf5c93f392dc5d2417d47d7b9edc5f96fe8",
-      "src": "https://github.com/nvim-mini/mini.nvim"
+      "rev": "a995fe9cd4193fb492b5df69175a351a74b3d36b",
+      "src": "https://github.com/nvim-mini/mini.nvim",
+      "version": "'v0.17.0'"
     },
     "nvim-jdtls": {
       "rev": "77ccaeb422f8c81b647605da5ddb4a7f725cda90",
-      "src": "https://github.com/mfussenegger/nvim-jdtls"
+      "src": "https://github.com/mfussenegger/nvim-jdtls",
+      "version": "'master'"
     },
     "nvim-metals": {
       "rev": "4cc98f07ec96bb748a8796831767538e0e4f9be4",
-      "src": "https://github.com/scalameta/nvim-metals"
+      "src": "https://github.com/scalameta/nvim-metals",
+      "version": "'main'"
     },
     "nvim-spider": {
       "rev": "4fdd56a4f45bca13a607632e15a6f9f8d1b1f99e",
-      "src": "https://github.com/chrisgrieser/nvim-spider"
+      "src": "https://github.com/chrisgrieser/nvim-spider",
+      "version": "'main'"
     },
     "nvim-tree.lua": {
-      "rev": "f9bfc0059eca24546b69a7006110463da4808f8f",
-      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+      "rev": "85d1145ac71c1b8e1423862c78165a1f609faf60",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua",
+      "version": "'nvim-tree-v1.17.0'"
     },
     "nvim-treesitter-textobjects": {
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+      "version": "'main'"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
+      "src": "https://github.com/nvim-lua/plenary.nvim",
+      "version": "'master'"
     },
     "project.nvim": {
-      "rev": "558b753633212ac9f3871ea433125ef79aeef186",
-      "src": "https://github.com/DrKJeff16/project.nvim"
+      "rev": "771e5540b6050ebc1b9182ba87c1fd8b393360d3",
+      "src": "https://github.com/DrKJeff16/project.nvim",
+      "version": "'v4.1.0-1'"
     },
     "render-markdown.nvim": {
-      "rev": "3f3eea97b80839f629c951ca660ffd125bfa5b34",
-      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+      "rev": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+      "version": "'v8.12.0'"
     },
     "submode.nvim": {
       "rev": "d3cd2ceed6e2379caba6ec2e75dc50a9a832be63",
-      "src": "https://github.com/pogyomo/submode.nvim"
+      "src": "https://github.com/pogyomo/submode.nvim",
+      "version": "'v6.4.3'"
     },
     "telescope.nvim": {
-      "rev": "ec009610d5d259ec59a6edf0219ef3f7ee4732e5",
-      "src": "https://github.com/nvim-telescope/telescope.nvim"
+      "rev": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179",
+      "src": "https://github.com/nvim-telescope/telescope.nvim",
+      "version": "'v0.2.1'"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "33a94d022e3a5a500d878b784ba7fec61559c70a",
-      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
+      "rev": "ae287204a4fe9174e82bad17c102e721e5aa8520",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim",
+      "version": "'main'"
     },
     "trouble.nvim": {
-      "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
-      "src": "https://github.com/folke/trouble.nvim"
+      "rev": "748ca2789044607f19786b1d837044544c55e80a",
+      "src": "https://github.com/folke/trouble.nvim",
+      "version": "'v3.7.1'"
     },
     "which-key.nvim": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "https://github.com/folke/which-key.nvim"
+      "rev": "fcbf4eea17cb299c02557d576f0d568878e354a4",
+      "src": "https://github.com/folke/which-key.nvim",
+      "version": "'v3.17.0'"
     }
   }
 }

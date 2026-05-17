@@ -1,10 +1,10 @@
 local M = {}
 
 function M.setup()
-  vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<CMD>lua require('spider').motion('w')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<CMD>lua require('spider').motion('e')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<CMD>lua require('spider').motion('b')<CR>")
-  vim.keymap.set({ 'n', 'o', 'x' }, 'ge', "<CMD>lua require('spider').motion('ge')<CR>")
+--  vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<CMD>lua require('spider').motion('w')<CR>")
+--  vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<CMD>lua require('spider').motion('e')<CR>")
+--  vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<CMD>lua require('spider').motion('b')<CR>")
+--  vim.keymap.set({ 'n', 'o', 'x' }, 'ge', "<CMD>lua require('spider').motion('ge')<CR>")
 
   local textobjects = require("nvim-treesitter-textobjects.select")
 

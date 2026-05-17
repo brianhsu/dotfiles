@@ -40,38 +40,38 @@ vim.g.maplocalleader = '\\'
 vim.o.shellcmdflag = '-l -c'
 
 vim.pack.add({
-  'https://github.com/rebelot/kanagawa.nvim',                       -- Theme
-  'https://github.com/MeanderingProgrammer/render-markdown.nvim',   -- Markdown Prettry Viewer
+  {src = 'https://github.com/rebelot/kanagawa.nvim', version = 'master'},                       -- Theme
+  {src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', version = 'v8.12.0'},  -- Markdown Prettry Viewer
 
-  'https://github.com/chrisgrieser/nvim-spider',                -- Camel Case motion
-  'https://github.com/pogyomo/submode.nvim',                    -- Add extra mode
+  {src = 'https://github.com/chrisgrieser/nvim-spider', version = 'main'},    -- Camel Case motion
+  {src = 'https://github.com/pogyomo/submode.nvim', version = 'v6.4.3'},      -- Add extra mode
 
-  'https://github.com/nvim-mini/mini.nvim',                     -- Icons for which-key, lualine, bufferline
-  'https://github.com/nvim-lualine/lualine.nvim',               -- Bottom Bar,
-  'https://github.com/akinsho/bufferline.nvim',                 -- Top Bar
-  'https://github.com/folke/which-key.nvim',                    -- Cheatsheet
-  'https://github.com/j-hui/fidget.nvim',                       -- Notfications
+  {src = 'https://github.com/nvim-mini/mini.nvim', version = 'v0.17.0'},         -- Icons for which-key, lualine, bufferline
+  {src = 'https://github.com/nvim-lualine/lualine.nvim', version = 'master'},    -- Bottom Bar,
+  {src = 'https://github.com/akinsho/bufferline.nvim', version = 'v4.9.1'},      -- Top Bar
+  {src = 'https://github.com/folke/which-key.nvim', version = 'v3.17.0'},        -- Cheatsheet
+  {src = 'https://github.com/j-hui/fidget.nvim', version = 'v1.6.1'},            -- Notfications
 
-  'https://github.com/saghen/blink.lib',                        -- Library for auto completion
-  'https://github.com/saghen/blink.cmp',                        -- Auto completion
+  {src = 'https://github.com/saghen/blink.lib', version = 'main'},               -- Library for auto completion
+  {src = 'https://github.com/saghen/blink.cmp', version = 'v1.10.2'},            -- Auto completion
 
-  'https://github.com/lewis6991/gitsigns.nvim',                 -- Show Git sings on the left
-  'https://github.com/FabijanZulj/blame.nvim',                  -- Provides :BlameToggle to toggle Git Blame.
+  {src = 'https://github.com/lewis6991/gitsigns.nvim', version = 'v2.1.0'},      -- Show Git sings on the left
+  {src = 'https://github.com/FabijanZulj/blame.nvim', version = 'main'},         -- Provides :BlameToggle to toggle Git Blame.
 
-  'https://github.com/nvim-tree/nvim-tree.lua',                 -- File Browser
+  {src = 'https://github.com/nvim-tree/nvim-tree.lua', version = 'nvim-tree-v1.17.0'},   -- File Browser
 
-  'https://github.com/nvim-lua/plenary.nvim',                   -- Requirement for Telescope
-  'https://github.com/nvim-telescope/telescope.nvim',           -- Telescope search
-  'https://github.com/DrKJeff16/project.nvim',                  -- Project list
+  {src = 'https://github.com/nvim-lua/plenary.nvim', version = 'master'},                -- Requirement for Telescope
+  {src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.2.1'},        -- Telescope search
+  {src = 'https://github.com/DrKJeff16/project.nvim', version = 'v4.1.0-1'},             -- Project list
 
-  'https://github.com/romus204/tree-sitter-manager.nvim',       -- Manager syntax parser
-  'https://github.com/folke/trouble.nvim',                      -- Diagnostics Viewr
-  'https://github.com/nvimdev/lspsaga.nvim',                    -- LSP UI,
+  {src = 'https://github.com/romus204/tree-sitter-manager.nvim', version = 'main'},      -- Manager syntax parser
+  {src = 'https://github.com/folke/trouble.nvim', version = 'v3.7.1'},                   -- Diagnostics Viewr
+  {src = 'https://github.com/nvimdev/lspsaga.nvim', version = 'main'},                   -- LSP UI,
 
-  'https://github.com/scalameta/nvim-metals',
-  'https://github.com/mfussenegger/nvim-jdtls',
+  {src = 'https://github.com/scalameta/nvim-metals', version = 'main'},
+  {src = 'https://github.com/mfussenegger/nvim-jdtls', version = 'master'},
 
-  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+  {src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main'}
 })
 
 require('theme/kanagawa').setup()

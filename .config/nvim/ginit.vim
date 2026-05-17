@@ -6,7 +6,7 @@ set mouse=a
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    GuiFont SauceCodePro Nerd Font Mono:h20:sb
+    GuiFont SauceCodePro Nerd Font Mono:h16:sb
 endif
 
 " Disable GUI Tabline
@@ -23,9 +23,6 @@ endif
 if exists(':GuiScrollBar')
     GuiScrollBar 1
 endif
-
-unmap <LeftDrag>
-unmap <LeftRelease>
 
 " Right Click Context Menu (Copy-Cut-Paste)
 nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
